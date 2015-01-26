@@ -11,13 +11,13 @@ public class ConcurrentVersionSystemTest {
     private final Visitor<String> json = new JsonFormatter();
 
     @Test
-    public void xml() {
+    public void xml_serialized() {
         assertEquals("<cvs />", cvs.accept(xml));
         assertEquals("<svn />", svn.accept(xml));
     }
 
     @Test
-    public void json() {
+    public void json_serialized() {
         assertEquals("{type: 'cvs'}", cvs.accept(json));
         assertEquals("{type: 'svn'}", svn.accept(json));
     }
