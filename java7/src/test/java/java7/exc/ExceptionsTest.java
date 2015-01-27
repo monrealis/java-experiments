@@ -1,4 +1,4 @@
-package java7;
+package java7.exc;
 
 import org.junit.Test;
 
