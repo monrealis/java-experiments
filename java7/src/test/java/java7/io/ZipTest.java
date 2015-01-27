@@ -18,6 +18,7 @@ import java.util.zip.ZipOutputStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ZipTest {
     private Path temp;
@@ -42,7 +43,7 @@ public class ZipTest {
 
     @After
     public void after() {
-        temp.toFile().delete();
+        assertTrue(temp.toFile().delete());
     }
 
     @Test
