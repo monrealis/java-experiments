@@ -1,7 +1,6 @@
 package java7.io;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,14 +9,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class ZipTest {
@@ -59,21 +58,26 @@ public class ZipTest {
     public void fileGetsAdded() throws IOException {
         assertEmpty();
         Files.copy(new ByteArrayInputStream(new byte[]{1}), fileSystem.getPath("/test.txt"));
-        assertEquals("/test.txt", list().findAny().get().toString());
+        assertEquals("/test.txt", list().get(0).toString());
     }
 
     private void assertEmpty() throws IOException {
-        assertEquals(0, list().count());
+        assertEquals(0, list().size());
     }
 
     @Test
     public void dirGetsCreated() throws IOException {
         assertEmpty();
         Files.createDirectory(fileSystem.getPath("/dir.txt"));
-        assertEquals("/dir.txt/", list().findAny().get().toString());
+        assertEquals("/dir.txt/", list().get(0).toString());
     }
 
-    private Stream<Path> list() throws IOException {
-        return Files.list(getRoot());
+    private List<Path> list() throws IOException {
+        DirectoryStream<Path> paths = Files.newDirectoryStream(getRoot());
+        List<Path> r = new ArrayList<>();
+        for (Path p : paths) {
+            r.add(p);
+        }
+        return r;
     }
 }
