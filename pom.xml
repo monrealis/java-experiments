@@ -12,5 +12,6 @@
         <module>spring</module>
         <module>java7</module>
         <module>java8</module>
+        <module>lombok</module>
     </modules>
 </project>
