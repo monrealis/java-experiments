@@ -15,7 +15,7 @@ public class MethodReferencesTest {
 
     @Test
     public void instanceMethod_works() {
-        assertEquals("texttext", echoTwice(String::toString));
+        assertEquals("texttext", echoFunctionTwice(String::toString));
     }
 
     @Test
@@ -28,7 +28,12 @@ public class MethodReferencesTest {
         assertEquals("ee", echoTwiceNthLetter(this::getNthLetter, 1));
     }
 
-    private String echoTwice(Function<String, String> f) {
+    @Test
+    public void constructorReference_works() {
+        assertEquals("", echoTwice(String::new));
+    }
+
+    private String echoFunctionTwice(Function<String, String> f) {
         return f.apply(getText()) + f.apply(getText());
     }
 
