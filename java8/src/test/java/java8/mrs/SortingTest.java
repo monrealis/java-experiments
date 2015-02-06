@@ -13,7 +13,7 @@ import static java.util.Comparator.comparing;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
-public class MethodReferencesTest {
+public class SortingTest {
     private List<Integer> ints = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
 
     @Before
