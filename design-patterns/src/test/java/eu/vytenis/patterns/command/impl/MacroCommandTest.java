@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class CommandTest {
+public class MacroCommandTest {
     private Accumulator accumulator = new Accumulator(20);
     private Command add = new AddTwo(accumulator);
     private Command multiply = new MultiplyByTwo(accumulator);
