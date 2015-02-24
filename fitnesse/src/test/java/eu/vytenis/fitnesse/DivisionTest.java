@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @FitNesseRunner.Suite("Tests.DivisionTest")
 @FitNesseRunner.DebugMode(true)
 @FitNesseRunner.FitnesseDir(".")
-@FitNesseRunner.OutputDir(systemProperty = "java.io.tmpdir", pathExtension = "fitnesse")
+@FitNesseRunner.OutputDir("target/fitnesse-results")
 public class DivisionTest {
 
 }
