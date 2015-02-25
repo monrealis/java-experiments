@@ -1,5 +1,3 @@
-!include -seamless SetUpFixture
-
 !|eu.vytenis.fitnesse.row.PersonsRowFixture|
 |first name|last name|
 |F|L|
