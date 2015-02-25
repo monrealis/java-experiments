@@ -1,0 +1,7 @@
+!|ActionFixture|
+|start|eu.vytenis.fitnesse.action.SumActionFixture|
+|enter|add|1|
+|enter|add|2|
+|enter|add|3|
+|press|calculate|
+|check|sum|6|
