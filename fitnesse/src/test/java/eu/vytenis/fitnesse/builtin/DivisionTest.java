@@ -1,4 +1,4 @@
-package eu.vytenis.fitnesse;
+package eu.vytenis.fitnesse.builtin;
 
 import fitnesse.junit.FitNesseRunner;
 import org.junit.runner.RunWith;

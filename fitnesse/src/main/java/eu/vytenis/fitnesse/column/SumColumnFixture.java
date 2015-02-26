@@ -1,8 +1,8 @@
-package eu.vytenis.fitnesse;
+package eu.vytenis.fitnesse.column;
 
 import fit.ColumnFixture;
 
-public class SumFixture extends ColumnFixture {
+public class SumColumnFixture extends ColumnFixture {
     public int first;
     public int second;
 
