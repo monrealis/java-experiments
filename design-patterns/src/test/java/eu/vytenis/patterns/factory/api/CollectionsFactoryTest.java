@@ -26,6 +26,13 @@ public class CollectionsFactoryTest {
         map = factory.createMap();
     }
 
+    @Parameters
+    public static List<Object[]> getParameters() {
+        Object[] hash = {new HashCollectionsFactory()};
+        Object[] tree = {new TreeCollectionsFactory()};
+        return asList(hash, tree);
+    }
+
     @Test
     public void set() {
         set.add("X");
@@ -37,14 +44,4 @@ public class CollectionsFactoryTest {
         map.put("K", "V");
         assertEquals(singletonMap((Object) "K", (Object) "V"), map);
     }
-
-    @Parameters
-    public static List<Object[]> getParameters() {
-        Object[] hash = {new HashCollectionsFactory()};
-        Object[] tree = {new TreeCollectionsFactory()};
-        return asList(hash, tree);
-
-    }
-
-
 }
