@@ -22,7 +22,6 @@ public class CompletableFutureTest {
         return CompletableFuture.supplyAsync(() -> 2);
     }
 
-
     @Test
     public void join() {
         CompletableFuture<Integer> cf = supplyTwoAsync();
