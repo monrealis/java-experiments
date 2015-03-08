@@ -13,5 +13,6 @@
         <module>java7</module>
         <module>java8</module>
         <module>lombok</module>
+        <module>solid</module>
     </modules>
 </project>
