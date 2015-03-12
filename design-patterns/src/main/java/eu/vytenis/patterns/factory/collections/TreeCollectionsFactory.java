@@ -1,4 +1,4 @@
-package eu.vytenis.patterns.factory.impl;
+package eu.vytenis.patterns.factory.collections;
 
 import eu.vytenis.patterns.factory.api.CollectionsFactory;
 

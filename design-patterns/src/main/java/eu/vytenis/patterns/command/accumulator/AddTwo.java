@@ -1,4 +1,4 @@
-package eu.vytenis.patterns.command.impl;
+package eu.vytenis.patterns.command.accumulator;
 
 import eu.vytenis.patterns.command.api.Command;
 

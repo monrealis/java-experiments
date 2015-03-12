@@ -1,4 +1,4 @@
-package eu.vytenis.patterns.command.impl;
+package eu.vytenis.patterns.command.accumulator;
 
 import eu.vytenis.patterns.command.api.Command;
 import eu.vytenis.patterns.command.api.MacroCommand;
@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class MacroCommandTest {
+public class AccumulatorTest {
     private Accumulator accumulator = new Accumulator(20);
     private Command add = new AddTwo(accumulator);
     private Command multiply = new MultiplyByTwo(accumulator);

@@ -1,7 +1,6 @@
-package eu.vytenis.patterns.factory.api;
+package eu.vytenis.patterns.factory.collections;
 
-import eu.vytenis.patterns.factory.impl.HashCollectionsFactory;
-import eu.vytenis.patterns.factory.impl.TreeCollectionsFactory;
+import eu.vytenis.patterns.factory.api.CollectionsFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
