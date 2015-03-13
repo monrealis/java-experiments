@@ -16,4 +16,12 @@ public abstract class Document {
     public byte[] serialize() {
         return serialization.serialize();
     }
+
+    public void setSerialization(Serialization serialization) {
+        this.serialization = serialization;
+    }
+
+    public void setSignability(Signability signability) {
+        this.signability = signability;
+    }
 }
