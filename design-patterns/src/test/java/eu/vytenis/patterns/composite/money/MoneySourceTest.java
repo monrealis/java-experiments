@@ -1,9 +1,6 @@
-package eu.vytenis.patterns.composite;
+package eu.vytenis.patterns.composite.money;
 
 import eu.vytenis.patterns.composite.api.MoneySource;
-import eu.vytenis.patterns.composite.impl.DebitCard;
-import eu.vytenis.patterns.composite.impl.Person;
-import eu.vytenis.patterns.composite.impl.Purse;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

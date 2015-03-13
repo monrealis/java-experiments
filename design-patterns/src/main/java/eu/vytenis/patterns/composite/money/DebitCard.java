@@ -1,4 +1,4 @@
-package eu.vytenis.patterns.composite.impl;
+package eu.vytenis.patterns.composite.money;
 
 import eu.vytenis.patterns.composite.api.MoneySource;
 
