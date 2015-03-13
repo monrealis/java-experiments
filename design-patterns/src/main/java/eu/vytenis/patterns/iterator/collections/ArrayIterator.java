@@ -1,4 +1,4 @@
-package eu.vytenis.patterns.iterator.impl;
+package eu.vytenis.patterns.iterator.collections;
 
 import eu.vytenis.patterns.iterator.api.Iterator;
 

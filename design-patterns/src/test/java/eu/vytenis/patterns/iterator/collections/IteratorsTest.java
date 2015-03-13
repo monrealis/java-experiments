@@ -1,8 +1,6 @@
-package eu.vytenis.patterns.iterator;
+package eu.vytenis.patterns.iterator.collections;
 
 import eu.vytenis.patterns.iterator.api.Iterator;
-import eu.vytenis.patterns.iterator.impl.ArrayIterator;
-import eu.vytenis.patterns.iterator.impl.ListIterator;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
