@@ -1,4 +1,4 @@
-package eu.vytenis.patterns.proxy;
+package eu.vytenis.patterns.proxy.api;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

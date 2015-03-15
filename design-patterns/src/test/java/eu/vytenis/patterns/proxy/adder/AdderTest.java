@@ -1,5 +1,6 @@
-package eu.vytenis.patterns.proxy;
+package eu.vytenis.patterns.proxy.adder;
 
+import eu.vytenis.patterns.proxy.api.Adder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,6 +8,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assume.assumeNoException;
 
 public class AdderTest {
@@ -25,6 +27,8 @@ public class AdderTest {
     }
 
     @Test
-    public void pass() {
+    public void pass() throws Exception {
+        Adder a = (Adder) Naming.lookup("Adder");
+        assertEquals(7, a.add(5, 2));
     }
 }

@@ -1,4 +1,6 @@
-package eu.vytenis.patterns.proxy;
+package eu.vytenis.patterns.proxy.adder;
+
+import eu.vytenis.patterns.proxy.api.Adder;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -9,6 +11,6 @@ public class SimpleAdder extends UnicastRemoteObject implements Adder {
 
     @Override
     public int add(int first, int second) {
-        return 0;
+        return first + second;
     }
 }
