@@ -1,5 +1,7 @@
-package eu.vytenis.patterns.decorator;
+package eu.vytenis.patterns.decorator.prefixes;
 
+import eu.vytenis.patterns.decorator.api.XmlSerializer;
+import eu.vytenis.patterns.decorator.trax.TraxXmlSerializer;
 import org.junit.Test;
 import org.w3c.dom.Document;
 
@@ -13,21 +15,21 @@ import java.io.StringReader;
 
 import static org.junit.Assert.assertEquals;
 
-public class XmlSerializerTest {
+public class XmlSerializerRemovingPrefixesTest {
     private static final String SIMPLE_XML = "<root><element1/></root>";
     private static final String COMPLEX_XML = "<x:root xmlns:x=\"urn:test:test\" xmlns:y=\"urn:test:test1\"><y:element1/></x:root>";
     private static final String COMPLEX_XML_WITHOUT_PREFIXES = "<root xmlns=\"urn:test:test\"><element1 xmlns=\"urn:test:test1\"/></root>";
-    private XmlSerializer simple = new SimpleXmlSerializer();
-    private XmlSerializer withoutPrefixes = new XmlSerializerRemovingPrefixes(new SimpleXmlSerializer());
+    private XmlSerializer serializer = new TraxXmlSerializer();
+    private XmlSerializer withoutPrefixes = new XmlSerializerRemovingPrefixes(new TraxXmlSerializer());
 
     @Test
     public void xmlWithDefaultNsAndSimpleSerializer_returnsUnchangedXml() {
-        assertEquals(SIMPLE_XML, simple.serialize(parse(SIMPLE_XML)));
+        assertEquals(SIMPLE_XML, serializer.serialize(parse(SIMPLE_XML)));
     }
 
     @Test
     public void xmlWithNamespacesAndSimpleSerializer_returnsUnchangedXml() {
-        assertEquals(COMPLEX_XML, simple.serialize(parse(COMPLEX_XML)));
+        assertEquals(COMPLEX_XML, serializer.serialize(parse(COMPLEX_XML)));
     }
 
     @Test

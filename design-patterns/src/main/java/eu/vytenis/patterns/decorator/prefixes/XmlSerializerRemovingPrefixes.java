@@ -1,5 +1,7 @@
-package eu.vytenis.patterns.decorator;
+package eu.vytenis.patterns.decorator.prefixes;
 
+import eu.vytenis.patterns.decorator.api.XmlSerializer;
+import eu.vytenis.patterns.decorator.api.XmlSerializerDecorator;
 import org.w3c.dom.*;
 
 import javax.xml.parsers.DocumentBuilderFactory;

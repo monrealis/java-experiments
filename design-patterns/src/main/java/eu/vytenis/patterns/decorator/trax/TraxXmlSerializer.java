@@ -1,5 +1,6 @@
-package eu.vytenis.patterns.decorator;
+package eu.vytenis.patterns.decorator.trax;
 
+import eu.vytenis.patterns.decorator.api.XmlSerializer;
 import org.w3c.dom.Document;
 
 import javax.xml.transform.*;
@@ -8,7 +9,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.StringWriter;
 import java.io.Writer;
 
-public class SimpleXmlSerializer implements XmlSerializer {
+public class TraxXmlSerializer implements XmlSerializer {
     @Override
     public String serialize(Document document) {
         StringWriter w = new StringWriter();

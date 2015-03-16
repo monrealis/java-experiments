@@ -1,5 +1,9 @@
-package eu.vytenis.patterns.visitor;
+package eu.vytenis.patterns.visitor.formatters;
 
+import eu.vytenis.patterns.visitor.api.VersionControlSystem;
+import eu.vytenis.patterns.visitor.api.Visitor;
+import eu.vytenis.patterns.visitor.vcs.ConcurrentVersionsSystem;
+import eu.vytenis.patterns.visitor.vcs.Subversion;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
