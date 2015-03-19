@@ -4,7 +4,7 @@ import fitnesse.junit.FitNesseRunner;
 import org.junit.runner.RunWith;
 
 @RunWith(FitNesseRunner.class)
-@FitNesseRunner.Suite("Tests.SumActionFixtureTest")
+@FitNesseRunner.Suite("Basic.SumActionFixtureTest")
 @FitNesseRunner.FitnesseDir(".")
 @FitNesseRunner.OutputDir("target/fitnesse-results")
 public class SumActionFixtureTest {
