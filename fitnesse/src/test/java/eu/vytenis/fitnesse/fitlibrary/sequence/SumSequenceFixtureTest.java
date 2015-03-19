@@ -1,4 +1,4 @@
-package eu.vytenis.fitnesse.sequence;
+package eu.vytenis.fitnesse.fitlibrary.sequence;
 
 
 import fitnesse.junit.FitNesseRunner;

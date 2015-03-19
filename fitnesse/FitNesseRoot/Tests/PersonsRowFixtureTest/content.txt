@@ -1,4 +1,4 @@
-!|eu.vytenis.fitnesse.row.PersonsRowFixture|
+!|eu.vytenis.fitnesse.basic.row.PersonsRowFixture|
 |first name|last name|
 |F|L|
 |f|l|

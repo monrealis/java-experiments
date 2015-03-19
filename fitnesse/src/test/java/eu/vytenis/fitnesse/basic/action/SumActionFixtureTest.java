@@ -1,4 +1,4 @@
-package eu.vytenis.fitnesse.action;
+package eu.vytenis.fitnesse.basic.action;
 
 import fitnesse.junit.FitNesseRunner;
 import org.junit.runner.RunWith;

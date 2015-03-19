@@ -1,4 +1,4 @@
-!| eu.vytenis.fitnesse.table.SumTableFixture|
+!| eu.vytenis.fitnesse.basic.table.SumTableFixture|
 |addOne|1|
 |checkSum|1|
 |addTwo|1|2|

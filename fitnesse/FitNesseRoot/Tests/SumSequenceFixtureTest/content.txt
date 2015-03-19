@@ -1,5 +1,5 @@
 !define TEST_RUNNER {fitlibrary.suite.FitLibraryServer}
 
-!| eu.vytenis.fitnesse.sequence.SumSequenceFixture|
+!| eu.vytenis.fitnesse.fitlibrary.sequence.SumSequenceFixture|
 |addOne|1|
 |check|sum|1|

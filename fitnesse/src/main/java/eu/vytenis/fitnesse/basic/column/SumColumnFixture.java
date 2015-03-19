@@ -1,4 +1,4 @@
-package eu.vytenis.fitnesse.column;
+package eu.vytenis.fitnesse.basic.column;
 
 import fit.ColumnFixture;
 

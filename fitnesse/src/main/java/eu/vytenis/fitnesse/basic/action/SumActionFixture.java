@@ -1,4 +1,4 @@
-package eu.vytenis.fitnesse.action;
+package eu.vytenis.fitnesse.basic.action;
 
 import fit.ActionFixture;
 

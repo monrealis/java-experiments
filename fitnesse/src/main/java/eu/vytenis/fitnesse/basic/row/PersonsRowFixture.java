@@ -1,4 +1,4 @@
-package eu.vytenis.fitnesse.row;
+package eu.vytenis.fitnesse.basic.row;
 
 import fit.RowFixture;
 

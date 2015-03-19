@@ -1,13 +1,12 @@
-package eu.vytenis.fitnesse.column;
+package eu.vytenis.fitnesse.basic.row;
 
 import fitnesse.junit.FitNesseRunner;
 import org.junit.runner.RunWith;
 
 @RunWith(FitNesseRunner.class)
-@FitNesseRunner.Suite("Tests.SumColumnFixtureTest")
+@FitNesseRunner.Suite("Tests.PersonsRowFixtureTest")
 @FitNesseRunner.FitnesseDir(".")
 @FitNesseRunner.OutputDir("target/fitnesse-results")
-@FitNesseRunner.DebugMode(true)
-public class SumColumnFixtureTest {
+public class PersonsRowFixtureTest {
 }
 
