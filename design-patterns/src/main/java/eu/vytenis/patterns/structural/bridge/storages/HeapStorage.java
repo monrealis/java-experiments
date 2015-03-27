@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeapStorage<T> implements Storage {
-    private List<T> items = new ArrayList<>();
     private final Serializer<T> serializer;
+    private List<T> items = new ArrayList<>();
 
     public HeapStorage(Serializer<T> serializer) {
         this.serializer = serializer;
