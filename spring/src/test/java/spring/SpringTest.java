@@ -3,7 +3,9 @@ package spring;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import spring.api.*;
+import spring.api.IBean1;
+import spring.api.IBean2;
+import spring.api.IFactory;
 import spring.impl.Bean3;
 
 public class SpringTest {
