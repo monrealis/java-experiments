@@ -8,6 +8,10 @@ import java.util.function.Supplier;
 import static org.junit.Assert.assertEquals;
 
 public class MethodReferencesTest {
+    private static String getText() {
+        return "text";
+    }
+
     @Test
     public void staticMethod_works() {
         assertEquals("texttext", echoTwice(MethodReferencesTest::getText));
@@ -51,9 +55,5 @@ public class MethodReferencesTest {
 
     private String getNthLetter(int n) {
         return getText().substring(n, n + 1);
-    }
-
-    private static String getText() {
-        return "text";
     }
 }

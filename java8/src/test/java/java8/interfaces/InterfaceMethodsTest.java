@@ -19,12 +19,12 @@ public class InterfaceMethodsTest {
     }
 
     public static interface I {
-        default int five() {
-            return 5;
-        }
-
         public static int twoTimesFive() {
             return 5 * 2;
+        }
+
+        default int five() {
+            return 5;
         }
     }
 }
