@@ -5,7 +5,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 import java.io.IOException;
 
-@WebFilter(value = "/two", initParams = @WebInitParam(name = "text", value = "Text"))
+@WebFilter(value = "/two", initParams = @WebInitParam(name = "text", value = "Text"), dispatcherTypes = DispatcherType.REQUEST)
 public class FilterTwo implements Filter {
     private FilterConfig config;
     @Override
