@@ -15,5 +15,6 @@
         <module>lombok</module>
         <module>solid</module>
         <module>servlet3</module>
+        <module>xstream</module>
     </modules>
 </project>
