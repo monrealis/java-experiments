@@ -26,14 +26,24 @@ public class XStreamTest {
     public void serializesThis() {
         XStream x = xs;
         xs = null;
-        System.out.println(x.toXML(this));
+        serialize(x, this);
     }
 
     @Test
     public void serializesMaps() {
-        System.out.println(xs.toXML(emptyMap()));
-        System.out.println(xs.toXML(singletonMap("x", 1)));
-        System.out.println(xs.toXML(new HashMap<>()));
-        System.out.println(xs.toXML(new TreeMap<>()));
+        serialize(emptyMap());
+        serialize(singletonMap("x", 1));
+        serialize(new HashMap<>());
+        serialize(new TreeMap<>());
+    }
+
+    private String serialize(Object o) {
+        return serialize(xs, o);
+    }
+
+    private String serialize(XStream xs, Object o) {
+        String xml = xs.toXML(o);
+        System.out.println(xml);
+        return xml;
     }
 }
