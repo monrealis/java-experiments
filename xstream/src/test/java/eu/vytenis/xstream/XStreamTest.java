@@ -7,9 +7,11 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static java.util.Arrays.asList;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.singletonMap;
 import static org.junit.Assert.assertEquals;
@@ -53,9 +55,35 @@ public class XStreamTest {
         assertEquals(m, xs.fromXML(serialize(m)));
     }
 
+    @Test
+    public void serializesObjectWithoutDefaultConstructor() {
+        One o = new One("x", "y");
+        assertEquals(o, xs.fromXML(serialize(o)));
+    }
+
     private String serialize(XStream xs, Object o) {
         String xml = xs.toXML(o);
         System.out.println(xml);
         return xml;
+    }
+
+    private static class One {
+        private final List<Object> items;
+
+        private One(Object... items) {
+            this.items = asList(items);
+        }
+
+        @Override
+        public int hashCode() {
+            return items.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj.getClass() != getClass())
+                return false;
+            return items.equals(((One) obj).items);
+        }
     }
 }
