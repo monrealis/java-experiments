@@ -20,10 +20,10 @@ public class XStreamTest {
     @Rule
     public TestName name = new TestName();
     private XStream xs = new XStream();
-    private int one = 10;
-    private Integer two = 20;
-    private String three = "x";
-    private String four;
+    int one = 10;
+    Integer two = 20;
+    String three = "x";
+    String four;
 
     @Before
     public void before() {
