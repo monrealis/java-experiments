@@ -1,6 +1,7 @@
 package eu.vytenis.xstream;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -15,6 +16,7 @@ import static java.util.Arrays.asList;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.singletonMap;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class XStreamTest {
     @Rule
@@ -61,6 +63,15 @@ public class XStreamTest {
         assertEquals(o, xs.fromXML(serialize(o)));
     }
 
+    @Test
+    public void doesNotSerializeTransientField() {
+        xs.autodetectAnnotations(true);
+        One o = new One("x");
+        o.setValue("Y");
+        One other = (One) xs.fromXML(serialize(o));
+        assertNull(other.getValue());
+    }
+
     private String serialize(XStream xs, Object o) {
         String xml = xs.toXML(o);
         System.out.println(xml);
@@ -69,9 +80,19 @@ public class XStreamTest {
 
     private static class One {
         private final List<Object> items;
+        @XStreamOmitField
+        private String value;
 
         private One(Object... items) {
             this.items = asList(items);
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
         }
 
         @Override
