@@ -64,8 +64,18 @@ public class XStreamTest {
     }
 
     @Test
-    public void doesNotSerializeTransientField() {
+    public void withAutodetect_doesNotSerializeTransientField() {
         xs.autodetectAnnotations(true);
+        assertOmittedFieldNoSerialized();
+    }
+
+    @Test
+    public void afterProcessingAnnotations_doesNotSerializeTransientField() {
+        xs.processAnnotations(One.class);
+        assertOmittedFieldNoSerialized();
+    }
+
+    private void assertOmittedFieldNoSerialized() {
         One o = new One("x");
         o.setValue("Y");
         One other = (One) xs.fromXML(serialize(o));
