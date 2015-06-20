@@ -61,7 +61,7 @@ public class XStreamTest {
 
     @Test
     public void serializesObjectWithoutDefaultConstructor() {
-        One o = new One("x", "y");
+        Serialized o = new Serialized("x", "y");
         assertEquals(o, xs.fromXML(serialize(o)));
     }
 
@@ -73,14 +73,14 @@ public class XStreamTest {
 
     @Test
     public void afterProcessingAnnotations_doesNotSerializeTransientField() {
-        xs.processAnnotations(One.class);
+        xs.processAnnotations(Serialized.class);
         assertOmittedFieldNoSerialized();
     }
 
     private void assertOmittedFieldNoSerialized() {
-        One o = new One("x");
+        Serialized o = new Serialized("x");
         o.setValue("Y");
-        One other = (One) xs.fromXML(serialize(o));
+        Serialized other = (Serialized) xs.fromXML(serialize(o));
         assertNull(other.getValue());
     }
 
@@ -91,14 +91,14 @@ public class XStreamTest {
     }
 
     @XStreamAlias("one")
-    private static class One {
+    private static class Serialized {
         @XStreamAlias("testArray")
         @XStreamImplicit
         private final List<Object> items;
         @XStreamOmitField
         private String value;
 
-        private One(Object... items) {
+        private Serialized(Object... items) {
             this.items = asList(items);
         }
 
@@ -119,7 +119,7 @@ public class XStreamTest {
         public boolean equals(Object obj) {
             if (obj.getClass() != getClass())
                 return false;
-            return items.equals(((One) obj).items);
+            return items.equals(((Serialized) obj).items);
         }
     }
 }
