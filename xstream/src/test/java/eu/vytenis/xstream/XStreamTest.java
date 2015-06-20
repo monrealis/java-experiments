@@ -1,6 +1,8 @@
 package eu.vytenis.xstream;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.junit.Before;
 import org.junit.Rule;
@@ -88,7 +90,10 @@ public class XStreamTest {
         return xml;
     }
 
+    @XStreamAlias("one")
     private static class One {
+        @XStreamAlias("testArray")
+        @XStreamImplicit
         private final List<Object> items;
         @XStreamOmitField
         private String value;
