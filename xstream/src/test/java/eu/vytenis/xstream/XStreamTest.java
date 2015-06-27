@@ -2,6 +2,7 @@ package eu.vytenis.xstream;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.junit.Before;
@@ -97,7 +98,8 @@ public class XStreamTest {
         private final List<Object> items;
         @XStreamOmitField
         private String value;
-
+        @XStreamAsAttribute
+        private String other = "y";
         private Serialized(Object... items) {
             this.items = asList(items);
         }
