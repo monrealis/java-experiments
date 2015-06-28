@@ -94,7 +94,7 @@ public class XStreamTest {
     @XStreamAlias("one")
     private static class Serialized {
         @XStreamAlias("testArray")
-        @XStreamImplicit
+        @XStreamImplicit(itemFieldName = "item")
         private final List<Object> items;
         @XStreamOmitField
         private String value;
