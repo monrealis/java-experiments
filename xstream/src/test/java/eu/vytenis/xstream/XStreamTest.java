@@ -95,7 +95,7 @@ public class XStreamTest {
         private final List<Object> items;
         @XStreamOmitField
         private String value;
-        //@XStreamAsAttribute
+        @XStreamAsAttribute
         @XStreamConverter(CustomStringConverter.class)
         private String other = "y";
         private Serialized(Object... items) {
