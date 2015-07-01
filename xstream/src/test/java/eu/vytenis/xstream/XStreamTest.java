@@ -97,7 +97,9 @@ public class XStreamTest {
         private String value;
         @XStreamAsAttribute
         @XStreamConverter(CustomStringConverter.class)
-        private String other = "y";
+        private String other1 = "y";
+        @XStreamConverter(CustomStringConverter.class)
+        private String other2 = "z";
         private Serialized(Object... items) {
             this.items = asList(items);
         }
