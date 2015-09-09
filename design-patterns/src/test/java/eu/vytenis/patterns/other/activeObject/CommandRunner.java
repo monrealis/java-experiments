@@ -1,13 +1,14 @@
 package eu.vytenis.patterns.other.activeObject;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Iterator;
 
-import static java.util.Collections.unmodifiableList;
+import static java.util.Collections.unmodifiableCollection;
 
 public class CommandRunner implements Runnable {
-    private List<Runnable> commands = new ArrayList<>();
-    private List<Runnable> newCommands = commands;
+    private Collection<Runnable> commands = create();
+    private Collection<Runnable> newCommands = commands;
 
     public void add(Runnable command) {
         newCommands.add(command);
@@ -15,16 +16,22 @@ public class CommandRunner implements Runnable {
 
     public void run() {
         while (!commands.isEmpty()) {
-            Runnable remove = commands.remove(0);
-            remove.run();
+            Iterator<Runnable> it = commands.iterator();
+            Runnable first = it.next();
+            it.remove();
+            first.run();
         }
     }
 
-    public List<Runnable> getCommands() {
-        return unmodifiableList(commands);
+    public Collection<Runnable> getCommands() {
+        return unmodifiableCollection(commands);
     }
 
     public void storeNewCommandsInNewQueue() {
-        newCommands = new ArrayList<>();
+        newCommands = create();
+    }
+
+    private Collection<Runnable> create() {
+        return new ArrayList<>();
     }
 }

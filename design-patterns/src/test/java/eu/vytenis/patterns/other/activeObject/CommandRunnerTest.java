@@ -56,7 +56,7 @@ public class CommandRunnerTest {
     }
 
     private void assertManyCalls() {
-        assertTrue(String.valueOf(callCount), callCount > 1000);
+        assertTrue(String.valueOf(callCount), callCount > 100);
     }
 
     private static class ReaddAfterRun implements Runnable {
