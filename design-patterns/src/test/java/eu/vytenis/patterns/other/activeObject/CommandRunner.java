@@ -1,4 +1,4 @@
-package eu.vytenis.patterns.other.command;
+package eu.vytenis.patterns.other.activeObject;
 
 import java.util.ArrayList;
 import java.util.List;
