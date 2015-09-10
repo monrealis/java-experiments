@@ -16,6 +16,7 @@ public class CommandRunnerTest {
 
     @Test
     public void runsEmpty() {
+        runner.exitIfQueueEmpty();
         runner.run();
         assertEquals(0, callCount);
     }
@@ -23,6 +24,7 @@ public class CommandRunnerTest {
     @Test
     public void runOne() {
         runner.add(addOne);
+        runner.exitIfQueueEmpty();
         runner.run();
         assertEquals(1, callCount);
     }
@@ -31,6 +33,7 @@ public class CommandRunnerTest {
     public void runTwo() {
         runner.add(addOne);
         runner.add(addTwo);
+        runner.exitIfQueueEmpty();
         runner.run();
         assertEquals(3, callCount);
     }
