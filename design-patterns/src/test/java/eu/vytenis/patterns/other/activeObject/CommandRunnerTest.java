@@ -1,18 +1,28 @@
 package eu.vytenis.patterns.other.activeObject;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.jayway.awaitility.Awaitility.await;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.runners.Parameterized.Parameters;
 
+@RunWith(Parameterized.class)
 public class CommandRunnerTest {
     private int callCount;
-    private CommandRunner runner = new CommandRunner();
+    private final CommandRunner runner;
     private Runnable addOne = new Add(1);
     private Runnable addTwo = new Add(2);
+
+    public CommandRunnerTest(CommandRunner runner) {
+        this.runner = runner;
+    }
 
     @Test
     public void runsEmpty() {
@@ -76,6 +86,14 @@ public class CommandRunnerTest {
             target.run();
             runner.add(this);
         }
+    }
+
+    @Parameters
+    public static List<Object[]> parameters() {
+        List<Object[]> r = new ArrayList<>();
+        r.add(new Object[]{new CommandRunner()});
+        r.add(new Object[]{new BlockingQueueCommandRunner()});
+        return r;
     }
 
     private class Add implements Runnable {

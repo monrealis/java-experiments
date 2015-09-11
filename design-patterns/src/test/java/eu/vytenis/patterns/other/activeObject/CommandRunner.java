@@ -13,7 +13,7 @@ public class CommandRunner implements Runnable {
 
         }
     };
-    private Collection<Runnable> commands = create();
+    protected Collection<Runnable> commands = create();
     private Collection<Runnable> newCommands = commands;
     private boolean exitIfQueueEmpty = false;
 
@@ -26,7 +26,7 @@ public class CommandRunner implements Runnable {
             take().run();
     }
 
-    private Runnable take() {
+    protected Runnable take() {
         if (commands.isEmpty())
             return DO_NOTHING;
         Iterator<Runnable> it = commands.iterator();
@@ -55,7 +55,7 @@ public class CommandRunner implements Runnable {
         exitIfQueueEmpty = true;
     }
 
-    private Collection<Runnable> create() {
+    protected Collection<Runnable> create() {
         return new ArrayList<>();
     }
 }
