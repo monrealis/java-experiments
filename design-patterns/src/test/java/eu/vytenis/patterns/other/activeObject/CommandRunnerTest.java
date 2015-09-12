@@ -91,7 +91,7 @@ public class CommandRunnerTest {
     @Parameters
     public static List<Object[]> parameters() {
         List<Object[]> r = new ArrayList<>();
-        r.add(new Object[]{new CommandRunner()});
+        r.add(new Object[]{new ListCommandRunner()});
         r.add(new Object[]{new BlockingQueueCommandRunner()});
         return r;
     }
