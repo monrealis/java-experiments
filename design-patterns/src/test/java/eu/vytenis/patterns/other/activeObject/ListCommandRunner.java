@@ -1,13 +1,10 @@
 package eu.vytenis.patterns.other.activeObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Collections.unmodifiableCollection;
-
-public class ListCommandRunner extends CommandRunner<List<Runnable>> {
+public class ListCommandRunner extends CollectionCommandRunner<List<Runnable>> {
     private static final Runnable DO_NOTHING = () -> {
     };
 
