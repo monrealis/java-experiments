@@ -5,7 +5,7 @@ import java.util.Collection;
 public interface CommandRunner extends Runnable {
     void add(Runnable command);
 
-    Collection<Runnable> getCommands();
+    int getCommandsCount();
 
     void storeNewCommandsInNewQueue();
 

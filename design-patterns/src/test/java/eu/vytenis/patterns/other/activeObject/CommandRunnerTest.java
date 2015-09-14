@@ -65,7 +65,7 @@ public class CommandRunnerTest {
     private void waitUntilPseudoThreadsFinish() throws InterruptedException {
         Thread.sleep(10);
         runner.storeNewCommandsInNewQueue();
-        await().until(() -> runner.getCommands().isEmpty());
+        await().until(() -> runner.getCommandsCount() == 0);
     }
 
     private void assertManyCalls() {
@@ -93,6 +93,7 @@ public class CommandRunnerTest {
         List<Object[]> r = new ArrayList<>();
         r.add(new Object[]{new ListCommandRunner()});
         r.add(new Object[]{new BlockingQueueCommandRunner()});
+        r.add(new Object[]{new FjpCommandRunner()});
         return r;
     }
 

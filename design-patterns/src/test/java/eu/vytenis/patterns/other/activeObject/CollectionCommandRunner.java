@@ -31,8 +31,8 @@ public abstract class CollectionCommandRunner<T extends Collection<Runnable>> im
     }
 
     @Override
-    public Collection<Runnable> getCommands() {
-        return unmodifiableCollection(commands);
+    public int getCommandsCount() {
+        return commands.size();
     }
 
     protected abstract T create();
