@@ -1,6 +1,13 @@
 package eu.vytenis.patterns.other.decoupledState;
 
 public class Started extends State {
+    public static Started started() {
+        return new Started();
+    }
+
+    private Started() {
+    }
+
     @Override
     public void start(StateMachine machine) {
 
@@ -8,6 +15,6 @@ public class Started extends State {
 
     @Override
     public void stop(StateMachine machine) {
-        machine.setState(new Stopped());
+        machine.setState(Stopped.stopped());
     }
 }

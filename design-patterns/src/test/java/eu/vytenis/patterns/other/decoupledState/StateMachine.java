@@ -1,7 +1,7 @@
 package eu.vytenis.patterns.other.decoupledState;
 
 public class StateMachine {
-    private State state = new Stopped();
+    private State state = Stopped.stopped();
 
     public void start() {
         state.start(this);

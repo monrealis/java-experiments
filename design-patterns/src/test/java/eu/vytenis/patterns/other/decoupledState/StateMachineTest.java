@@ -5,8 +5,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class StateMachineTest {
-    private Stopped stopped = new Stopped();
-    private Started started = new Started();
+    private Stopped stopped = Stopped.stopped();
+    private Started started = Started.started();
     private StateMachine stateMachine = new StateMachine();
 
     @Test
