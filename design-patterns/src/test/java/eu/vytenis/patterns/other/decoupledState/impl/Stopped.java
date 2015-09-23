@@ -1,6 +1,8 @@
-package eu.vytenis.patterns.other.decoupledState;
+package eu.vytenis.patterns.other.decoupledState.impl;
 
-public class Stopped extends State {
+import eu.vytenis.patterns.other.decoupledState.api.StateMachine;
+
+public class Stopped extends StartedStoppedState {
     public static Stopped stopped() {
         return new Stopped();
     }

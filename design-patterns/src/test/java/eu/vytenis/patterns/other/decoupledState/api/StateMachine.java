@@ -1,4 +1,6 @@
-package eu.vytenis.patterns.other.decoupledState;
+package eu.vytenis.patterns.other.decoupledState.api;
+
+import eu.vytenis.patterns.other.decoupledState.impl.Stopped;
 
 public class StateMachine {
     private State state = Stopped.stopped();

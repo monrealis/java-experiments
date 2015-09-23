@@ -1,5 +1,8 @@
 package eu.vytenis.patterns.other.decoupledState;
 
+import eu.vytenis.patterns.other.decoupledState.api.StateMachine;
+import eu.vytenis.patterns.other.decoupledState.impl.Started;
+import eu.vytenis.patterns.other.decoupledState.impl.Stopped;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

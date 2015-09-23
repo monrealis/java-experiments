@@ -1,4 +1,6 @@
-package eu.vytenis.patterns.other.decoupledState;
+package eu.vytenis.patterns.other.decoupledState.api;
+
+import eu.vytenis.patterns.other.decoupledState.api.StateMachine;
 
 public abstract class State {
     public abstract void start(StateMachine machine);
