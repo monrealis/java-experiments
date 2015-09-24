@@ -1,11 +1,9 @@
 package eu.vytenis.patterns.other.decoupledState.api;
 
-import eu.vytenis.patterns.other.decoupledState.api.StateMachine;
+public abstract class StartStopState {
+    public abstract void start(StartStopMachine machine);
 
-public abstract class State {
-    public abstract void start(StateMachine machine);
-
-    public abstract void stop(StateMachine machine);
+    public abstract void stop(StartStopMachine machine);
 
     @Override
     public boolean equals(Object obj) {

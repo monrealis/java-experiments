@@ -1,16 +1,16 @@
 package eu.vytenis.patterns.other.decoupledState;
 
-import eu.vytenis.patterns.other.decoupledState.api.StateMachine;
-import eu.vytenis.patterns.other.decoupledState.impl.Started;
-import eu.vytenis.patterns.other.decoupledState.impl.Stopped;
+import eu.vytenis.patterns.other.decoupledState.api.StartStopMachine;
+import eu.vytenis.patterns.other.decoupledState.impl.StartedState;
+import eu.vytenis.patterns.other.decoupledState.impl.StoppedState;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class StateMachineTest {
-    private Stopped stopped = Stopped.stopped();
-    private Started started = Started.started();
-    private StateMachine stateMachine = new StateMachine();
+public class StartStopStateMachineTest {
+    private StoppedState stopped = StoppedState.stopped();
+    private StartedState started = StartedState.started();
+    private StartStopMachine startStopMachine = new StartStopMachine();
 
     @Test
     public void initially_stopped() {
@@ -34,20 +34,20 @@ public class StateMachineTest {
     }
 
     private void startAssertStarted() {
-        stateMachine.start();
+        startStopMachine.start();
         assertStarted();
     }
 
     private void stopAssertStopped() {
-        stateMachine.stop();
+        startStopMachine.stop();
         assertStopped();
     }
 
     private void assertStarted() {
-        assertEquals(started, stateMachine.getState());
+        assertEquals(started, startStopMachine.getState());
     }
 
     private void assertStopped() {
-        assertEquals(stopped, stateMachine.getState());
+        assertEquals(stopped, startStopMachine.getState());
     }
 }
