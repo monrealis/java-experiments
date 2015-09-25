@@ -1,4 +1,4 @@
-package eu.vytenis.patterns.other.decoupledState.impl;
+package eu.vytenis.patterns.other.decoupledState.states;
 
 import eu.vytenis.patterns.other.decoupledState.api.StartStopMachine;
 

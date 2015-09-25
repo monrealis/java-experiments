@@ -1,6 +1,6 @@
 package eu.vytenis.patterns.other.decoupledState.api;
 
-import eu.vytenis.patterns.other.decoupledState.impl.SimpleStartStopState;
+import eu.vytenis.patterns.other.decoupledState.states.SimpleStartStopState;
 
 public class StartStopMachine {
     private StartStopState state = SimpleStartStopState.stopped();

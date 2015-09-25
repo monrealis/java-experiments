@@ -1,9 +1,9 @@
 package eu.vytenis.patterns.other.decoupledState;
 
 import eu.vytenis.patterns.other.decoupledState.api.StartStopMachine;
-import eu.vytenis.patterns.other.decoupledState.impl.SimpleStartStopState;
-import eu.vytenis.patterns.other.decoupledState.impl.StartedState;
-import eu.vytenis.patterns.other.decoupledState.impl.StoppedState;
+import eu.vytenis.patterns.other.decoupledState.states.SimpleStartStopState;
+import eu.vytenis.patterns.other.decoupledState.states.StartedState;
+import eu.vytenis.patterns.other.decoupledState.states.StoppedState;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
