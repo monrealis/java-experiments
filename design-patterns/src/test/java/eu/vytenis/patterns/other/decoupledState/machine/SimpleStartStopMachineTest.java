@@ -1,4 +1,4 @@
-package eu.vytenis.patterns.other.decoupledState;
+package eu.vytenis.patterns.other.decoupledState.machine;
 
 import eu.vytenis.patterns.other.decoupledState.api.StartStopMachine;
 import eu.vytenis.patterns.other.decoupledState.states.SimpleStartStopState;
@@ -8,10 +8,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class StartStopStateMachineTest {
+public class SimpleStartStopMachineTest {
     private StoppedState stopped = SimpleStartStopState.stopped();
     private StartedState started = SimpleStartStopState.started();
-    private StartStopMachine startStopMachine = new StartStopMachine();
+    private StartStopMachine startStopMachine = new SimpleStartStopMachine();
 
     @Test
     public void initially_stopped() {

@@ -2,7 +2,7 @@ package eu.vytenis.patterns.other.decoupledState.api;
 
 import eu.vytenis.patterns.other.decoupledState.states.SimpleStartStopState;
 
-public class StartStopMachine {
+public abstract class StartStopMachine {
     private StartStopState state = SimpleStartStopState.stopped();
 
     public void start() {
@@ -20,4 +20,8 @@ public class StartStopMachine {
     public StartStopState getState() {
         return state;
     }
+
+    public abstract void starting();
+
+    public abstract void stopping();
 }
