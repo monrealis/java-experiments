@@ -8,6 +8,7 @@ public class StoppedState extends SimpleStartStopState {
 
     @Override
     public void start(StartStopMachine machine) {
+        machine.starting();
         machine.setState(SimpleStartStopState.started());
     }
 
