@@ -17,5 +17,5 @@
             <artifactId>cassandra-all</artifactId>
             <version>2.2.3</version>
         </dependency>
-    </dependencies>
+     </dependencies>
 </project>

@@ -16,5 +16,6 @@
         <module>solid</module>
         <module>servlet3</module>
         <module>xstream</module>
+        <module>nosql</module>
     </modules>
 </project>
