@@ -17,5 +17,6 @@
         <module>servlet3</module>
         <module>xstream</module>
         <module>nosql</module>
+        <module>coding</module>
     </modules>
 </project>
