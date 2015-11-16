@@ -11,11 +11,11 @@ public class Hash<K> {
 
     public boolean contains(K key) {
         Entry<K> entry = buckets[getBucketIndex(key)];
-        while (entry != null) {
+        while (entry != null)
             if (entry.is(key))
                 return true;
-            entry = entry.getNext();
-        }
+            else
+                entry = entry.getNext();
         return false;
     }
 
@@ -23,27 +23,16 @@ public class Hash<K> {
         int index = getBucketIndex(key);
         Entry<K> first = buckets[index];
         SimpleEntry<K> entry = new SimpleEntry<>(key);
-        if (first == null)
-            buckets[index] = entry;
-        else {
-            first.getLast().setNext(entry);
-        }
-
+        first.getLast().setNext(entry);
     }
 
     public void remove(K key) {
-        int index = getBucketIndex(key);
-        Entry<K> entry = buckets[index];
-        Entry<K> previousEntry = null;
-        while (entry != null) {
-            if (entry.is(key))
-                if (previousEntry != null)
-                    previousEntry.setNext(entry.getNext());
-                else
-                    buckets[index] = null;
-            previousEntry = entry;
-            entry = entry.getNext();
-        }
+        Entry<K> current = buckets[getBucketIndex(key)];
+        while (current.getNext() != null)
+            if (current.getNext().is(key))
+                current.setNext(current.getNext().getNext());
+            else
+                current = current.getNext();
     }
 
     private int getBucketIndex(K key) {
