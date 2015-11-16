@@ -6,7 +6,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class HashTest {
-    Hash<Integer, String> hash = new Hash<>(10);
+    Hash<Integer> hash = new Hash<>(10);
 
     @Test
     public void empty_containsNoElement() {

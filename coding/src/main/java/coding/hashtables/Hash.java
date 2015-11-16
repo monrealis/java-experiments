@@ -1,6 +1,6 @@
 package coding.hashtables;
 
-public class Hash<K, V> {
+public class Hash<K> {
     private Entry<K>[] buckets;
 
     public Hash(int numberOfBuckets) {
