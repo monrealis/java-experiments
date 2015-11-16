@@ -4,13 +4,15 @@ public class Hash<K> {
     private Entry<K>[] buckets;
 
     public Hash(int numberOfBuckets) {
-        buckets = (SimpleEntry<K>[]) new SimpleEntry[numberOfBuckets];
+        buckets = new Entry[numberOfBuckets];
+        for (int i = 0; i < numberOfBuckets; ++i)
+            buckets[i] = new NullEntry<>();
     }
 
     public boolean contains(K key) {
         Entry<K> entry = buckets[getBucketIndex(key)];
         while (entry != null) {
-            if (entry.isValueEqualTo(key))
+            if (entry.is(key))
                 return true;
             entry = entry.getNext();
         }
@@ -23,8 +25,10 @@ public class Hash<K> {
         SimpleEntry<K> entry = new SimpleEntry<>(key);
         if (first == null)
             buckets[index] = entry;
-        else
-            first.setNext(entry);
+        else {
+            first.getLast().setNext(entry);
+        }
+
     }
 
     public void remove(K key) {
@@ -32,7 +36,7 @@ public class Hash<K> {
         Entry<K> entry = buckets[index];
         Entry<K> previousEntry = null;
         while (entry != null) {
-            if (entry.isValueEqualTo(key))
+            if (entry.is(key))
                 if (previousEntry != null)
                     previousEntry.setNext(entry.getNext());
                 else
@@ -47,22 +51,28 @@ public class Hash<K> {
     }
 
     private static abstract class Entry<E> {
-        private SimpleEntry<E> next;
+        private Entry<E> next;
 
-        public SimpleEntry<E> getNext() {
+        public Entry<E> getNext() {
             return next;
         }
 
-        public void setNext(SimpleEntry<E> next) {
+        public void setNext(Entry<E> next) {
             this.next = next;
         }
 
-        public abstract boolean isValueEqualTo(E other);
+        public abstract boolean is(E other);
+
+        public Entry<E> getLast() {
+            Entry<E> n = this;
+            while (n.getNext() != null)
+                n = n.getNext();
+            return n;
+        }
     }
 
-
     private static class NullEntry<E> extends Entry<E> {
-        public boolean isValueEqualTo(E other) {
+        public boolean is(E other) {
             return false;
         }
     }
@@ -74,7 +84,7 @@ public class Hash<K> {
             this.value = value;
         }
 
-        public boolean isValueEqualTo(E other) {
+        public boolean is(E other) {
             return value.equals(other);
         }
     }
