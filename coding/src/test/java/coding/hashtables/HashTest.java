@@ -20,6 +20,21 @@ public class HashTest {
     }
 
     @Test
+    public void afterAddingAndRemovingFirst_doesNotContain() {
+        hash.add(0);
+        hash.remove(0);
+        assertFalse(hash.contains(0));
+    }
+
+    @Test
+    public void afterAddingAndRemovingSecond_doesNotContain() {
+        hash.add(0);
+        hash.add(10);
+        hash.remove(10);
+        assertFalse(hash.contains(10));
+    }
+
+    @Test
     public void afterAdding_doesNotContainElementThatHasNotBeenAdded() {
         hash.add(0);
         assertFalse(hash.contains(10));

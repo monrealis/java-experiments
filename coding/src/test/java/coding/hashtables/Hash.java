@@ -18,17 +18,34 @@ public class Hash<K, V> {
     }
 
     public void add(K key) {
-        Entry<K> first = buckets[getBucketIndex(key)];
+        int index = getBucketIndex(key);
+        Entry<K> first = buckets[index];
         Entry<K> entry = new Entry<>(key);
         if (first == null)
-            buckets[getBucketIndex(key)] = entry;
+            buckets[index] = entry;
         else
             first.setNext(entry);
+    }
+
+    public void remove(K key) {
+        int index = getBucketIndex(key);
+        Entry<K> entry = buckets[index];
+        Entry<K> previousEntry = null;
+        while (entry != null) {
+            if (entry.getValue().equals(key))
+                if (previousEntry != null)
+                    previousEntry.setNext(entry.getNext());
+                else
+                    buckets[index] = null;
+            previousEntry = entry;
+            entry = entry.getNext();
+        }
     }
 
     private int getBucketIndex(K key) {
         return key.hashCode() % buckets.length;
     }
+
 
     private static class Entry<E> {
         private final E value;
