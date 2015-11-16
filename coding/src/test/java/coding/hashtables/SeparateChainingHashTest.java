@@ -5,8 +5,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class HashTest {
-    Hash<Integer> hash = new Hash<>(10);
+public class SeparateChainingHashTest {
+    SeparateChainingHash<Integer> hash = new SeparateChainingHash<>(10);
 
     @Test
     public void empty_containsNoElement() {

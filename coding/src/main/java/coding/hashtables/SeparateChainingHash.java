@@ -1,9 +1,9 @@
 package coding.hashtables;
 
-public class Hash<K> {
+public class SeparateChainingHash<K> {
     private Entry<K>[] buckets;
 
-    public Hash(int numberOfBuckets) {
+    public SeparateChainingHash(int numberOfBuckets) {
         buckets = new Entry[numberOfBuckets];
         for (int i = 0; i < numberOfBuckets; ++i)
             buckets[i] = new NullEntry<>();
