@@ -20,19 +20,19 @@ public class Hash<K> {
     }
 
     public void add(K key) {
-        int index = getBucketIndex(key);
-        Entry<K> first = buckets[index];
+        if (contains(key))
+            return;
         SimpleEntry<K> entry = new SimpleEntry<>(key);
-        first.getLast().setNext(entry);
+        buckets[getBucketIndex(key)].getLast().setNext(entry);
     }
 
     public void remove(K key) {
-        Entry<K> current = buckets[getBucketIndex(key)];
-        while (current.getNext() != null)
-            if (current.getNext().is(key))
-                current.setNext(current.getNext().getNext());
+        Entry<K> e = buckets[getBucketIndex(key)];
+        while (e.getNext() != null)
+            if (e.getNext().is(key))
+                e.setNext(e.getNext().getNext());
             else
-                current = current.getNext();
+                e = e.getNext();
     }
 
     private int getBucketIndex(K key) {
