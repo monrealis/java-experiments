@@ -22,8 +22,14 @@ public class Hash<K> {
     public void add(K key) {
         if (contains(key))
             return;
-        SimpleEntry<K> entry = new SimpleEntry<>(key);
+        Entry<K> entry = createEntry(key);
         buckets[getBucketIndex(key)].getLast().setNext(entry);
+    }
+
+    private Entry<K> createEntry(K key) {
+        if (key == null)
+            return NullValueEntry.get();
+        return new SimpleEntry<>(key);
     }
 
     public void remove(K key) {
@@ -36,7 +42,13 @@ public class Hash<K> {
     }
 
     private int getBucketIndex(K key) {
-        return key.hashCode() % buckets.length;
+        return hash(key) % buckets.length;
+    }
+
+    private int hash(K key) {
+        if (key == null)
+            return 0;
+        return key.hashCode();
     }
 
     private static abstract class Entry<E> {
@@ -53,9 +65,9 @@ public class Hash<K> {
         public abstract boolean is(E other);
 
         public Entry<E> getLast() {
-            Entry<E> n = this;
-            while (n.getNext() != null)
-                n = n.getNext();
+            Entry<E> n;
+            for (n = this; n.getNext() != null; n = n.getNext())
+                ;
             return n;
         }
     }
@@ -63,6 +75,18 @@ public class Hash<K> {
     private static class NullEntry<E> extends Entry<E> {
         public boolean is(E other) {
             return false;
+        }
+    }
+
+    private static class NullValueEntry<E> extends Entry<E> {
+        private static NullValueEntry<?> instance = new NullValueEntry<>();
+
+        public boolean is(E other) {
+            return other == null;
+        }
+
+        public static <K> Entry<K> get() {
+            return (Entry<K>) instance;
         }
     }
 

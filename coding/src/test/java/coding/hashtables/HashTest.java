@@ -11,6 +11,7 @@ public class HashTest {
     @Test
     public void empty_containsNoElement() {
         assertFalse(hash.contains(0));
+        assertFalse(hash.contains(null));
     }
 
     @Test
@@ -34,6 +35,18 @@ public class HashTest {
         assertFalse(hash.contains(0));
     }
 
+    @Test
+    public void afterAddingNull_containsNull() {
+        hash.add(null);
+        assertTrue(hash.contains(null));
+    }
+
+    @Test
+    public void afterAddingAndRemovingNull_contains() {
+        hash.add(null);
+        hash.remove(null);
+        assertFalse(hash.contains(null));
+    }
     @Test
     public void afterAddingAndRemovingSecond_doesNotContain() {
         hash.add(0);
