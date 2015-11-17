@@ -8,23 +8,56 @@ public class OpenAddressingHash<K> {
     }
 
     public void add(K key) {
+        if (contains(key))
+            return;
+        addNotNull(notNull(key));
+    }
+
+    private void addNotNull(K key) {
         int index = hash(key);
         while (buckets[index] != null)
-            ++index;
+            index = getNextBucketIndex(index);
         buckets[index] = key;
     }
 
+
     public boolean contains(K key) {
+        return containsNotNull(notNull(key));
+    }
+
+    private boolean containsNotNull(K key) {
         int index = hash(key);
         while (buckets[index] != null)
             if (buckets[index].equals(key))
                 return true;
             else
-                ++index;
+                index = getNextBucketIndex(index);
         return false;
+    }
+
+    private K notNull(K key) {
+        if (key == null)
+            return (K) NULL;
+        return key;
     }
 
     private int hash(K key) {
         return key.hashCode() % buckets.length;
     }
+
+    private int getNextBucketIndex(int index) {
+        return (index + 1) % buckets.length;
+    }
+
+    private static final Object NULL = new Object() {
+        @Override
+        public int hashCode() {
+            return 0;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return obj == this;
+        }
+    };
 }
