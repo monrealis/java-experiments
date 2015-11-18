@@ -14,7 +14,7 @@ public class OpenAddressingHash<K> {
     }
 
     private void addNotNull(K key) {
-        int index = hash(key);
+        int index = index(key);
         while (buckets[index] != null)
             index = getNextBucketIndex(index);
         buckets[index] = key;
@@ -26,7 +26,7 @@ public class OpenAddressingHash<K> {
     }
 
     private boolean containsNotNull(K key) {
-        int index = hash(key);
+        int index = index(key);
         while (buckets[index] != null)
             if (buckets[index].equals(key))
                 return true;
@@ -36,13 +36,18 @@ public class OpenAddressingHash<K> {
     }
 
     public void remove(K key) {
-        int index = hash(key);
+        int index = index(key);
         while (buckets[index] != null) {
             if (key.equals(buckets[index])) {
                 int next = getNextBucketIndex(index);
                 buckets[index] = null;
-                if (buckets[next] != null && hash(buckets[next]) == index) {
-                    buckets[index] = buckets[next];
+                while (buckets[next] != null) {
+                    if (index(buckets[next]) != next) {
+                        buckets[index] = buckets[next];
+                        buckets[next] = null;
+                        index = next;
+                    }
+                    next = getNextBucketIndex(next);
                 }
                 break;
             } else
@@ -57,7 +62,7 @@ public class OpenAddressingHash<K> {
         return key;
     }
 
-    private int hash(K key) {
+    private int index(K key) {
         return key.hashCode() % buckets.length;
     }
 

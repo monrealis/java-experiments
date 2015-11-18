@@ -1,6 +1,5 @@
 package coding.hashtables;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -86,7 +85,6 @@ public class OpenAddressingHashTest {
     }
 
     @Test
-    @Ignore
     public void afterAddingWithManyShiftedElementsAndRemovingUnshifted_containsAllNotRemoved() {
         hash.add(8);
         hash.add(18);
