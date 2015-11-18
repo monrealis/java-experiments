@@ -35,6 +35,22 @@ public class OpenAddressingHash<K> {
         return false;
     }
 
+    public void remove(K key) {
+        int index = hash(key);
+        while (buckets[index] != null) {
+            if (key.equals(buckets[index])) {
+                int next = getNextBucketIndex(index);
+                buckets[index] = null;
+                if (buckets[next] != null && hash(buckets[next]) == index) {
+                    buckets[index] = buckets[next];
+                }
+                break;
+            } else
+                index = getNextBucketIndex(index);
+        }
+
+    }
+
     private K notNull(K key) {
         if (key == null)
             return (K) NULL;
@@ -60,4 +76,6 @@ public class OpenAddressingHash<K> {
             return obj == this;
         }
     };
+
+
 }

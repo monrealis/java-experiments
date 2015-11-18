@@ -1,5 +1,6 @@
 package coding.hashtables;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -56,6 +57,53 @@ public class OpenAddressingHashTest {
     public void afterAdding_containsThatValue() {
         hash.add(10);
         assertTrue(hash.contains(10));
+    }
+
+    @Test
+    public void afterAddingAndRemoving_doesNotContain() {
+        hash.add(10);
+        hash.remove(10);
+        assertFalse(hash.contains(10));
+    }
+
+    @Test
+    public void afterAddingAndRemovingShiftedElement_doesNotContainShiftedElement() {
+        hash.add(8);
+        hash.add(18);
+        hash.remove(18);
+        assertTrue(hash.contains(8));
+        assertFalse(hash.contains(18));
+    }
+
+
+    @Test
+    public void afterAddingAndRemovingElement_containsShiftedElement() {
+        hash.add(8);
+        hash.add(18);
+        hash.remove(8);
+        assertFalse(hash.contains(8));
+        assertTrue(hash.contains(18));
+    }
+
+    @Test
+    @Ignore
+    public void afterAddingWithManyShiftedElementsAndRemovingUnshifted_containsAllNotRemoved() {
+        hash.add(8);
+        hash.add(18);
+        hash.add(28);
+        hash.remove(8);
+        assertFalse(hash.contains(8));
+        assertTrue(hash.contains(18));
+        assertTrue(hash.contains(28));
+    }
+
+    @Test
+    public void afterRemovingElement_nextRemainsInItsPlaceAndIsFound() {
+        hash.add(8);
+        hash.add(9);
+        hash.remove(8);
+        assertFalse(hash.contains(8));
+        assertTrue(hash.contains(9));
     }
 
     @Test
