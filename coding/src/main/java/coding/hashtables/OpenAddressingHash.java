@@ -37,7 +37,7 @@ public class OpenAddressingHash<K> {
 
     public void remove(K key) {
         int index = index(key);
-        while (buckets[index] != null) {
+        while (buckets[index] != null)
             if (key.equals(buckets[index])) {
                 int next = getNextBucketIndex(index);
                 buckets[index] = null;
@@ -52,8 +52,6 @@ public class OpenAddressingHash<K> {
                 break;
             } else
                 index = getNextBucketIndex(index);
-        }
-
     }
 
     private K notNull(K key) {
