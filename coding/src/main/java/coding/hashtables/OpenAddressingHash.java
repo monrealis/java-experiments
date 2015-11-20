@@ -20,18 +20,14 @@ public class OpenAddressingHash<K> {
         buckets[index] = key;
     }
 
-
     public boolean contains(K key) {
         return containsNotNull(notNull(key));
     }
 
     private boolean containsNotNull(K key) {
-        int index = index(key);
-        while (buckets[index] != null)
-            if (buckets[index].equals(key))
+        for (int i = index(key); buckets[i] != null; i = getNextBucketIndex(i))
+            if (buckets[i].equals(key))
                 return true;
-            else
-                index = getNextBucketIndex(index);
         return false;
     }
 
