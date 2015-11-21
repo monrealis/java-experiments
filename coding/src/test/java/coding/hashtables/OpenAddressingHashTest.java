@@ -1,5 +1,6 @@
 package coding.hashtables;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -109,5 +110,15 @@ public class OpenAddressingHashTest {
         for (int i = 0; i < 10 + 1; ++i)
             hash.add(10);
         assertTrue(hash.contains(10));
+    }
+
+    @Test
+    public void growsInSize() {
+        int n = 10 + 1;
+        for (int i = 0; i < n; ++i)
+            hash.add(i);
+        for (int i = 0; i < n; ++i)
+            assertTrue(hash.contains(i));
+        assertFalse(hash.contains(n));
     }
 }

@@ -2,15 +2,26 @@ package coding.hashtables;
 
 public class OpenAddressingHash<K> {
     private K[] buckets;
+    private int elements;
 
     public OpenAddressingHash(int numberOfBuckets) {
         buckets = (K[]) new Object[numberOfBuckets];
     }
 
     public void add(K key) {
+        if (elements == buckets.length)
+            grow();
         if (contains(key))
             return;
         addNotNull(notNull(key));
+    }
+
+    private void grow() {
+        OpenAddressingHash<K> other = new OpenAddressingHash<K>(buckets.length * 2);
+        for (K el : buckets)
+            other.add(el);
+        this.buckets = other.buckets;
+        this.elements = other.elements;
     }
 
     private void addNotNull(K key) {
@@ -18,6 +29,7 @@ public class OpenAddressingHash<K> {
         while (buckets[index] != null)
             index = getNextBucketIndex(index);
         buckets[index] = key;
+        elements++;
     }
 
     public boolean contains(K key) {
@@ -35,6 +47,7 @@ public class OpenAddressingHash<K> {
         int index = index(key);
         while (buckets[index] != null)
             if (key.equals(buckets[index])) {
+                elements--;
                 int next = getNextBucketIndex(index);
                 buckets[index] = null;
                 while (buckets[next] != null) {
