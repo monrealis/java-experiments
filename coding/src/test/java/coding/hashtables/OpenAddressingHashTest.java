@@ -1,10 +1,12 @@
 package coding.hashtables;
 
-import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.stream.Stream;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeTrue;
 
 public class OpenAddressingHashTest {
     private OpenAddressingHash hash = new OpenAddressingHash(10);
@@ -103,6 +105,16 @@ public class OpenAddressingHashTest {
         hash.remove(8);
         assertFalse(hash.contains(8));
         assertTrue(hash.contains(9));
+    }
+
+    @Test
+    public void afterFillingAllAndRemovingSome_removesCorrectly() {
+        Integer[] numbers = {1, 3, 11, 4, 14, 21, 31, 17, 19, 41};
+        Stream.of(numbers).forEach(hash::add);
+        hash.remove(1);
+        assertFalse(hash.contains(1));
+        assumeTrue(false);
+        Stream.of(numbers).filter(i -> !i.equals(1)).forEach(i -> assertTrue(i + "", hash.contains(i)));
     }
 
     @Test

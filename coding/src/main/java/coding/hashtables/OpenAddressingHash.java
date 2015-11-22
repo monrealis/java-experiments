@@ -49,8 +49,9 @@ public class OpenAddressingHash<K> {
             if (key.equals(buckets[index])) {
                 elements--;
                 int next = getNextBucketIndex(index);
+                int initialIndex = index;
                 buckets[index] = null;
-                while (buckets[next] != null) {
+                while (buckets[next] != null && next != initialIndex) {
                     if (index(buckets[next]) != next) {
                         buckets[index] = buckets[next];
                         buckets[next] = null;
