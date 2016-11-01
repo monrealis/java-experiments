@@ -19,5 +19,6 @@
         <module>nosql</module>
         <module>coding</module>
         <module>hadoop</module>
+        <module>ehcache</module>
     </modules>
 </project>
