@@ -18,5 +18,6 @@
         <module>xstream</module>
         <module>nosql</module>
         <module>coding</module>
+        <module>hadoop</module>
     </modules>
 </project>
