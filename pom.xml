@@ -20,5 +20,6 @@
         <module>coding</module>
         <module>hadoop</module>
         <module>ehcache</module>
+        <module>sparkjava</module>
     </modules>
 </project>
