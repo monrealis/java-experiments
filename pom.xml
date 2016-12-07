@@ -21,5 +21,6 @@
         <module>hadoop</module>
         <module>ehcache</module>
         <module>sparkjava</module>
+        <module>spring-boot</module>
     </modules>
 </project>
