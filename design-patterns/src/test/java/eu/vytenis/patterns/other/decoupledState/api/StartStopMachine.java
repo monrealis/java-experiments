@@ -13,12 +13,12 @@ public abstract class StartStopMachine {
         state.stop(this);
     }
 
-    public void setState(StartStopState state) {
-        this.state = state;
-    }
-
     public StartStopState getState() {
         return state;
+    }
+
+    public void setState(StartStopState state) {
+        this.state = state;
     }
 
     public abstract void starting();

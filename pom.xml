@@ -16,5 +16,11 @@
         <module>solid</module>
         <module>servlet3</module>
         <module>xstream</module>
+        <module>nosql</module>
+        <module>coding</module>
+        <module>hadoop</module>
+        <module>ehcache</module>
+        <module>sparkjava</module>
+        <module>spring-boot</module>
     </modules>
 </project>

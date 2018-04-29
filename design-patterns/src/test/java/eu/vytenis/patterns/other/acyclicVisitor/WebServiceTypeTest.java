@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 public class WebServiceTypeTest implements RestfulVisitor, SoapVisitor, WebServiceTypeVisitor {
     private String actions = "";
+
     @Test
     public void restful() {
         accept(new Restful());
