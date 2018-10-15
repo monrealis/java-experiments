@@ -1,4 +1,4 @@
-package eu.vytenis.tries;
+package eu.vytenis.algorithms.tries;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
