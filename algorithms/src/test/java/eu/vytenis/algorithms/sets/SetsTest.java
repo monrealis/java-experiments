@@ -1,7 +1,9 @@
 package eu.vytenis.algorithms.sets;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
@@ -12,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 public class SetsTest {
     private static Random random = new Random();
-    private static int count = 10_000_000;
+    private static int count = 1_000_000;
 
     @Test
     public void measure() {
@@ -44,9 +46,18 @@ public class SetsTest {
 
     private Set<Integer> add(Supplier<Set<Integer>> setSupplier, String id, IntStream stream) {
         Set<Integer> set = setSupplier.get();
-        long duration = millis(() -> stream.forEach(set::add));
-        if (id.length() > 0)
-            System.out.println(String.format("%20s(%s): %s ms", set.getClass().getSimpleName(), id, duration));
+        long addTime = millis(() -> stream.forEach(set::add));
+        List<Integer> list = new ArrayList<>(set);
+        long findAnyTime = millis(() -> random().forEach(set::contains));
+        long findExistingTime = millis(() -> list.forEach(set::contains));
+        long removeAnyTime = millis(() -> random().forEach(set::remove));
+        long removeExistingTime = millis(() -> list.forEach(set::remove));
+        if (id.length() > 0) {
+            String className = set.getClass().getSimpleName();
+            System.out.println(
+                    String.format("%15s(%s): add,find(any/existing),remove(any/existing)=%4s, %4s %4s, %4s %4s",
+                            className, id, addTime, findAnyTime, findExistingTime, removeAnyTime, removeExistingTime));
+        }
         return set;
     }
 
