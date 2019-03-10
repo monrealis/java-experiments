@@ -13,7 +13,7 @@ import org.junit.Test;
 
 public class AsyncSocketsTest {
     private Selector selector;
-    private ByteBuffer buffer = ByteBuffer.allocate(50);
+    private ByteBuffer buffer = ByteBuffer.allocate(5);
 
     @Before
     public void before() throws IOException {
@@ -22,31 +22,45 @@ public class AsyncSocketsTest {
 
     @Test
     public void run() throws Exception {
-        makeHttpRequest("lrytas.lt");
-        makeHttpRequest("delfi.lt");
-        //Thread.sleep(1);
+        makeHttpRequest("lrytas.lt", 80);
+        makeHttpRequest("delfi.lt", 80);
         int n = selector.selectNow();
         System.out.println("Number of ready channels: " + n + "\n");
 
-        Iterator<SelectionKey> it = selector.selectedKeys().iterator();
-
-        while (it.hasNext())
-            read(it.next());
+        readAll();
     }
 
-    private void makeHttpRequest(String host) throws IOException {
-        SocketChannel c = SocketChannel.open(new InetSocketAddress(host, 80));
+    // Start server with "nc -l 8080"
+    @Test
+    public void local() throws Exception {
+        makeHttpRequest("localhost", 8080);
+        while (true) {
+            selector.select();
+            readAll();
+        }
+    }
+
+    private void makeHttpRequest(String host, int port) throws IOException {
+        SocketChannel c = SocketChannel.open(new InetSocketAddress(host, port));
         c.configureBlocking(false);
         String s = String.format("GET / HTTP/1.0\nHost: %s\n\n", host);
         c.write(ByteBuffer.wrap(s.getBytes()));
         c.register(selector, SelectionKey.OP_READ);
     }
 
+    private void readAll() throws IOException {
+        Iterator<SelectionKey> it = selector.selectedKeys().iterator();
+        while (it.hasNext()) {
+            read(it.next());
+            it.remove();
+        }
+    }
+
     private void read(SelectionKey key) throws IOException {
-        SocketChannel ss = (SocketChannel) key.channel();
+        SocketChannel c = (SocketChannel) key.channel();
         for (int i = 0; i < 100; ++i) {
             buffer.clear();
-            int count = ss.read(buffer);
+            int count = c.read(buffer);
             if (count < 0) {
                 break;
             }
