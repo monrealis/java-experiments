@@ -15,10 +15,15 @@ public class SerializationTest {
         DTO[] dtos = {dto};
         System.out.println(mapper.readValue(mapper.writeValueAsString(dto), Object.class));
         System.out.println(mapper.readValue(mapper.writeValueAsString(dtos), Object.class));
+        System.out.println(mapper.convertValue(dto, Object.class));
+        System.out.println(mapper.convertValue(dtos, Object.class));
     }
 
 }
 
 class DTO {
     public String field = "value";
+}
+
+class DTO2 {
 }
