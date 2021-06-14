@@ -1,5 +1,8 @@
 package eu.vytenis.rx;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -31,4 +34,9 @@ public class RxTest {
 		});
 	}
 
+	@Test
+	public void scan() {
+		List<Integer> list = Arrays.asList(1, 2, 3);
+		Observable.fromIterable(list).scan(Integer::sum).subscribe(System.out::println);
+	}
 }
