@@ -1,13 +1,12 @@
 package eu.vytenis.patterns.behavioral.chain.api;
 
 public class NullTranslator extends Translator {
-    @Override
-    public String translate(String word) {
-        return "<unknown>";
+    public NullTranslator() {
+        super(null);
     }
 
     @Override
-    protected NullTranslator createNext() {
-        return this;
+    public String translate(String word) {
+        return "<unknown>";
     }
 }
