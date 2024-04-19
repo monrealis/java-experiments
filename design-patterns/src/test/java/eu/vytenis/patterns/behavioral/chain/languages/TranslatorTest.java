@@ -12,7 +12,7 @@ public class TranslatorTest {
             new ItalianTranslator(new FrenchTranslator(new GermanTranslator(new NullTranslator()))));
 
     @Test
-    public void shouldTranslateEnglishAndGermanWords() {
+    public void shouldTranslateWordsOfVariousLanguages() {
         assertEquals("<unknown>", translator.translate("x"));
         assertEquals("labas", translator.translate("hello"));
         assertEquals("tu", translator.translate("du"));
