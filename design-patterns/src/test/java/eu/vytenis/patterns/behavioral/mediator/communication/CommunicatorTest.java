@@ -1,12 +1,12 @@
 package eu.vytenis.patterns.behavioral.mediator.communication;
 
-import eu.vytenis.patterns.behavioral.mediator.communication.Communicator;
-import eu.vytenis.patterns.behavioral.mediator.receiver.Receiver;
-import eu.vytenis.patterns.behavioral.mediator.sender.Sender;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import eu.vytenis.patterns.behavioral.mediator.receiver.Receiver;
+import eu.vytenis.patterns.behavioral.mediator.sender.Sender;
 
 public class CommunicatorTest {
     private Communicator m = new Communicator();
@@ -18,6 +18,7 @@ public class CommunicatorTest {
         m.setReceiver(r);
         m.setSender(s);
     }
+
     @Test
     public void receivedReceivesSentObject() {
         Object o = new Object();
