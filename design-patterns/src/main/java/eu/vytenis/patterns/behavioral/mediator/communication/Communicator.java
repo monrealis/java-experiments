@@ -1,21 +1,15 @@
 package eu.vytenis.patterns.behavioral.mediator.communication;
 
 import eu.vytenis.patterns.behavioral.mediator.receiver.Receiver;
-import eu.vytenis.patterns.behavioral.mediator.sender.Sender;
 
-public class Communicator<T, U> {
-    private Receiver<U> receiver;
-    private Sender<T> sender;
+public class Communicator<U> {
+    private Receiver receiver;
 
-    public void send(U o) {
+    public void send(String o) {
         receiver.receive(o);
     }
 
-    public void setSender(Sender<T> sender) {
-        this.sender = sender;
-    }
-
-    public void setReceiver(Receiver<U> receiver) {
+    public void setReceiver(Receiver receiver) {
         this.receiver = receiver;
     }
 }

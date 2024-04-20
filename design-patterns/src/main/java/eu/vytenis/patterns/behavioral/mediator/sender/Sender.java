@@ -2,19 +2,14 @@ package eu.vytenis.patterns.behavioral.mediator.sender;
 
 import eu.vytenis.patterns.behavioral.mediator.communication.Communicator;
 
-public class Sender<U> {
-    private final Communicator<?, U> mediator;
-    private U lastSent;
+public class Sender<T> {
+    private final Communicator<T> mediator;
 
-    public Sender(Communicator<?, U> mediator) {
+    public Sender(Communicator<T> mediator) {
         this.mediator = mediator;
     }
 
-    public void send(U o) {
-        mediator.send(o);
-    }
-
-    private U getLastSent() {
-        return lastSent;
+    public void send(T t) {
+        mediator.send(t.toString());
     }
 }
