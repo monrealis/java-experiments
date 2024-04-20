@@ -9,9 +9,9 @@ import eu.vytenis.patterns.behavioral.mediator.receiver.Receiver;
 import eu.vytenis.patterns.behavioral.mediator.sender.Sender;
 
 public class CommunicatorTest {
-    private Communicator m = new Communicator();
-    private Sender s = new Sender(m);
-    private Receiver r = new Receiver(m);
+    private Communicator<Object, Object> m = new Communicator<Object, Object>();
+    private Sender<Object> s = new Sender<Object>(m);
+    private Receiver<Object> r = new Receiver<Object>();
 
     @Before
     public void before() {

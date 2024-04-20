@@ -1,20 +1,13 @@
 package eu.vytenis.patterns.behavioral.mediator.receiver;
 
-import eu.vytenis.patterns.behavioral.mediator.communication.Communicator;
+public class Receiver<T> {
+    private T lastReceived;
 
-public class Receiver {
-    private final Communicator mediator;
-    private Object lastReceived;
-
-    public Receiver(Communicator mediator) {
-        this.mediator = mediator;
-    }
-
-    public void receive(Object o) {
+    public void receive(T o) {
         lastReceived = o;
     }
 
-    public Object getLastReceived() {
+    public T getLastReceived() {
         return lastReceived;
     }
 }
