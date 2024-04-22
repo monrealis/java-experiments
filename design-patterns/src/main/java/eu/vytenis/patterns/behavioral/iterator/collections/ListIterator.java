@@ -1,13 +1,13 @@
 package eu.vytenis.patterns.behavioral.iterator.collections;
 
-import eu.vytenis.patterns.behavioral.iterator.api.Iterator;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import eu.vytenis.patterns.behavioral.iterator.api.Iterator;
+
 public class ListIterator<T> implements Iterator<T> {
-    private List<T> list;
+    private final List<T> list;
     private int nextIndex;
 
     public ListIterator(Collection<T> collection) {
