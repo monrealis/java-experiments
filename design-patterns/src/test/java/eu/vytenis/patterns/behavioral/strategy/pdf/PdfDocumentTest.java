@@ -1,13 +1,14 @@
 package eu.vytenis.patterns.behavioral.strategy.pdf;
 
-import eu.vytenis.patterns.behavioral.strategy.api.Document;
-import org.junit.Test;
-
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import org.junit.Test;
+
+import eu.vytenis.patterns.behavioral.strategy.api.Document;
+
 public class PdfDocumentTest {
-    private Document document = new PdfDocument();
+    private final Document document = new PdfDocument();
 
     @Test
     public void withXmlSignability_sign_returnsXml() {
