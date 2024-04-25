@@ -1,17 +1,18 @@
 package eu.vytenis.patterns.other.decoupledState.machine;
 
-import eu.vytenis.patterns.other.decoupledState.api.StartStopMachine;
-import eu.vytenis.patterns.other.decoupledState.states.SimpleStartStopState;
-import eu.vytenis.patterns.other.decoupledState.states.StartedState;
-import eu.vytenis.patterns.other.decoupledState.states.StoppedState;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import eu.vytenis.patterns.other.decoupledState.api.StartStopMachine;
+import eu.vytenis.patterns.other.decoupledState.states.SimpleStartStopState;
+import eu.vytenis.patterns.other.decoupledState.states.StartedState;
+import eu.vytenis.patterns.other.decoupledState.states.StoppedState;
 
 public class SimpleStartStopMachineTest {
     private StoppedState stopped = SimpleStartStopState.stopped();
@@ -54,7 +55,7 @@ public class SimpleStartStopMachineTest {
     @Test
     public void afterStarting_printsStarted() {
         startStopMachine.start();
-        assertEquals("Starting\n", getOutAsString());
+        assertEquals("Starting", getOutAsString());
     }
 
     @Test
@@ -62,11 +63,11 @@ public class SimpleStartStopMachineTest {
         startAssertStarted();
         resetOut();
         startStopMachine.stop();
-        assertEquals("Stopping\n", getOutAsString());
+        assertEquals("Stopping", getOutAsString());
     }
 
     private String getOutAsString() {
-        return new String(out.toByteArray());
+        return new String(out.toByteArray()).trim();
     }
 
     @Test
