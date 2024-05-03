@@ -2,6 +2,8 @@ package ehcache;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
@@ -22,6 +24,9 @@ public class JsrTest {
                         .setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(Duration.ONE_MINUTE));
         Cache<Long, String> cache = cacheManager.createCache("jCache", configuration);
         cache.put(1L, "one");
+        
         String value = cache.get(1L);
+        
+        assertEquals(value, "one");
     }
 }
