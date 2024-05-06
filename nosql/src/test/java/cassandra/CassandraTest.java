@@ -27,7 +27,7 @@ public class CassandraTest {
 
     @Test
     @Ignore
-    public void run() {
+    public void executeAndPrintResult() {
         execute("INSERT INTO users (lastname, age, city, email, firstname) VALUES ('Jones', 35, 'Austin', 'bob@example.com', 'Bob')");
         printResults("SELECT * FROM users WHERE lastname='Jones'");
         execute("update users set age = 36 where lastname = 'Jones'");
