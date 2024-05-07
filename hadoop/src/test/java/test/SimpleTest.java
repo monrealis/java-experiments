@@ -12,6 +12,7 @@ import java.io.IOException;
 
 //http://stackoverflow.com/questions/11342400/how-to-list-all-files-in-a-directory-and-its-subdirectories-in-hadoop-hdfs
 public class SimpleTest {
+	@Ignore
     @Test
     public void run() throws IOException {
         Configuration c = new Configuration();

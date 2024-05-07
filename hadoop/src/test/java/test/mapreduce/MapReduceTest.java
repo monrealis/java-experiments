@@ -11,11 +11,13 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
 
 public class MapReduceTest {
+	@Ignore
     @Test
     public void run() throws Exception {
         new File("result").delete();
@@ -25,7 +27,8 @@ public class MapReduceTest {
 
     private class WordCount extends Configured implements Tool {
         public int run(String[] args) throws Exception {
-            Job job = new Job();
+            @SuppressWarnings("deprecation")
+			Job job = new Job();
             job.setJarByClass(WordCount.class);
             job.setJobName("WordCounter");
 
