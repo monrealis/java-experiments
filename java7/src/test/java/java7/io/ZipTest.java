@@ -55,9 +55,8 @@ public class ZipTest {
 
 	@After
 	public void after() {
-		for (Path p : deleteAfterTest) {
+		for (Path p : deleteAfterTest)
 			assertTrue(p.toFile().delete());
-		}
 	}
 
 	@Test
