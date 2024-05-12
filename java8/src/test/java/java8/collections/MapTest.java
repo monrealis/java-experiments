@@ -8,18 +8,19 @@ import java.util.TreeMap;
 import static org.junit.Assert.assertEquals;
 
 public class MapTest {
-    private Map<Integer, Integer> squares = new TreeMap<>();
-    private int numberOfTimesSquared = 0;
+	private Map<Integer, Integer> squares = new TreeMap<>();
+	private int numberOfTimesSquared;
 
-    @Test
-    public void computeIfAbsent_reusesCachedValue() {
-        assertEquals(new Integer(4), squares.computeIfAbsent(2, this::square));
-        assertEquals(new Integer(4), squares.computeIfAbsent(2, this::square));
-        assertEquals(1, numberOfTimesSquared);
-    }
+	@Test
+	public void computeIfAbsent_reusesCachedValue() {
+		assertEquals(new Integer(4), squares.computeIfAbsent(2, this::square));
+		assertEquals(new Integer(4), squares.computeIfAbsent(2, this::square));
 
-    private int square(int x) {
-        ++numberOfTimesSquared;
-        return x * x;
-    }
+		assertEquals(1, numberOfTimesSquared);
+	}
+
+	private int square(int x) {
+		++numberOfTimesSquared;
+		return x * x;
+	}
 }
