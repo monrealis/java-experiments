@@ -15,8 +15,8 @@ public class ArrayListCollectorTest {
     }
 
     @Test
-    public void collectsListOfTwo() {
-        assertEquals(asList(0, 1), collect(2));
+    public void collectsListOfThree() {
+        assertEquals(asList(0, 1, 2), collect(3));
     }
 
     private ArrayList<Integer> collect(int to) {
