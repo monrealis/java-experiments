@@ -5,11 +5,12 @@ import org.junit.Test;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.*;
+import static java.util.stream.IntStream.rangeClosed;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.*;
 
 public class AggregationTest {
-    private final IntStream ints = IntStream.rangeClosed(1, 100);
+    private final IntStream ints = rangeClosed(1, 100);
 
     @Test
     public void ints_getSummed() {
@@ -24,6 +25,6 @@ public class AggregationTest {
 
     @Test
     public void strings_getJoined() {
-        assertThat(ints.boxed().map(Object::toString).collect(joining(", ")), startsWith("1, 2, 3"));
+        assertThat(ints.boxed().map(Object::toString).collect(joining(", ")), startsWith("1, 2, 3, 4"));
     }
 }
