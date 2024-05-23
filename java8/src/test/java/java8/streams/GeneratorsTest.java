@@ -15,7 +15,8 @@ import static org.junit.Assert.assertThat;
 public class GeneratorsTest {
     @Test
     public void iterateWithFPair_generatesFibonacciNumbers() {
-        List<Integer> actual = iterate(new FPair(), FPair::next).limit(5).map(FPair::getFirst).collect(toList());
+        List<Integer> actual = iterate(new FPair(), FPair::next).limit(5).map(FPair::first).collect(toList());
+
         assertEquals(asList(1, 1, 2, 3, 5), actual);
     }
 
@@ -41,7 +42,7 @@ public class GeneratorsTest {
             return new FPair(second, first + second);
         }
 
-        public Integer getFirst() {
+        public Integer first() {
             return first;
         }
     }
