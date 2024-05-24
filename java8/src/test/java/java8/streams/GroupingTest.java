@@ -21,6 +21,7 @@ public class GroupingTest {
         Map<Boolean, List<Integer>> expected = new HashMap<>();
         expected.put(false, asList(1, 3, 5, 7, 9));
         expected.put(true, asList(0, 2, 4, 6, 8));
+
         assertEquals(expected, stream.collect(groupingBy(i -> i % 2 == 0)));
     }
 
@@ -29,7 +30,9 @@ public class GroupingTest {
         Map<Boolean, Integer> expected = new HashMap<>();
         expected.put(false, 9);
         expected.put(true, 8);
+
         Map<Boolean, Integer> actual = stream.collect(groupingBy(i -> i % 2 == 0, collectingAndThen(toList(), Collections::max)));
+
         assertEquals(expected, actual);
     }
 }
