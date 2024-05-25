@@ -5,16 +5,16 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static java.util.Comparator.naturalOrder;
+import static java.util.stream.IntStream.range;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeFalse;
 
 public class ParallelPerformanceTest {
     private final int max = 1000000;
-    private final List<Integer> list = IntStream.range(0, max).boxed().collect(Collectors.toList());
+    private final List<Integer> list = range(0, max).boxed().collect(Collectors.toList());
 
     @Test
     public void maxFromListAndMaxFromStream_returnSameValue() {
