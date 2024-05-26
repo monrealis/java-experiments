@@ -13,7 +13,8 @@ public class PeekTest {
     @Test
     public void five() {
         List<String> sensor = new ArrayList<>();
-        List<String> result = stream(new String[]{"one", "two"}).peek(sensor::add).collect(toList());
+        List<String> result = stream(new String[] { "one", "two" }).peek(sensor::add).collect(toList());
+
         assertEquals("[one, two]", sensor.toString());
         assertEquals("[one, two]", result.toString());
     }
