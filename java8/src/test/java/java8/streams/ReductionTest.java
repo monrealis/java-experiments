@@ -8,10 +8,10 @@ import static java.util.Arrays.stream;
 import static org.junit.Assert.assertEquals;
 
 public class ReductionTest {
-    private Stream<Integer> three = stream(new Integer[]{1, 3, 2});
-    private Stream<Integer> two = stream(new Integer[]{6, 7});
-    private Stream<Integer> one = stream(new Integer[]{5});
-    private Stream<Integer> zero = stream(new Integer[]{});
+    private Stream<Integer> three = stream(new Integer[] { 1, 3, 2 });
+    private Stream<Integer> two = stream(new Integer[] { 6, 7 });
+    private Stream<Integer> one = stream(new Integer[] { 5 });
+    private Stream<Integer> zero = stream(new Integer[] {});
 
     @Test
     public void givenStreamsOfVariousLengths_reduce_returnsSum() {
