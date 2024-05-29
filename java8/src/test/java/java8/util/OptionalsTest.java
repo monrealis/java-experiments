@@ -22,6 +22,7 @@ public class OptionalsTest {
     @Test
     public void givenValue_get_returnsSameValue() {
         String value = "x";
+
         assertSame(value, of(value).get());
     }
 
@@ -34,6 +35,7 @@ public class OptionalsTest {
     public void givenTwoOptionals_join_returnsPresentOnlyIfBothPresent() {
         Optional<String> x = of("x");
         Optional<String> e = empty();
+
         assertEquals("xx", join(x, x).get());
         assertFalse(join(x, e).isPresent());
         assertFalse(join(e, x).isPresent());
