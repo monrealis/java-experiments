@@ -21,7 +21,7 @@ public class OptionalsTest {
 
     @Test
     public void givenValue_get_returnsSameValue() {
-        String value = "x";
+        String value = "y";
 
         assertSame(value, of(value).get());
     }
