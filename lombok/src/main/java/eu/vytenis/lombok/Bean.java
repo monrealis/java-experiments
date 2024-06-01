@@ -7,6 +7,6 @@ import lombok.experimental.Accessors;
 public class Bean {
     @Getter
     @Setter
-    @Accessors(fluent = false)
-    private String property;
+    @Accessors(prefix = "f")
+    private String fProperty;
 }
