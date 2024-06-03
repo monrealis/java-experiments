@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class AccessorsTest {
-    private Bean bean = new Bean();
+    private Bean bean = Bean.builder().build();
 
     @Test
     public void getPropertyShouldReturnSameValueAsGivenInSetProperty() {

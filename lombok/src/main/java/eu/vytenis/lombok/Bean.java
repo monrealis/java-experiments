@@ -3,8 +3,10 @@ package eu.vytenis.lombok;
 import lombok.Getter;
 import lombok.val;
 import lombok.Setter;
+import lombok.*;
 import lombok.experimental.Accessors;
 
+@Builder
 public class Bean {
     @Getter
     @Setter
