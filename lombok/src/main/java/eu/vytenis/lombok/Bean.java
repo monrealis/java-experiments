@@ -7,6 +7,7 @@ import lombok.*;
 import lombok.experimental.Accessors;
 
 @Builder
+@AllArgsConstructor
 public class Bean {
     @Getter
     @Setter
