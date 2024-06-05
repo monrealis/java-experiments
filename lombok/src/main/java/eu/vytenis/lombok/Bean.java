@@ -3,6 +3,11 @@ package eu.vytenis.lombok;
 import lombok.Getter;
 import lombok.val;
 import lombok.Setter;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -17,5 +22,10 @@ public class Bean {
     int x() {
         val x = 10;
         return x;
+    }
+
+    void cleanup() throws IOException {
+        @Cleanup
+        FileInputStream fis = new FileInputStream(new File(""));
     }
 }
