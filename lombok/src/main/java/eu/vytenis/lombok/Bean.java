@@ -13,6 +13,7 @@ import lombok.experimental.Accessors;
 
 @Builder
 @AllArgsConstructor
+@Data
 public class Bean {
     @Getter
     @Setter
