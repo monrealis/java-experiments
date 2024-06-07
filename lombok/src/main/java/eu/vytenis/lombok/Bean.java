@@ -7,9 +7,11 @@ import lombok.Setter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import lombok.experimental.Delegate;
 
 @Builder
 @AllArgsConstructor
@@ -18,7 +20,11 @@ public class Bean {
     @Getter
     @Setter
     @Accessors(prefix = "f")
+
     private String fProperty;
+
+    @Delegate
+    private List<String> list;
 
     int x() {
         val x = 10;
