@@ -19,6 +19,7 @@ import lombok.experimental.Delegate;
 @EqualsAndHashCode
 @Getter
 @Setter
+@NoArgsConstructor
 public class Bean {
     @Getter
     @Setter
