@@ -39,4 +39,8 @@ public class Bean {
         @Cleanup
         FileInputStream fis = new FileInputStream(new File(""));
     }
+
+    void f(@NonNull Integer x) {
+
+    }
 }

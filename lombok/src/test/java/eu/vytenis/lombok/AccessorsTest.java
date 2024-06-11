@@ -15,4 +15,15 @@ public class AccessorsTest {
         bean.setProperty(value);
         assertEquals(value, bean.getProperty());
     }
+
+    @Test
+    public void checksAgainstNullArguments() throws Exception {
+        try {
+
+            bean.f(null);
+            throw new Exception();
+        } catch (NullPointerException e) {
+            // OK
+        }
+    }
 }
