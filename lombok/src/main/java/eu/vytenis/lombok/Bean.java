@@ -24,11 +24,11 @@ public class Bean {
     @Getter
     @Setter
     @Accessors(prefix = "f")
-
     private String fProperty;
-
     @Delegate
     private List<String> list;
+    @Singular
+    private List<Object> lists;
 
     int x() {
         val x = 10;
