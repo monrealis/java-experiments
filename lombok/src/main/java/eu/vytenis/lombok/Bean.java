@@ -30,8 +30,10 @@ public class Bean {
     @Singular
     private List<Object> lists;
 
+    @SneakyThrows
     int x() {
         val x = 10;
+        new String(new byte[] {}, "UTF-8");
         return x;
     }
 
