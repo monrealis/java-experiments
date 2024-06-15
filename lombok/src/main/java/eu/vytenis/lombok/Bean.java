@@ -31,6 +31,7 @@ public class Bean {
     private List<Object> lists;
 
     @SneakyThrows
+    @Synchronized
     int x() {
         val x = 10;
         new String(new byte[] {}, "UTF-8");
