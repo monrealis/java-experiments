@@ -20,6 +20,7 @@ import lombok.experimental.Delegate;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@ToString
 public class Bean {
     @Getter
     @Setter

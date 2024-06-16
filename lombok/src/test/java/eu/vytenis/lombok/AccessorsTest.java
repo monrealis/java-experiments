@@ -4,6 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThat;
+
+import org.hamcrest.core.StringContains;
 
 public class AccessorsTest {
     private Bean bean = Bean.builder().build();
@@ -25,5 +28,12 @@ public class AccessorsTest {
         } catch (NullPointerException e) {
             // OK
         }
+    }
+
+    @Test
+    public void toString_printsAllField() {
+        bean.setProperty("xxx");
+
+        assertThat(bean.toString(), StringContains.containsString("xxx"));
     }
 }
