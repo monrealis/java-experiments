@@ -14,16 +14,15 @@ import lombok.experimental.Accessors;
 import lombok.experimental.Delegate;
 
 @Builder
-@AllArgsConstructor
 @Data
 @EqualsAndHashCode
 @Getter
 @Setter
 @RequiredArgsConstructor
 @ToString
+@Value
 public class Bean {
     @Getter
-    @Setter
     @Accessors(prefix = "f")
     private String fProperty;
     @Delegate
