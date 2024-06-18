@@ -13,14 +13,12 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import lombok.experimental.Delegate;
 
-@Builder
-@Data
 @EqualsAndHashCode
 @Getter
 @Setter
 @RequiredArgsConstructor
 @ToString
-@Value
+@Data
 public class Bean {
     @Getter
     @Accessors(prefix = "f")

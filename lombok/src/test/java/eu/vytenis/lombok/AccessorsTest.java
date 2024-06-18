@@ -1,8 +1,9 @@
 package eu.vytenis.lombok;
+
 import org.junit.Test;
 
 public class AccessorsTest {
-    private Bean bean = Bean.builder().build();
+    private Bean bean = new Bean();
 
     @Test
     public void checksAgainstNullArguments() throws Exception {
