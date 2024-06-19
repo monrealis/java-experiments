@@ -30,9 +30,9 @@ public class Bean {
 
     @SneakyThrows
     @Synchronized
-    int x() {
+    int throwSneaky() {
         val x = 10;
-        new String(new byte[] {}, "UTF-8");
+        new String(new byte[] {}, "U-8");
         return x;
     }
 

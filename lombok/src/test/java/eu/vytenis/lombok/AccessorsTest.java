@@ -15,4 +15,13 @@ public class AccessorsTest {
             // OK
         }
     }
+
+    @Test
+    public void handlesSneakyExceptions() {
+        try {
+            bean.throwSneaky();
+        } catch (Exception e) {
+            // OK
+        }
+    }
 }
