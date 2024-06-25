@@ -1,6 +1,5 @@
 package cassandra;
 
-
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
@@ -38,7 +37,8 @@ public class CassandraTest {
 
     private void printResults(String query) {
         for (Row row : execute(query))
-            System.out.format("%s %d %s %s %s\n", row.getString("lastname"), row.getInt("age"), row.getString("city"), row.getString("email"), row.getString("firstname"));
+            System.out.format("%s %d %s %s %s\n", row.getString("lastname"), row.getInt("age"), row.getString("city"),
+                    row.getString("email"), row.getString("firstname"));
     }
 
     private ResultSet execute(String query) {
