@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class PubliclyCloneableList extends ArrayList<String> implements PubliclyCloneable {
+    private static final long serialVersionUID = 1172509630041094832L;
+
     public PubliclyCloneableList() {
     }
 
