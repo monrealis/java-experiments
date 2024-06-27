@@ -2,8 +2,6 @@ package eu.vytenis.patterns.other.activeObject;
 
 import java.util.Collection;
 
-import static java.util.Collections.unmodifiableCollection;
-
 public abstract class CollectionCommandRunner<T extends Collection<Runnable>> implements Runnable, CommandRunner {
     private boolean exitIfQueueEmpty = false;
     protected T commands = create();
