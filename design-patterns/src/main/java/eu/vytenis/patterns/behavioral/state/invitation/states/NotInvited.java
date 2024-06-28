@@ -4,6 +4,7 @@ import eu.vytenis.patterns.behavioral.state.api.AbstractState;
 import eu.vytenis.patterns.behavioral.state.api.State;
 import eu.vytenis.patterns.behavioral.state.api.States;
 
+@SuppressWarnings("rawtypes")
 public class NotInvited extends AbstractState {
     public NotInvited(States states) {
         super(states);
