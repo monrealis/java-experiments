@@ -1,5 +1,6 @@
 package eu.vytenis.patterns.behavioral.state.api;
 
+@SuppressWarnings("rawtypes")
 public interface States {
     State notInvited();
 
