@@ -12,6 +12,8 @@ import java.io.IOException;
 @WebServlet("/one")
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = "One"), httpMethodConstraints = @HttpMethodConstraint(value = "POST", rolesAllowed = "One"))
 public class ServletOne extends HttpServlet {
+    private static final long serialVersionUID = 6320254836085380001L;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.getWriter().write("One");
