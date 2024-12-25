@@ -1,12 +1,14 @@
 package servlet3;
 
-import javax.servlet.Filter;
 import static java.lang.System.out;
+
+import java.util.Set;
+
+import javax.servlet.Filter;
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HandlesTypes;
-import java.util.Set;
 
 @HandlesTypes({ ServletOne.class, Filter.class })
 public class InitializerFive implements ServletContainerInitializer {
