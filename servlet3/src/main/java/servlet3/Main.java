@@ -2,7 +2,7 @@ package servlet3;
 
 public class Main {
     public static void main(String[] args) {
-        int s = redo(83, 3);
+        int s = redo(200, 3);
         System.out.print(s);
     }
 
