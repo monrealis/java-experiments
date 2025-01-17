@@ -6,7 +6,7 @@ public class Main {
         System.out.print(s);
     }
 
-    static int redo(int i, int j) {
+    private static int redo(int i, int j) {
         if (i == 0)
             return 0;
         else
