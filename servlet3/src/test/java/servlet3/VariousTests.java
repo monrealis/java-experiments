@@ -1,5 +1,7 @@
 package servlet3;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 public class VariousTests {
@@ -9,6 +11,6 @@ public class VariousTests {
 
         String s = new StringBuilder(palyndrome).reverse().toString();
 
-        System.out.println(s.equals(palyndrome));
+        assertEquals(s, palyndrome);
     }
 }
