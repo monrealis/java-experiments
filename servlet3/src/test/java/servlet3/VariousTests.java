@@ -1,6 +1,7 @@
 package servlet3;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
@@ -12,5 +13,14 @@ public class VariousTests {
         String s = new StringBuilder(palyndrome).reverse().toString();
 
         assertEquals(s, palyndrome);
+    }
+    
+    @Test
+    public void nonPalyndrome() {
+        String nonPalyndrome = "Madam";
+
+        String s = new StringBuilder(nonPalyndrome).reverse().toString();
+
+        assertNotEquals(s, nonPalyndrome);
     }
 }
