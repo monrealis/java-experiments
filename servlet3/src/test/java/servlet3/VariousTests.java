@@ -14,7 +14,7 @@ public class VariousTests {
 
         assertEquals(s, palyndrome);
     }
-    
+
     @Test
     public void nonPalyndrome() {
         String nonPalyndrome = "Madam";
@@ -22,5 +22,14 @@ public class VariousTests {
         String s = new StringBuilder(nonPalyndrome).reverse().toString();
 
         assertNotEquals(s, nonPalyndrome);
+    }
+
+    @Test
+    public void reversesString() {
+        String s = "ABC";
+
+        String reversed = new StringBuilder(s).reverse().toString();
+
+        assertEquals(reversed, "CBA");
     }
 }
