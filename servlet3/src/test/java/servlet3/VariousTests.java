@@ -32,4 +32,17 @@ public class VariousTests {
 
         assertEquals(reversed, "CBA");
     }
+
+    @Test
+    public void fibonacci() {
+        int i = 0;
+        int j = 1;
+        for (int n = 2; n < 20; ++n) {
+            int l = i + j;
+            i = j;
+            j = l;
+        }
+
+        assertEquals(j, 4181);
+    }
 }
