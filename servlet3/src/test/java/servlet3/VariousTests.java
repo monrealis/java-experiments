@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class VariousTests {
     @Test
@@ -34,16 +36,16 @@ public class VariousTests {
         assertEquals(reversed, "CBA");
     }
 
-    @Test
-    public void fibonacci() {
-        assertEquals(4181, fibonaci(20));
-        assertEquals(34, fibonaci(10));
-        assertEquals(0, fibonaci(1));
-        assertEquals(1, fibonaci(2));
-        assertEquals(1, fibonaci(3));
-        assertEquals(2, fibonaci(4));
-        assertEquals(3, fibonaci(5));
-        assertThrows(IllegalArgumentException.class, () -> fibonaci(0));
+    @ParameterizedTest
+    @CsvSource({ "4181,20", "34,10", "0,1", "1,2", "1,3", "2,4", "3,5" })
+    public void fibonacci(int expected, int from) {
+        assertEquals(expected, fibonaci(from));
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "0", "-1" })
+    public void fibonacci(int from) {
+        assertThrows(IllegalArgumentException.class, () -> fibonaci(from));
     }
 
     private int fibonaci(int n) {
