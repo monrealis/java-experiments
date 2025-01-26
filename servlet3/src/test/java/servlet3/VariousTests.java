@@ -39,20 +39,24 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "4181,20", "34,10", "0,1", "1,2", "1,3", "2,4", "3,5" })
     public void fibonacci(int expected, int from) {
-        assertEquals(expected, fibonaci(from));
+        assertEquals(expected, fibonacci(from));
     }
 
     @ParameterizedTest
     @CsvSource({ "0", "-1" })
-    public void fibonacci(int from) {
-        assertThrows(IllegalArgumentException.class, () -> fibonaci(from));
+    public void fibonacci_Throws(int from) {
+        assertThrows(IllegalArgumentException.class, () -> fibonacci(from));
     }
 
-    private int fibonaci(int n) {
+    private int fibonacci(int n) {
         if (n < 1)
             throw new IllegalArgumentException();
         if (n == 1)
             return 0;
+        return fibonacciNoChecks(n);
+    }
+
+    private int fibonacciNoChecks(int n) {
         int i = 0;
         int j = 1;
         for (int ii = 2; ii < n; ++ii) {
