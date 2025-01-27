@@ -43,7 +43,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0", "-1" })
+    @CsvSource({ "-1", "0", "-1" })
     public void fibonacci_Throws(int from) {
         assertThrows(IllegalArgumentException.class, () -> fibonacci(from));
     }
