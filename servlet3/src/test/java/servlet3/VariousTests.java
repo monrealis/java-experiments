@@ -66,4 +66,18 @@ public class VariousTests {
         }
         return j;
     }
+
+    @ParameterizedTest
+    @CsvSource({ "true,2", "true,3", "false,4", "true,5" })
+    public void primeNumbers(boolean expected, int n) {
+        assertEquals(expected, primeNumber(n));
+    }
+
+    private boolean primeNumber(int n) {
+        for (int i = 2; i < n; ++i) {
+            if (n % i == 0)
+                return false;
+        }
+        return true;
+    }
 }
