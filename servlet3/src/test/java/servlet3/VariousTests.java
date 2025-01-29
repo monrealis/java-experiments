@@ -69,11 +69,19 @@ public class VariousTests {
 
     @ParameterizedTest
     @CsvSource({ "true,2", "true,3", "false,4", "true,5", "false,99", "true,97" })
-    public void primeNumbers(boolean expected, int n) {
-        assertEquals(expected, primeNumber(n));
+    public void primeNumbers(boolean expectedResult, int n) {
+        assertEquals(expectedResult, primeNumber(n));
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "-1", "0", "1" })
+    public void primeNumbers_Throws(int n) {
+        assertThrows(IllegalArgumentException.class, () -> primeNumber(n));
     }
 
     private boolean primeNumber(int n) {
+        if (n < 2)
+            throw new IllegalArgumentException();
         for (int i = 2; i < n; ++i) {
             if (n % i == 0)
                 return false;
