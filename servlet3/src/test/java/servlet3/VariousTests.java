@@ -68,7 +68,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "true,2", "true,3", "false,4", "true,5" })
+    @CsvSource({ "true,2", "true,3", "false,4", "true,5", "false,99", "true,97" })
     public void primeNumbers(boolean expected, int n) {
         assertEquals(expected, primeNumber(n));
     }
