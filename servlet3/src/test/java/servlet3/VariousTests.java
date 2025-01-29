@@ -13,7 +13,7 @@ public class VariousTests {
     public void palyndrome() {
         String palyndrome = "madam";
 
-        String s = new StringBuilder(palyndrome).reverse().toString();
+        String s = reverse(palyndrome);
 
         assertEquals(s, palyndrome);
     }
@@ -22,30 +22,34 @@ public class VariousTests {
     public void nonPalyndrome() {
         String nonPalyndrome = "Madam";
 
-        String s = new StringBuilder(nonPalyndrome).reverse().toString();
+        String s = reverse(nonPalyndrome);
 
         assertNotEquals(s, nonPalyndrome);
+    }
+
+    private String reverse(String nonPalyndrome) {
+        return new StringBuilder(nonPalyndrome).reverse().toString();
     }
 
     @Test
     public void reversesString() {
         String s = "ABC";
 
-        String reversed = new StringBuilder(s).reverse().toString();
+        String reversed = reverse(s);
 
         assertEquals(reversed, "CBA");
     }
 
     @ParameterizedTest
     @CsvSource({ "4181,20", "34,10", "0,1", "1,2", "1,3", "2,4", "3,5" })
-    public void fibonacci(int expected, int from) {
-        assertEquals(expected, fibonacci(from));
+    public void fibonacci(int expected, int nTh) {
+        assertEquals(expected, fibonacci(nTh));
     }
 
     @ParameterizedTest
     @CsvSource({ "-1", "0", "-1" })
-    public void fibonacci_Throws(int from) {
-        assertThrows(IllegalArgumentException.class, () -> fibonacci(from));
+    public void fibonacci_Throws(int nTh) {
+        assertThrows(IllegalArgumentException.class, () -> fibonacci(nTh));
     }
 
     private int fibonacci(int n) {
