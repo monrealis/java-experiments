@@ -92,4 +92,20 @@ public class VariousTests {
         }
         return true;
     }
+
+    @ParameterizedTest
+    @CsvSource({ "120,5" })
+    public void factorial(int expected, int n) {
+        int f = factorial(n);
+
+        assertEquals(expected, f);
+    }
+
+    private int factorial(int n) {
+        int f = 1;
+        for (int i = 1; i < n; ++i) {
+            f *= i + 1;
+        }
+        return f;
+    }
 }
