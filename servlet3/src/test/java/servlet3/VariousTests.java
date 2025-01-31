@@ -94,14 +94,22 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "120,5" })
+    @CsvSource({ "1,0", "1,1", "2,2", "6,3", "24,4", "120,5" })
     public void factorial(int expected, int n) {
         int f = factorial(n);
 
         assertEquals(expected, f);
     }
 
+    @ParameterizedTest
+    @CsvSource({ "-1" })
+    public void factorial_Throws(int n) {
+        assertThrows(IllegalArgumentException.class, () -> factorial(n));
+    }
+
     private int factorial(int n) {
+        if (n < 0)
+            throw new IllegalArgumentException();
         int f = 1;
         for (int i = 1; i < n; ++i) {
             f *= i + 1;
