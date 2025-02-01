@@ -94,7 +94,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "1,0", "1,1", "2,2", "6,3", "24,4", "120,5" })
+    @CsvSource({ "1,0", "1,1", "2,2", "6,3", "24,4", "120,5", "720,6" })
     public void factorial(int expected, int n) {
         int f = factorial(n);
 
