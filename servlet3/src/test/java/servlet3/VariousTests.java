@@ -102,7 +102,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "-1" })
+    @CsvSource({ "-1", "-2" })
     public void factorial_Throws(int n) {
         assertThrows(IllegalArgumentException.class, () -> factorial(n));
     }
