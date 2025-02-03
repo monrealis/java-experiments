@@ -1,8 +1,13 @@
 package servlet3;
 
+import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -115,5 +120,19 @@ public class VariousTests {
             f *= i + 1;
         }
         return f;
+    }
+
+    @Test
+    public void findsDuplicates() {
+        List<Integer> l = asList(1, 2, 2, -1);
+
+        List<Integer> c = uniqueList(l);
+
+        assertEquals(asList(1, 2, -1), c);
+
+    }
+
+    private List<Integer> uniqueList(List<Integer> list) {
+        return new ArrayList<Integer>(new LinkedHashSet<Integer>(list));
     }
 }
