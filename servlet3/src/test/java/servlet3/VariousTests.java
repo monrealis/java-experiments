@@ -122,9 +122,10 @@ public class VariousTests {
         return f;
     }
 
-    @Test
-    public void findsDuplicates() {
-        List<Integer> l = asList(1, 2, 2, -1);
+    @ParameterizedTest
+    @CsvSource({ "1, 2, 2, -1", "1,1,2,-1" })
+    public void findsDuplicates(int first, int second, int third, int fourth) {
+        List<Integer> l = asList(first, second, third, fourth);
 
         List<Integer> c = uniqueList(l);
 
