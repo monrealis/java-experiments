@@ -127,10 +127,15 @@ public class VariousTests {
     public void findsDuplicates(int first, int second, int third, int fourth) {
         List<Integer> l = asList(first, second, third, fourth);
 
-        List<Integer> c = uniqueList(l);
+        assertEquals(distinct(l), uniqueList(l));
+    }
 
-        assertEquals(asList(1, 2, -1), c);
-
+    private List<Integer> distinct(List<Integer> list) {
+        List<Integer> distinct = new ArrayList<Integer>();
+        for (Integer i : list)
+            if (!distinct.contains(i))
+                distinct.add(i);
+        return new ArrayList<Integer>(distinct);
     }
 
     private List<Integer> uniqueList(List<Integer> list) {
