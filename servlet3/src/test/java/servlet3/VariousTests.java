@@ -77,21 +77,22 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "true,2", "true,3", "false,4", "true,5", "false,99", "true,97" })
+    @CsvSource({ "true,2", "true,3", "false,4", "true,5", "false,9", "false,16", "false,25", "false,49", "false,64",
+            "false,81", "false,99", "true,97" })
     public void primeNumbers(boolean expectedResult, int n) {
-        assertEquals(expectedResult, primeNumber(n));
+        assertEquals(expectedResult, isPrimeNumber(n));
     }
 
     @ParameterizedTest
     @CsvSource({ "-1", "0", "1" })
     public void primeNumbers_Throws(int n) {
-        assertThrows(IllegalArgumentException.class, () -> primeNumber(n));
+        assertThrows(IllegalArgumentException.class, () -> isPrimeNumber(n));
     }
 
-    private boolean primeNumber(int n) {
+    private strictfp boolean isPrimeNumber(int n) {
         if (n < 2)
             throw new IllegalArgumentException();
-        for (int i = 2; i < n; ++i) {
+        for (int i = 2; i <= Math.sqrt(n); ++i) {
             if (n % i == 0)
                 return false;
         }
