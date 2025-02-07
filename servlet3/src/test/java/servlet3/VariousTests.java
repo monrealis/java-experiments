@@ -142,4 +142,17 @@ public class VariousTests {
     private List<Integer> uniqueList(List<Integer> list) {
         return new ArrayList<Integer>(new LinkedHashSet<Integer>(list));
     }
+
+    @Test
+    public void reversesANumber() {
+        int num = 123, rev = 0;
+
+        while (num > 0) {
+            rev *= 10;
+            rev += num % 10;
+            num = num / 10;
+        }
+
+        assertEquals(321, rev);
+    }
 }
