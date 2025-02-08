@@ -143,16 +143,18 @@ public class VariousTests {
         return new ArrayList<Integer>(new LinkedHashSet<Integer>(list));
     }
 
-    @Test
-    public void reversesANumber() {
-        int num = 123, rev = 0;
+    @ParameterizedTest
+    @CsvSource({ "0", "123" })
+    public void reversesANumber(int num) {
+        int initial = num;
+        int reversed = 0;
 
         while (num > 0) {
-            rev *= 10;
-            rev += num % 10;
+            reversed *= 10;
+            reversed += num % 10;
             num = num / 10;
         }
 
-        assertEquals(321, rev);
+        assertEquals(Integer.parseInt(reverse("" + initial)), reversed);
     }
 }
