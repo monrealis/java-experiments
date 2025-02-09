@@ -1,5 +1,6 @@
 package servlet3;
 
+import static java.lang.Integer.parseInt;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -144,17 +145,18 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0", "123" })
+    @CsvSource({ "-123", "-1", "0", "12", "123" })
     public void reversesANumber(int num) {
         int initial = num;
         int reversed = 0;
+        int sign = num < 0 ? -1 : 1;
 
-        while (num > 0) {
+        while (sign * num > 0) {
             reversed *= 10;
             reversed += num % 10;
             num = num / 10;
         }
 
-        assertEquals(Integer.parseInt(reverse("" + initial)), reversed);
+        assertEquals(parseInt(reverse("" + sign * initial)), sign * reversed);
     }
 }
