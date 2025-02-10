@@ -159,4 +159,17 @@ public class VariousTests {
 
         assertEquals(parseInt(reverse("" + sign * initial)), sign * reversed);
     }
+
+    @Test
+    public void gcd() {
+        int a = 60, b = 48;
+
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+
+        assertEquals(12, a);
+    }
 }
