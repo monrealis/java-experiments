@@ -160,16 +160,16 @@ public class VariousTests {
         assertEquals(parseInt(reverse("" + sign * initial)), sign * reversed);
     }
 
-    @Test
-    public void gcd() {
-        int a = 60, b = 48;
-
+    @ParameterizedTest
+    @CsvSource({ "60,48,12", "10,3,1", "10,3,1", "10,0,10", "0,9,9", "-2,4,2", "3,-6,3", "-4,-8,4" })
+    public void gcd(int a, int b, int expected) {
+        a = a < 0 ? -a : a;
         while (b != 0) {
             int temp = b;
             b = a % b;
             a = temp;
         }
 
-        assertEquals(12, a);
+        assertEquals(expected, a);
     }
 }
