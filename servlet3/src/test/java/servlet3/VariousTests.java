@@ -2,6 +2,7 @@ package servlet3;
 
 import static java.lang.Integer.parseInt;
 import static java.util.Arrays.asList;
+import static java.util.Collections.sort;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -171,5 +172,22 @@ public class VariousTests {
         }
 
         assertEquals(expected, a);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "hello,world,false", "alus,sula,true" })
+    public void anagram(String first, String second, boolean expected) {
+        List<String> f = sortedList(first);
+        List<String> s = sortedList(second);
+
+        assertEquals(f.equals(s), expected);
+    }
+
+    private List<String> sortedList(String input) {
+        List<String> l = new ArrayList<>();
+        for (Character i : input.toCharArray())
+            l.add(i.toString());
+        sort(l);
+        return l;
     }
 }
