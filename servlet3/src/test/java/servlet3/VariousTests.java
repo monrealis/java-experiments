@@ -175,7 +175,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "hello,world,false", "alus,sula,true" })
+    @CsvSource({ "hello,world,false", "alus,sula,true", "'','',true" })
     public void anagram(String first, String second, boolean expected) {
         List<String> f = sortedList(first);
         List<String> s = sortedList(second);
