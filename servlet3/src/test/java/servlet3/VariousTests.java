@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -193,21 +192,20 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @Disabled
-    @CsvSource({ "2,1,2", "2,0,1", "2,2,1" })
+    @CsvSource({ "5,1,5", "0,0,1", "1,0,1", "1,1,1", "2,2,1", "3,3,1", "10,1,10", "10,2,45" })
     public void pascalsTriangle(int row, int col, int expected) {
-        int expectedResult = 0;
-        outer: for (int i = 0; i < row; ++i) {
-            int result = 1;
-            for (int j = 0; j <= i; ++j) {
-                result = result * (i - j) / (j + 1);
-                if (i == row && j == col) {
-                    expectedResult = result;
-                    break outer;
-                }
+        int result = 0;
+        for (int i = 0; i <= row; i++) {
+            int num = 1;
+            for (int j = 0; j <= i; j++) {
+                System.out.format("%4d", num);
+                if (row == i && col == j)
+                    result = num;
+                num = num * (i - j) / (j + 1);
             }
+            System.out.println();
         }
 
-        assertEquals(expectedResult, expected);
+        assertEquals(result, expected);
     }
 }
