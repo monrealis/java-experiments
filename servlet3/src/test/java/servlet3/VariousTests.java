@@ -198,14 +198,22 @@ public class VariousTests {
         for (int i = 0; i <= row; i++) {
             int num = 1;
             for (int j = 0; j <= i; j++) {
-                System.out.format("%4d", num);
+                indent(num);
                 if (row == i && col == j)
                     result = num;
                 num = num * (i - j) / (j + 1);
             }
-            System.out.println();
+            newLine();
         }
 
         assertEquals(result, expected);
+    }
+
+    private void indent(Number num) {
+        System.out.format("%4d", num);
+    }
+
+    private void newLine() {
+        System.out.println();
     }
 }
