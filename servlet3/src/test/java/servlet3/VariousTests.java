@@ -192,7 +192,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "5,1,5", "0,0,1", "1,0,1", "1,1,1", "2,2,1", "3,3,1", "10,1,10", "10,2,45", "5,3,10", "5,4,5", "5,5,1" })
+    @CsvSource({ "5,1,5", "0,0,1", "1,0,1", "1,1,1", "2,2,1", "3,3,1", "10,1,10", "10,2,45", "5,3,10", "5,4,5", "5,5,1", "6,2,15" })
     public void pascalsTriangle(int row, int col, int expected) {
         int result = 0;
         for (int i = 0; i <= row; i++) {
