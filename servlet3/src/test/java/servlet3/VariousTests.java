@@ -192,7 +192,8 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "5,1,5", "0,0,1", "1,0,1", "1,1,1", "2,2,1", "3,3,1", "10,1,10", "10,2,45", "5,3,10", "5,4,5", "5,5,1", "6,2,15" })
+    @CsvSource({ "5,1,5", "0,0,1", "1,0,1", "1,1,1", "2,2,1", "3,3,1", "10,1,10", "10,2,45", "5,3,10", "5,4,5", "5,5,1",
+            "6,2,15" })
     public void pascalsTriangle(int row, int col, int expected) {
         int result = 0;
         for (int i = 0; i <= row; i++) {
@@ -215,5 +216,21 @@ public class VariousTests {
 
     private void newLine() {
         System.out.println();
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "0,0", "1,1", "2,10", "3,11", "4,100", "5,101" })
+    public void changeBaseTo2(String decimal, String base2) {
+        int d = parseInt(decimal);
+        int b2;
+        String bas2 = "";
+        
+        do {
+            b2 = d % 2;
+            bas2 = "" + b2 + bas2;
+            d /= 2;
+        } while (d != 0);
+
+        assertEquals(bas2, base2);
     }
 }
