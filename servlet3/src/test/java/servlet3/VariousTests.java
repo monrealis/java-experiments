@@ -219,18 +219,18 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0,0", "1,1", "2,10", "3,11", "4,100", "5,101" })
-    public void changeBaseTo2(String decimal, String base2) {
+    @CsvSource({ "0,0,2", "1,1,2", "2,10,2", "2,2,3", "3,11,2", "3,10,3", "4,100,2", "5,101,2" })
+    public void changeBaseTo2(String decimal, String baseN, int toBase) {
         int d = parseInt(decimal);
         int b2;
-        String bas2 = "";
-        
+        String basN = "";
+
         do {
-            b2 = d % 2;
-            bas2 = "" + b2 + bas2;
-            d /= 2;
+            b2 = d % toBase;
+            basN = "" + b2 + basN;
+            d /= toBase;
         } while (d != 0);
 
-        assertEquals(bas2, base2);
+        assertEquals(basN, baseN);
     }
 }
