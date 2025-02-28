@@ -220,17 +220,17 @@ public class VariousTests {
 
     @ParameterizedTest
     @CsvSource({ "0,0,2", "1,1,2", "2,10,2", "2,2,3", "3,11,2", "3,10,3", "4,100,2", "5,101,2" })
-    public void changeBaseTo2(String decimal, String baseN, int toBase) {
+    public void changeBaseToN(String decimal, String baseN, int toBase) {
         int d = parseInt(decimal);
-        int b2;
-        String basN = "";
+        int bN;
+        String bNString = "";
 
         do {
-            b2 = d % toBase;
-            basN = "" + b2 + basN;
+            bN = d % toBase;
+            bNString = "" + bN + bNString;
             d /= toBase;
         } while (d != 0);
 
-        assertEquals(basN, baseN);
+        assertEquals(bNString, baseN);
     }
 }
