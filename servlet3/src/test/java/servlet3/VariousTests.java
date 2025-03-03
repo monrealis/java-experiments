@@ -219,7 +219,8 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0,0,2", "1,1,2", "2,10,2", "2,2,3", "3,11,2", "3,10,3", "4,100,2", "5,101,2" })
+    @CsvSource({ "0,0,2", "1,1,2", "2,10,2", "2,2,3", "3,11,2", "3,10,3", "4,100,2", "5,101,2", "10,(10),11",
+    /* "11,(10)0,11", "12,(10)1,11" */ })
     public void changeBaseToN(String decimal, String baseN, int toBase) {
         int d = parseInt(decimal);
         int bN;
@@ -227,10 +228,29 @@ public class VariousTests {
 
         do {
             bN = d % toBase;
-            bNString = "" + bN + bNString;
+            bNString = digit(bN, toBase) + bNString;
             d /= toBase;
         } while (d != 0);
 
         assertEquals(bNString, baseN);
     }
+
+    private String digit(int bN, int toBase) {
+        if (bN >= 10 && toBase > 10)
+            return "(" + Integer.toString(bN) + ")";
+        return Integer.toString(bN);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "2,false", "6,true", "28,true", "27,false", "496,true", "8128,true" })
+    public void perfect(int n, boolean perfect) {
+        int p = 0;
+        for (int i = 1; i < n; ++i) {
+            if (n % i == 0)
+                p += i;
+        }
+
+        assertEquals(p == n, perfect);
+    }
+
 }
