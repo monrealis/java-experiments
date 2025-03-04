@@ -220,7 +220,7 @@ public class VariousTests {
 
     @ParameterizedTest
     @CsvSource({ "0,0,2", "1,1,2", "2,10,2", "2,2,3", "3,11,2", "3,10,3", "4,100,2", "5,101,2", "10,(10),11",
-            "11,(10)0,11", "12,(10)1,11", "24,(12),22" })
+            "11,10,11", "12,11,11", "24,22,11", "120,(10)(10),11" })
     public void changeBaseToN(String decimal, String baseN, int toBase) {
         int d = parseInt(decimal);
         int bN;
