@@ -224,7 +224,7 @@ public class VariousTests {
     public void changeBaseToN(String decimal, int fromBase, String baseN, int toBase) {
         assertEquals(10, fromBase);
 
-        int d = parseInt(decimal);
+        int d = parse(decimal);
         int bN;
         String bNString = "";
 
@@ -235,6 +235,15 @@ public class VariousTests {
         } while (d != 0);
 
         assertEquals(baseN, bNString);
+    }
+
+    private int parse(String number) {
+        int sum = 0;
+        for (char c : number.toCharArray()) {
+            sum *= 10;
+            sum += c - '0';
+        }
+        return sum;
     }
 
     private String digit(int bN, int toBase) {
