@@ -238,8 +238,9 @@ public class VariousTests {
 
     private int parse(String number, int fromBase) {
         int sum = 0;
-        for (int i = 0; i < number.toCharArray().length; ++i) {
-            int cc = number.toCharArray()[i] - '0';
+        char[] chars = number.toCharArray();
+        for (int i = 0; i < chars.length; ++i) {
+            int cc = chars[i] - '0';
             if (cc < 0 || cc > fromBase)
                 throw new IllegalArgumentException();
             sum *= fromBase;
