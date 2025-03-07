@@ -220,11 +220,9 @@ public class VariousTests {
 
     @ParameterizedTest
     @CsvSource({ "0,10,0,2", "1,10,1,2", "2,10,10,2", "2,10,2,3", "3,10,11,2", "3,10,10,3", "4,10,100,2", "5,10,101,2",
-            "10,10,(10),11", "11,10,10,11", "12,10,11,11", "24,10,22,11", "120,10,(10)(10),11" })
+            "5,5,5,10", "10,10,(10),11", "11,10,10,11", "12,10,11,11", "24,10,22,11", "120,10,(10)(10),11" })
     public void changeBaseToN(String decimal, int fromBase, String baseN, int toBase) {
-        assertEquals(10, fromBase);
-
-        int d = parse(decimal);
+        int d = parse(decimal, fromBase);
         int bN;
         String bNString = "";
 
@@ -237,11 +235,14 @@ public class VariousTests {
         assertEquals(baseN, bNString);
     }
 
-    private int parse(String number) {
+    private int parse(String number, int fromBase) {
         int sum = 0;
         for (char c : number.toCharArray()) {
-            sum *= 10;
-            sum += c - '0';
+            int cc = c - '0';
+            if (cc < 0 || cc > fromBase)
+                throw new IllegalArgumentException();
+            sum *= fromBase;
+            sum += cc;
         }
         return sum;
     }
