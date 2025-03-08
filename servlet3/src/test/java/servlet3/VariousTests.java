@@ -239,12 +239,24 @@ public class VariousTests {
     private int parse(String number, int fromBase) {
         int sum = 0;
         char[] chars = number.toCharArray();
+        boolean inside = false;
         for (int i = 0; i < chars.length; ++i) {
-            int cc = chars[i] - '0';
-            if (cc < 0 || cc > fromBase)
-                throw new IllegalArgumentException();
-            sum *= fromBase;
-            sum += cc;
+            if (!inside) {
+                int cc = chars[i] - '0';
+                if (cc < 0 || cc > fromBase)
+                    throw new IllegalArgumentException();
+                sum *= fromBase;
+                sum += cc;
+            } else {
+                inside = true;
+                if (chars[i] == '(') {
+                    {
+
+                    }
+                } else if (chars[i] == ')') {
+
+                }
+            }
         }
         return sum;
     }
