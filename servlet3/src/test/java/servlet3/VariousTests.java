@@ -219,7 +219,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "(10,11" })
+    @CsvSource({ "(10,11", "(9),2" })
     public void changeBaseToN(String decimal, int fromBase) {
         assertThrows(IllegalArgumentException.class, () -> parse(decimal, fromBase));
     }
@@ -253,6 +253,8 @@ public class VariousTests {
             } else if (chars[i] == ')') {
                 assertEquals(opened, true);
                 opened = false;
+                if (sum < 10)
+                    throw new IllegalArgumentException();
             } else if (opened) {
                 int cc = chars[i] - '0';
                 sum *= 10;
