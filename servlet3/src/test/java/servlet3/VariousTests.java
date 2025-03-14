@@ -219,7 +219,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "(10,11", "(9),2" })
+    @CsvSource({ "(10,11" })
     public void changeBaseToN(String decimal, int fromBase) {
         assertThrows(IllegalArgumentException.class, () -> parse(decimal, fromBase));
     }
@@ -227,7 +227,7 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "0,10,0,2", "1,10,1,2", "2,10,10,2", "2,10,2,3", "3,10,11,2", "3,10,10,3", "4,10,100,2", "5,10,101,2",
             "5,5,5,10", "10,10,(10),11", "11,10,10,11", "12,10,11,11", "24,10,22,11", "120,10,(10)(10),11", "30,4,22,5",
-            "31,4,23,5", "(10),11,10,10", "(10)(10),11,120,10", "(11),12,11,10", "(11)(10)0,12,1704,10" })
+            "31,4,23,5", "(10),11,10,10", "(10)(10),11,120,10", "(11),12,11,10", "(11)(10)0,12,1704,10", "(9),2,9,10" })
     public void changeBaseToN(String decimal, int fromBase, String baseN, int toBase) {
         int d = parse(decimal, fromBase);
         int bN;
@@ -257,8 +257,6 @@ public class VariousTests {
                 sum *= fromBase;
                 sum += sumInParen;
                 sumInParen = 0;
-                if (sum < 10)
-                    throw new IllegalArgumentException();
             } else if (opened) {
                 int charInParen = chars[i] - '0';
                 sumInParen *= 10;
