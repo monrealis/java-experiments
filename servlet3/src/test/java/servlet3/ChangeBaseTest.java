@@ -10,7 +10,7 @@ public class ChangeBaseTest {
     @ParameterizedTest
     @CsvSource({ "(10,11" })
     public void changeBaseToN(String decimal, int fromBase) {
-        assertThrows(IllegalArgumentException.class, () -> parse(decimal, fromBase));
+        assertThrows(IllegalArgumentException.class, () -> new Parser(decimal, fromBase).parse());
     }
 
     @ParameterizedTest
@@ -19,7 +19,7 @@ public class ChangeBaseTest {
             "31,4,23,5", "(10),11,10,10", "(10)(10),11,120,10", "(11),12,11,10", "(11)(10)0,12,1704,10", "(9),2,9,10",
             "1(),10,10,10", "(),10,0,1" })
     public void changeBaseToN(String decimal, int fromBase, String baseN, int toBase) {
-        int d = parse(decimal, fromBase);
+        int d = new Parser(decimal, fromBase).parse();
         int bN;
         String bNString = "";
 
@@ -32,36 +32,50 @@ public class ChangeBaseTest {
         assertEquals(baseN, bNString);
     }
 
-    private int parse(String number, int fromBase) {
-        int sum = 0;
-        int sumInParen = 0;
-        char[] chars = number.toCharArray();
-        boolean opened = false;
-        for (int i = 0; i < chars.length; ++i) {
-            if (chars[i] == '(') {
-                assertEquals(opened, false);
-                opened = true;
-            } else if (chars[i] == ')') {
-                assertEquals(opened, true);
-                opened = false;
-                sum *= fromBase;
-                sum += sumInParen;
-                sumInParen = 0;
-            } else if (opened) {
-                int charInParen = chars[i] - '0';
-                sumInParen *= 10;
-                sumInParen += charInParen;
-            } else {
-                int cc = chars[i] - '0';
-                if (cc < 0 || cc > fromBase)
-                    throw new IllegalArgumentException();
-                sum *= fromBase;
-                sum += cc;
-            }
+    private static class Parser {
+        private final String number;
+        private final int fromBase;
+        private int sum;
+        private int sumInParen;
+        private boolean opened;
+
+        public Parser(String number, int fromBase) {
+            this.number = number;
+            this.fromBase = fromBase;
         }
-        if (opened)
-            throw new IllegalArgumentException();
-        return sum;
+
+        private int parse() {
+            char[] chars = number.toCharArray();
+            for (int i = 0; i < chars.length; ++i) {
+                if (chars[i] == '(') {
+                    assertEquals(opened, false);
+                    opened = true;
+                } else if (chars[i] == ')') {
+                    assertEquals(opened, true);
+                    opened = false;
+                    sum *= fromBase;
+                    sum += sumInParen;
+                    sumInParen = 0;
+                } else if (opened) {
+                    int charInParen = chars[i] - '0';
+                    sumInParen *= 10;
+                    sumInParen += charInParen;
+                } else {
+                    int cc = chars[i] - '0';
+                    if (cc < 0 || cc > fromBase)
+                        throw new IllegalArgumentException();
+                    sum *= fromBase;
+                    sum += cc;
+                }
+            }
+            ensureNotOpened();
+            return sum;
+        }
+
+        private void ensureNotOpened() {
+            if (opened)
+                throw new IllegalArgumentException();
+        }
     }
 
     private String digit(int bN, int toBase) {
