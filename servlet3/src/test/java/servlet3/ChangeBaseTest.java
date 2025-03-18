@@ -47,16 +47,11 @@ public class ChangeBaseTest {
         private int parse() {
             char[] chars = number.toCharArray();
             for (int i = 0; i < chars.length; ++i) {
-                if (chars[i] == '(') {
-                    assertEquals(opened, false);
-                    opened = true;
-                } else if (chars[i] == ')') {
-                    assertEquals(opened, true);
-                    opened = false;
-                    sum *= fromBase;
-                    sum += sumInParen;
-                    sumInParen = 0;
-                } else if (opened) {
+                if (chars[i] == '(')
+                    open();
+                else if (chars[i] == ')')
+                    close();
+                else if (opened) {
                     int charInParen = chars[i] - '0';
                     sumInParen *= 10;
                     sumInParen += charInParen;
@@ -70,6 +65,19 @@ public class ChangeBaseTest {
             }
             ensureNotOpened();
             return sum;
+        }
+
+        private void open() {
+            assertEquals(opened, false);
+            opened = true;
+        }
+
+        private void close() {
+            assertEquals(opened, true);
+            opened = false;
+            sum *= fromBase;
+            sum += sumInParen;
+            sumInParen = 0;
         }
 
         private void ensureNotOpened() {
