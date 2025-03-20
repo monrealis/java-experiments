@@ -45,27 +45,29 @@ public class ChangeBaseTest {
         }
 
         private int parse() {
-            char[] chars = number.toCharArray();
-            for (int i = 0; i < chars.length; ++i) {
-                if (chars[i] == '(')
+            for (char c : number.toCharArray()) {
+                if (c == '(')
                     open();
-                else if (chars[i] == ')')
+                else if (c == ')')
                     close();
-                else {
-                    int cc = chars[i] - '0';
-                    if (cc < 0 || cc > fromBase)
-                        throw new IllegalArgumentException();
-                    if (opened) {
-                        sumInParen *= 10;
-                        sumInParen += cc;
-                    } else {
-                        sum *= fromBase;
-                        sum += cc;
-                    }
-                }
+                else
+                    digit(c);
             }
             ensureNotOpened();
             return sum;
+        }
+
+        private void digit(char c) {
+            int cc = c - '0';
+            if (cc < 0 || cc > fromBase)
+                throw new IllegalArgumentException();
+            if (opened) {
+                sumInParen *= 10;
+                sumInParen += cc;
+            } else {
+                sum *= fromBase;
+                sum += cc;
+            }
         }
 
         private void open() {
