@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class ChangeBaseTest {
     @ParameterizedTest
-    @CsvSource({ "(10,11", "0),10", "0(,10", "a,10" })
+    @CsvSource({ "(10,11", "0),10", "0(,10", "a,10", "((),10" })
     public void changeBaseToN(String decimal, int fromBase) {
         assertThrows(IllegalArgumentException.class, () -> new Parser(decimal, fromBase).parse());
     }
@@ -71,7 +71,8 @@ public class ChangeBaseTest {
         }
 
         private void open() {
-            assertEquals(opened, false);
+            if (opened)
+                throw new IllegalArgumentException();
             opened = true;
         }
 
