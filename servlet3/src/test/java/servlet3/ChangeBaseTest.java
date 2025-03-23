@@ -9,8 +9,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class ChangeBaseTest {
     @ParameterizedTest
     @CsvSource({ "(10,11", "0),10", "0(,10", "a,10", "((),10" })
-    public void changeBaseToN(String decimal, int fromBase) {
-        assertThrows(IllegalArgumentException.class, () -> new Parser(decimal, fromBase).parse());
+    public void changeBaseToN(String initial, int initialBase) {
+        assertThrows(IllegalArgumentException.class, () -> new Parser(initial, initialBase).parse());
     }
 
     @ParameterizedTest
@@ -18,15 +18,15 @@ public class ChangeBaseTest {
             "5,5,5,10", "10,10,(10),11", "11,10,10,11", "12,10,11,11", "24,10,22,11", "120,10,(10)(10),11", "30,4,22,5",
             "31,4,23,5", "(10),11,10,10", "(10)(10),11,120,10", "(11),12,11,10", "(11)(10)0,12,1704,10",
             "(1)(0)01,2,9,10", "1(),10,10,10", "(),10,0,1" })
-    public void changeBaseToN(String decimal, int fromBase, String baseN, int toBase) {
-        int d = new Parser(decimal, fromBase).parse();
+    public void changeBaseToN(String intial, int initialBase, String baseN, int n) {
+        int d = new Parser(intial, initialBase).parse();
         int bN;
         String bNString = "";
 
         do {
-            bN = d % toBase;
-            bNString = digit(bN, toBase) + bNString;
-            d /= toBase;
+            bN = d % n;
+            bNString = digit(bN, n) + bNString;
+            d /= n;
         } while (d != 0);
 
         assertEquals(baseN, bNString);
