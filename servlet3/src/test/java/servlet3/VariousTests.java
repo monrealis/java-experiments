@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -230,4 +231,17 @@ public class VariousTests {
         assertEquals(p == n, perfect);
     }
 
+    @ParameterizedTest
+    @CsvSource({ "2 + 3,5" })
+    public void simpleCalculator(String expression, int expectedResult) {
+        try (Scanner sc = new Scanner(expression)) {
+            int first = sc.nextInt();
+            char operation = sc.next().charAt(0);
+            if (operation != '+')
+                throw new IllegalArgumentException();
+            int second = sc.nextInt();
+            
+            assertEquals(expectedResult, first + second);
+        }
+    }
 }
