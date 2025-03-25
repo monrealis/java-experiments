@@ -232,16 +232,24 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "2 + 3,5" })
+    @CsvSource({ "2 + 3,5", "2 - 3, -1" })
     public void simpleCalculator(String expression, int expectedResult) {
         try (Scanner sc = new Scanner(expression)) {
             int first = sc.nextInt();
             char operation = sc.next().charAt(0);
-            if (operation != '+')
-                throw new IllegalArgumentException();
             int second = sc.nextInt();
-            
-            assertEquals(expectedResult, first + second);
+            assertEquals(expectedResult, result(first, operation, second));
+        }
+    }
+
+    private int result(int first, char operation, int second) {
+        switch (operation) {
+        case '+':
+            return first + second;
+        case '-':
+            return first - second;
+        default:
+            throw new IllegalArgumentException();
         }
     }
 }
