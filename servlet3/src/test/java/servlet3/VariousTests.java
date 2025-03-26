@@ -232,7 +232,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "2 + 3,5", "2 - 3, -1" })
+    @CsvSource({ "2 + 3,5", "2 - 3, -1", "2 * 3, 6", "6 / 3, 2" })
     public void simpleCalculator(String expression, int expectedResult) {
         try (Scanner sc = new Scanner(expression)) {
             int first = sc.nextInt();
@@ -248,6 +248,10 @@ public class VariousTests {
             return first + second;
         case '-':
             return first - second;
+        case '*':
+            return first * second;
+        case '/':
+            return first / second;
         default:
             throw new IllegalArgumentException();
         }
