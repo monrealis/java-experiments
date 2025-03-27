@@ -232,6 +232,17 @@ public class VariousTests {
     }
 
     @ParameterizedTest
+    @CsvSource({ "2 ! 3" })
+    public void simpleCalculator_Throws(String expression) {
+        try (Scanner sc = new Scanner(expression)) {
+            int first = sc.nextInt();
+            char operation = sc.next().charAt(0);
+            int second = sc.nextInt();
+            assertThrows(IllegalArgumentException.class, () -> result(first, operation, second));
+        }
+    }
+
+    @ParameterizedTest
     @CsvSource({ "2 + 3,5", "2 - 3, -1", "2 * 3, 6", "6 / 3, 2" })
     public void simpleCalculator(String expression, int expectedResult) {
         try (Scanner sc = new Scanner(expression)) {
