@@ -269,7 +269,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "12345,15", "123456,21" })
+    @CsvSource({ "12345,15", "123456,21", "222,6", "0,0", "5,5" })
     public void sumOfDigits(int num, int expectedResult) {
         int sum = 0;
         while (num != 0) {
