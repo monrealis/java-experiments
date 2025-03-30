@@ -278,4 +278,16 @@ public class VariousTests {
         }
         assertEquals(sum, expectedResult);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "0,1", "1,1", "3,6", "5,120" })
+    public void factorialRecursively(int num, int expectedResult) {
+        assertEquals(factorialRecurse(num), expectedResult);
+    }
+
+    private int factorialRecurse(int n) {
+        if (n <= 0)
+            return 1;
+        return n * factorialRecurse(n - 1);
+    }
 }
