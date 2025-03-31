@@ -290,4 +290,13 @@ public class VariousTests {
             return 1;
         return n * factorialRecurse(n - 1);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "1984,true", "1983,false", "1982,false", "2000,true" })
+    public void leapYear(int year, boolean expectedResult) {
+        boolean leap = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+
+        assertEquals(leap, expectedResult);
+    }
+
 }
