@@ -292,7 +292,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "1984,true", "1983,false", "1982,false", "2000,true" })
+    @CsvSource({ "1984,true", "1983,false", "1982,false", "2000,true", "0,true", "-4,true", "-6,false" })
     public void leapYear(int year, boolean expectedResult) {
         boolean leap = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
 
