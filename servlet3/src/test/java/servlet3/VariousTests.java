@@ -176,6 +176,21 @@ public class VariousTests {
     }
 
     @ParameterizedTest
+    @CsvSource({ "10,15,30", "2,3,6", "2,-3,6", "-2,3,6", "-2,-3,6" })
+    public void lcm(int a, int b, int expected) {
+        int product = (a < 0 ? -a : a) * b;
+
+        a = a < 0 ? -a : a;
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+
+        assertEquals(expected, product / a);
+    }
+
+    @ParameterizedTest
     @CsvSource({ "hello,world,false", "alus,sula,true", "'','',true" })
     public void anagram(String first, String second, boolean expected) {
         List<String> f = sortedList(first);
