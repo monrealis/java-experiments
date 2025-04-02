@@ -165,29 +165,33 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "60,48,12", "10,3,1", "10,3,1", "10,0,10", "0,9,9", "-2,4,2", "3,-6,3", "-4,-8,4" })
     public void gcd(int a, int b, int expected) {
-        a = a < 0 ? -a : a;
-        while (b != 0) {
-            int temp = b;
-            b = a % b;
-            a = temp;
-        }
+        int gcd = gcd(a, b);
 
-        assertEquals(expected, a);
+        assertEquals(expected, gcd);
     }
 
     @ParameterizedTest
     @CsvSource({ "10,15,30", "2,3,6", "2,-3,6", "-2,3,6", "-2,-3,6" })
     public void lcm(int a, int b, int expected) {
-        int product = (a < 0 ? -a : a) * b;
+        int product = nonNegative(a) * b;
 
+        int gcd = gcd(a, b);
+
+        assertEquals(expected, product / gcd);
+    }
+
+    private int nonNegative(int a) {
+        return a < 0 ? -a : a;
+    }
+
+    private int gcd(int a, int b) {
         a = a < 0 ? -a : a;
         while (b != 0) {
             int temp = b;
             b = a % b;
             a = temp;
         }
-
-        assertEquals(expected, product / a);
+        return a;
     }
 
     @ParameterizedTest
