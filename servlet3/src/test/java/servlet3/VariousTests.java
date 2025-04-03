@@ -251,7 +251,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "2 ! 3" })
+    @CsvSource({ "2 ! 3", "2 # 3" })
     public void simpleCalculator_Throws(String expression) {
         try (Scanner sc = new Scanner(expression)) {
             int first = sc.nextInt();
