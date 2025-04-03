@@ -253,23 +253,25 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "2 ! 3", "2 # 3" })
     public void simpleCalculator_Throws(String expression) {
+        scan(expression, null);
+    }
+
+    private void scan(String expression, Integer expectedResult) {
         try (Scanner sc = new Scanner(expression)) {
             int first = sc.nextInt();
             char operation = sc.next().charAt(0);
             int second = sc.nextInt();
-            assertThrows(IllegalArgumentException.class, () -> result(first, operation, second));
+            if (expectedResult == null)
+                assertThrows(IllegalArgumentException.class, () -> result(first, operation, second));
+            else
+                assertEquals(expectedResult, result(first, operation, second));
         }
     }
 
     @ParameterizedTest
     @CsvSource({ "2 + 3,5", "2 - 3, -1", "2 * 3, 6", "6 / 3, 2" })
     public void simpleCalculator(String expression, int expectedResult) {
-        try (Scanner sc = new Scanner(expression)) {
-            int first = sc.nextInt();
-            char operation = sc.next().charAt(0);
-            int second = sc.nextInt();
-            assertEquals(expectedResult, result(first, operation, second));
-        }
+        scan(expression, expectedResult);
     }
 
     private int result(int first, char operation, int second) {
