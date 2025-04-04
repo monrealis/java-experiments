@@ -321,7 +321,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "97,true", "2,true", "3,true", "4,false", "5,true", "6,false", "98,false" })
+    @CsvSource({ "97,true", "2,true", "3,true", "4,false", "5,true", "6,false", "98,false", "1,true" })
     public void eratostenesSieve(int prime, boolean isPrime) {
         boolean[] nonPrimes = new boolean[prime + 1];
 
