@@ -321,16 +321,16 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "97,true", "2,true", "3,true" })
+    @CsvSource({ "97,true", "2,true", "3,true", "4,false", "5,true", "6,false", "98,false" })
     public void eratostenesSieve(int prime, boolean isPrime) {
         boolean[] primes = new boolean[prime + 1];
         for (int i = 0; i <= prime; ++i)
             primes[i] = true;
-        for (int i = 2; i <= prime; ++i) {
-            for (int j = 2 * i; j <= prime; j += i) {
-                primes[i] = false;
-            }
-        }
+
+        for (int i = 2; i <= prime; ++i)
+            for (int j = 2 * i; j <= prime; j += i)
+                primes[j] = false;
+
         assertEquals(primes[prime], isPrime);
     }
 
