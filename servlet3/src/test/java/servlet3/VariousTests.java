@@ -320,4 +320,18 @@ public class VariousTests {
         assertEquals(leap, expectedResult);
     }
 
+    @ParameterizedTest
+    @CsvSource({ "97,true", "2,true", "3,true" })
+    public void eratostenesSieve(int prime, boolean isPrime) {
+        boolean[] primes = new boolean[prime + 1];
+        for (int i = 0; i <= prime; ++i)
+            primes[i] = true;
+        for (int i = 2; i <= prime; ++i) {
+            for (int j = 2 * i; j <= prime; j += i) {
+                primes[i] = false;
+            }
+        }
+        assertEquals(primes[prime], isPrime);
+    }
+
 }
