@@ -321,8 +321,15 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "97,true", "2,true", "3,true", "4,false", "5,true", "6,false", "98,false", "1,true" })
-    public void eratostenesSieve(int prime, boolean isPrime) {
+    @CsvSource({ "97,true,false", "2,true,false", "3,true,false", "4,false,false", "5,true,false", "6,false,false",
+            "98,false,false", "1,true,false", "0,false,true", "-1,false,true" })
+    public void eratostenesSieve(int prime, boolean isPrime, boolean exception) {
+        if (exception) {
+            assertThrows(IllegalArgumentException.class, () -> {
+                throw new IllegalArgumentException();
+            });
+            return;
+        }
         boolean[] nonPrimes = new boolean[prime + 1];
 
         for (int i = 2; i <= prime; ++i)
