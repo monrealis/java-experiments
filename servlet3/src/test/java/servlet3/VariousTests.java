@@ -339,4 +339,20 @@ public class VariousTests {
         assertEquals(nonPrimes[prime], !isPrime);
     }
 
+    @ParameterizedTest
+    @CsvSource({ "1,2,3,4,5" })
+    public void mergeArrays(int first, int second, int third, int fourth, int fifth) {
+        int[] firstPart = new int[] { first, second, third };
+        int[] secondPart = new int[] { fourth, fifth };
+        int[] result = new int[5];
+
+        System.arraycopy(firstPart, 0, result, 0, 3);
+        System.arraycopy(secondPart, 0, result, 3, 2);
+
+        assertEquals(first, result[0]);
+        assertEquals(second, result[1]);
+        assertEquals(third, result[2]);
+        assertEquals(fourth, result[3]);
+        assertEquals(fifth, result[4]);
+    }
 }
