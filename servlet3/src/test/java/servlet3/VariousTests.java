@@ -355,4 +355,15 @@ public class VariousTests {
         assertEquals(fourth, result[3]);
         assertEquals(fifth, result[4]);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "automation,6" })
+    public void countVowels(String string, int expectedCount) {
+        int count = 0;
+        for (char a : string.toCharArray())
+            if ("aoiueAOIUE".indexOf(a) >= 0)
+                count++;
+
+        assertEquals(expectedCount, count);
+    }
 }
