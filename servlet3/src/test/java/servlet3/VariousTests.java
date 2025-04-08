@@ -2,7 +2,9 @@ package servlet3;
 
 import static java.lang.Integer.parseInt;
 import static java.util.Arrays.asList;
+import static java.util.Arrays.stream;
 import static java.util.Collections.sort;
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -365,5 +367,16 @@ public class VariousTests {
                 count++;
 
         assertEquals(expectedCount, count);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "4,3,2,1" })
+    public void sortAnArray(int a, int b, int c, int d) {
+        List<Integer> result = stream(new int[] { a, b, c, d }).sorted().boxed().collect(toList());
+
+        assertEquals(result.get(0), 1);
+        assertEquals(result.get(1), 2);
+        assertEquals(result.get(2), 3);
+        assertEquals(result.get(3), 4);
     }
 }
