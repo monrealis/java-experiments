@@ -3,6 +3,7 @@ package servlet3;
 import static java.lang.Integer.parseInt;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
+import static java.util.Collections.reverse;
 import static java.util.Collections.sort;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,7 +24,7 @@ public class VariousTests {
     public void palyndrome() {
         String palyndrome = "madam";
 
-        String s = reverse(palyndrome);
+        String s = reversed(palyndrome);
 
         assertEquals(s, palyndrome);
     }
@@ -32,12 +33,12 @@ public class VariousTests {
     public void nonPalyndrome() {
         String nonPalyndrome = "Madam";
 
-        String s = reverse(nonPalyndrome);
+        String s = reversed(nonPalyndrome);
 
         assertNotEquals(s, nonPalyndrome);
     }
 
-    private String reverse(String nonPalyndrome) {
+    private String reversed(String nonPalyndrome) {
         return new StringBuilder(nonPalyndrome).reverse().toString();
     }
 
@@ -45,7 +46,7 @@ public class VariousTests {
     public void reversesString() {
         String s = "ABC";
 
-        String reversed = reverse(s);
+        String reversed = reversed(s);
 
         assertEquals(reversed, "CBA");
     }
@@ -161,7 +162,7 @@ public class VariousTests {
             num = num / 10;
         }
 
-        assertEquals(parseInt(reverse("" + sign * initial)), sign * reversed);
+        assertEquals(parseInt(reversed("" + sign * initial)), sign * reversed);
     }
 
     @ParameterizedTest
@@ -378,5 +379,14 @@ public class VariousTests {
         assertEquals(result.get(1), 2);
         assertEquals(result.get(2), 3);
         assertEquals(result.get(3), 4);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "4,3,2,1" })
+    public void findLargest(int a, int b, int c, int d) {
+        List<Integer> result = stream(new int[] { a, b, c, d }).sorted().boxed().collect(toList());
+        reverse(result);
+
+        assertEquals(result.get(0), 4);
     }
 }
