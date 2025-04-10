@@ -389,4 +389,15 @@ public class VariousTests {
 
         assertEquals(result.get(0), 4);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "4,4,2,2" })
+    public void removeDuplicates(int a, int b, int c, int d) {
+        List<Integer> nonUnique = stream(new int[] { a, b, c, d }).boxed().collect(toList());
+        List<Integer> unique = new ArrayList<>(new LinkedHashSet<>(nonUnique));
+
+        assertEquals(unique.get(0), 4);
+        assertEquals(unique.get(1), 2);
+        assertEquals(unique.size(), 2);
+    }
 }
