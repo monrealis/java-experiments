@@ -400,4 +400,21 @@ public class VariousTests {
         assertEquals(unique.get(1), 2);
         assertEquals(unique.size(), 2);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "0,true", "1,true", "2,false", "370,true", "371,true", "372,false" })
+    public void armstrongNumber(int n, boolean armstrong) {
+        int sum = 0;
+        int initial = n;
+        while (n != 0) {
+            int mod10 = n % 10;
+            sum += mod10 * mod10 * mod10;
+            n /= 10;
+        }
+
+        if (armstrong)
+            assertEquals(initial, sum);
+        else
+            assertNotEquals(initial, sum);
+    }
 }
