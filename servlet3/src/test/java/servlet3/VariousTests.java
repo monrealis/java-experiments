@@ -402,7 +402,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0,true", "1,true", "2,false", "370,true", "371,true", "372,false" })
+    @CsvSource({ "0,true", "1,true", "2,false", "370,true", "371,true", "372,false", "373,false" })
     public void armstrongNumber(int n, boolean armstrong) {
         int sum = 0;
         int initial = n;
