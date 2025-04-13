@@ -417,4 +417,16 @@ public class VariousTests {
         else
             assertNotEquals(initial, sum);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "0,1", "9,1", "100,3" })
+    public void countDigits(int n, int expectedResult) {
+        int count = 0;
+        do {
+            count++;
+            n = n / 10;
+        } while (n != 0);
+
+        assertEquals(count, expectedResult);
+    }
 }
