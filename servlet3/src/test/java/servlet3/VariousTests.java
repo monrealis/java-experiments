@@ -89,6 +89,17 @@ public class VariousTests {
         assertEquals(expectedResult, isPrimeNumber(n));
     }
 
+    @Test
+    public void primeNumbersInRange() {
+        List<String> result = new ArrayList<>();
+        for (int i = 10; i <= 20; ++i)
+            if (isPrimeNumber(i))
+                result.add(i + "");
+        String joined = String.join(",", result.toArray(new String[] {}));
+
+        assertEquals("11,13,17,19", joined);
+    }
+
     @ParameterizedTest
     @CsvSource({ "-1", "0", "1" })
     public void primeNumbers_Throws(int n) {
