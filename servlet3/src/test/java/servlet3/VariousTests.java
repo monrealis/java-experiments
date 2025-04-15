@@ -459,10 +459,21 @@ public class VariousTests {
     }
 
     @Test
-    public void findSecondLargestStreams() {
+    public void findSecondLargestWithStreams() {
         int[] array = { 1, 2, 9, 3, 5 };
+
         int max = stream(array).boxed().reduce(Integer::max).get();
         int secondMax = stream(array).boxed().filter(a -> a.compareTo(max) < 0).reduce(Integer::max).get();
+
+        assertEquals(5, secondMax);
+    }
+
+    @Test
+    public void findSecondLargestWithStreamsOtherWay() {
+        int[] array = { 1, 2, 9, 3, 5 };
+
+        List<Integer> list = stream(array).sorted().boxed().collect(toList());
+        int secondMax = list.get(list.size() - 2);
 
         assertEquals(5, secondMax);
     }
