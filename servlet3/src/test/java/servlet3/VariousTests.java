@@ -1,5 +1,6 @@
 package servlet3;
 
+import static java.lang.Integer.MIN_VALUE;
 import static java.lang.Integer.parseInt;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
@@ -439,5 +440,21 @@ public class VariousTests {
         } while (n != 0);
 
         assertEquals(count, expectedResult);
+    }
+
+    @Test
+    public void findSecondLargest() {
+        int[] array = { 1, 2, 9, 3, 5 };
+        int first = MIN_VALUE;
+        int second = MIN_VALUE;
+
+        for (int num : array)
+            if (num > first) {
+                second = first;
+                first = num;
+            } else if (num > second && num != first)
+                second = num;
+
+        assertEquals(5, second);
     }
 }
