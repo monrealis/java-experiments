@@ -457,4 +457,13 @@ public class VariousTests {
 
         assertEquals(5, second);
     }
+
+    @Test
+    public void findSecondLargestStreams() {
+        int[] array = { 1, 2, 9, 3, 5 };
+        int max = stream(array).boxed().reduce(Integer::max).get();
+        int secondMax = stream(array).boxed().filter(a -> a.compareTo(max) < 0).reduce(Integer::max).get();
+
+        assertEquals(5, secondMax);
+    }
 }
