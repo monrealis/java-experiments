@@ -468,13 +468,14 @@ public class VariousTests {
         assertEquals(5, secondMax);
     }
 
-    @Test
-    public void findSecondLargestWithStreamsOtherWay() {
-        int[] array = { 1, 2, 9, 3, 5 };
+    @ParameterizedTest
+    @CsvSource({ "9,5,5,5", "7,7,7,7", "9,5,3,5" })
+    public void findSecondLargestWithStreamsOtherWay(int first, int second, int third, int expectedResult) {
+        int[] array = { first, second, third };
 
         List<Integer> list = stream(array).sorted().boxed().collect(toList());
         int secondMax = list.get(list.size() - 2);
 
-        assertEquals(5, secondMax);
+        assertEquals(expectedResult, secondMax);
     }
 }
