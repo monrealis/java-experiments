@@ -16,6 +16,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -485,6 +486,30 @@ public class VariousTests {
         first += second;
         second = first - second;
         first -= second;
+
+        assertEquals(first, third);
+        assertEquals(second, fourth);
+    }
+
+    @Disabled
+    @ParameterizedTest
+    @CsvSource({ "9,5,5,9", "-1,-2,-2,-1", "-1,1,1,-1" })
+    public void swapNumbersOtherWay(int first, int second, int third, int fourth) {
+        first -= second;
+        // second = first - second;
+        // second = first + second;
+        first += second;
+
+        assertEquals(first, third);
+        assertEquals(second, fourth);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "9,5,5,9", "-1,-2,-2,-1", "-1,1,1,-1" })
+    public void swapNumbersBitwise(int first, int second, int third, int fourth) {
+        first ^= second;
+        second = first ^ second;
+        first ^= second;
 
         assertEquals(first, third);
         assertEquals(second, fourth);
