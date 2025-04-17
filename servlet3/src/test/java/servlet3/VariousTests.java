@@ -478,4 +478,15 @@ public class VariousTests {
 
         assertEquals(expectedResult, secondMax);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "9,5,5,9", "-1,-2,-2,-1", "-1,1,1,-1" })
+    public void swapNumbers(int first, int second, int third, int fourth) {
+        first += second;
+        second = first - second;
+        first -= second;
+
+        assertEquals(first, third);
+        assertEquals(second, fourth);
+    }
 }
