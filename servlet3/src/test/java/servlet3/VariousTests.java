@@ -481,7 +481,7 @@ public class VariousTests {
 
     @ParameterizedTest
     @CsvSource({ "9,5,5,9", "-1,-2,-2,-1", "-1,1,1,-1" })
-    public void swapNumbers(int first, int second, int third, int fourth) {
+    public void swapNumbers1(int first, int second, int third, int fourth) {
         first += second;
         second = first - second;
         first -= second;
@@ -492,7 +492,18 @@ public class VariousTests {
 
     @ParameterizedTest
     @CsvSource({ "9,5,5,9", "-1,-2,-2,-1", "-1,1,1,-1" })
-    public void swapNumbersOtherWay(int first, int second, int third, int fourth) {
+    public void swapNumbers2(int first, int second, int third, int fourth) {
+        second += first;
+        first = second - first;
+        second -= first;
+
+        assertEquals(first, third);
+        assertEquals(second, fourth);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "9,5,5,9", "-1,-2,-2,-1", "-1,1,1,-1" })
+    public void swapNumbers3(int first, int second, int third, int fourth) {
         first -= second;
         second += first;
         first = second - first;
@@ -503,10 +514,32 @@ public class VariousTests {
 
     @ParameterizedTest
     @CsvSource({ "9,5,5,9", "-1,-2,-2,-1", "-1,1,1,-1" })
-    public void swapNumbersBitwise(int first, int second, int third, int fourth) {
+    public void swapNumbers4(int first, int second, int third, int fourth) {
+        second -= first;
+        first += second;
+        second = first - second;
+
+        assertEquals(first, third);
+        assertEquals(second, fourth);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "9,5,5,9", "-1,-2,-2,-1", "-1,1,1,-1" })
+    public void swapNumbersBitwise1(int first, int second, int third, int fourth) {
         first ^= second;
         second = first ^ second;
         first ^= second;
+
+        assertEquals(first, third);
+        assertEquals(second, fourth);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "9,5,5,9", "-1,-2,-2,-1", "-1,1,1,-1" })
+    public void swapNumbersBitwise2(int first, int second, int third, int fourth) {
+        second ^= first;
+        first = first ^ second;
+        second ^= first;
 
         assertEquals(first, third);
         assertEquals(second, fourth);
