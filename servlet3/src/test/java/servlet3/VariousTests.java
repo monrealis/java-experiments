@@ -544,4 +544,16 @@ public class VariousTests {
         assertEquals(first, third);
         assertEquals(second, fourth);
     }
+
+    @Test
+    public void findMissingNumberInAnArray() {
+        int[] array = { 1, 2, 3, 5, 6, 7 };
+
+        int n = array.length + 1;
+        int sum = n * (n + 1) / 2;
+        for (int i : array)
+            sum -= i;
+
+        assertEquals(4, sum);
+    }
 }
