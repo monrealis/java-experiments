@@ -14,7 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -555,5 +557,22 @@ public class VariousTests {
             sum -= i;
 
         assertEquals(4, sum);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "swiss,w", "ss," })
+    public void findFirstNonRepeatedCharacter(String text, Character expectedResult) {
+        Map<Character, Integer> counts = new TreeMap<>();
+        for (char c : text.toCharArray())
+            counts.put(c, counts.getOrDefault(c, 0) + 1);
+        List<Character> exactlyOne = new ArrayList<>();
+        for (char c : text.toCharArray())
+            if (counts.get(c) == 1)
+                exactlyOne.add(c);
+
+        if (exactlyOne.isEmpty())
+            assertEquals(null, expectedResult);
+        else
+            assertEquals(exactlyOne.iterator().next(), expectedResult);
     }
 }
