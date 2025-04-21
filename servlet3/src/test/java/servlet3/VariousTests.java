@@ -560,19 +560,29 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "swiss,w", "ss," })
+    @CsvSource({ "swiss,w", "ss,", "swswa,a" })
     public void findFirstNonRepeatedCharacter(String text, Character expectedResult) {
-        Map<Character, Integer> counts = new TreeMap<>();
-        for (char c : text.toCharArray())
-            counts.put(c, counts.getOrDefault(c, 0) + 1);
-        List<Character> exactlyOne = new ArrayList<>();
-        for (char c : text.toCharArray())
-            if (counts.get(c) == 1)
-                exactlyOne.add(c);
+        Map<Character, Integer> counts = getCountsByCharacter(text);
+        List<Character> exactlyOne = getExactlyOne(text, counts);
 
         if (exactlyOne.isEmpty())
             assertEquals(null, expectedResult);
         else
             assertEquals(exactlyOne.iterator().next(), expectedResult);
+    }
+
+    private List<Character> getExactlyOne(String text, Map<Character, Integer> counts) {
+        List<Character> r = new ArrayList<>();
+        for (char c : text.toCharArray())
+            if (counts.get(c) == 1)
+                r.add(c);
+        return r;
+    }
+
+    private Map<Character, Integer> getCountsByCharacter(String text) {
+        Map<Character, Integer> counts = new TreeMap<>();
+        for (char c : text.toCharArray())
+            counts.put(c, counts.getOrDefault(c, 0) + 1);
+        return counts;
     }
 }
