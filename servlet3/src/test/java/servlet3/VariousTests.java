@@ -4,6 +4,8 @@ import static java.lang.Integer.MIN_VALUE;
 import static java.lang.Integer.parseInt;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.emptyMap;
 import static java.util.Collections.reverse;
 import static java.util.Collections.sort;
 import static java.util.stream.Collectors.toList;
@@ -560,18 +562,22 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "swiss,w", "ss,", "swswa,a" })
+    @CsvSource({ "swiss,w", "ss,", "swswa,a", "s,", "," })
     public void findFirstNonRepeatedCharacter(String text, Character expectedResult) {
         Map<Character, Integer> counts = getCountsByCharacter(text);
         List<Character> exactlyOne = getExactlyOne(text, counts);
 
         if (exactlyOne.isEmpty())
             assertEquals(null, expectedResult);
+        else if (expectedResult == null)
+            assertEquals(null, expectedResult);
         else
             assertEquals(exactlyOne.iterator().next(), expectedResult);
     }
 
     private List<Character> getExactlyOne(String text, Map<Character, Integer> counts) {
+        if (text == null)
+            return emptyList();
         List<Character> r = new ArrayList<>();
         for (char c : text.toCharArray())
             if (counts.get(c) == 1)
@@ -580,6 +586,8 @@ public class VariousTests {
     }
 
     private Map<Character, Integer> getCountsByCharacter(String text) {
+        if (text == null)
+            return emptyMap();
         Map<Character, Integer> counts = new TreeMap<>();
         for (char c : text.toCharArray())
             counts.put(c, counts.getOrDefault(c, 0) + 1);
