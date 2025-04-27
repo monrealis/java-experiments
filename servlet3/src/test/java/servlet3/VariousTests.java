@@ -564,8 +564,8 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "swiss,w", "ss,", "swswa,a", "s,s", "," })
     public void findFirstNonRepeatedCharacter(String text, Character expectedResult) {
-        Map<Character, Integer> counts = getCountsByCharacter(text);
-        List<Character> exactlyOne = getExactlyOne(text, counts);
+        Map<Character, Integer> characterCounts = getCountsByCharacter(text);
+        List<Character> exactlyOne = getExactlyOne(text, characterCounts);
 
         if (exactlyOne.isEmpty())
             assertEquals(null, expectedResult);
