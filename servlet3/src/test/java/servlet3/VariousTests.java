@@ -14,10 +14,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.junit.jupiter.api.Test;
@@ -590,5 +592,28 @@ public class VariousTests {
         for (char c : text.toCharArray())
             counts.put(c, counts.getOrDefault(c, 0) + 1);
         return counts;
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "sswww,xxxw,1", "abcd,efgh,0", "aaaa,aaa,1" })
+    public void findNumberOfRepeatedElements(String first, String second, int expectedResult) {
+        Set<Character> f = toSet(first);
+        Set<Character> s = toSet(second);
+        Set<Character> i = intersection(f, s);
+
+        assertEquals(expectedResult, i.size());
+    }
+
+    private Set<Character> intersection(Set<Character> first, Set<Character> second) {
+        Set<Character> temp = new HashSet<>(first);
+        temp.retainAll(second);
+        return temp;
+    }
+
+    private Set<Character> toSet(String string) {
+        Set<Character> r = new HashSet<>();
+        for (int i = 0; i < string.length(); ++i)
+            r.add(string.charAt(i));
+        return r;
     }
 }
