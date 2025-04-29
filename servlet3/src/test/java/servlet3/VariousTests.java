@@ -616,4 +616,22 @@ public class VariousTests {
             r.add(string.charAt(i));
         return r;
     }
+
+    @ParameterizedTest
+    @CsvSource({ "0,0", "1,1", "2,3", "3,6", "4,10", "100,5050" })
+    public void sunOfNaturalNumbers(int n, int expectedSum) {
+        int sum = 0;
+        for (int i = 1; i <= n; ++i)
+            sum += i;
+
+        assertEquals(sum, expectedSum);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "0,0", "1,1", "2,3", "3,6", "4,10", "100,5050" })
+    public void sunOfNaturalNumbersProgression(int n, int expectedSum) {
+        int sum = n * (n + 1) / 2;
+
+        assertEquals(sum, expectedSum);
+    }
 }
