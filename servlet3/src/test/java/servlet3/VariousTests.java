@@ -637,7 +637,7 @@ public class VariousTests {
 
     @Test
     public void bubbleSort() {
-        int[] arr = { 1, 5, 3, 1, 2 };
+        int[] arr = { -1, 5, 3, 1, 2 };
         for (int i = 0; i < arr.length; i++)
             for (int j = i + 1; j < arr.length; j++)
                 if (arr[i] > arr[j]) {
@@ -646,7 +646,7 @@ public class VariousTests {
                     arr[i] ^= arr[j];
                 }
 
-        assertEquals(1, arr[0]);
+        assertEquals(-1, arr[0]);
         assertEquals(1, arr[1]);
         assertEquals(2, arr[2]);
         assertEquals(3, arr[3]);
