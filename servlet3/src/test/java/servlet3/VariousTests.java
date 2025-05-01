@@ -533,7 +533,7 @@ public class VariousTests {
     @CsvSource({ "9,5,5,9", "-1,-2,-2,-1", "-1,1,1,-1" })
     public void swapNumbersBitwise1(int first, int second, int third, int fourth) {
         first ^= second;
-        second = first ^ second;
+        second ^= first;
         first ^= second;
 
         assertEquals(first, third);
@@ -544,7 +544,7 @@ public class VariousTests {
     @CsvSource({ "9,5,5,9", "-1,-2,-2,-1", "-1,1,1,-1" })
     public void swapNumbersBitwise2(int first, int second, int third, int fourth) {
         second ^= first;
-        first = first ^ second;
+        first ^= second;
         second ^= first;
 
         assertEquals(first, third);
@@ -642,7 +642,7 @@ public class VariousTests {
             for (int j = i + 1; j < arr.length; j++)
                 if (arr[i] > arr[j]) {
                     arr[i] ^= arr[j];
-                    arr[j] = arr[i] ^ arr[j];
+                    arr[j] ^= arr[i];
                     arr[i] ^= arr[j];
                 }
 
@@ -661,7 +661,7 @@ public class VariousTests {
             for (int j = i + 1; j < arr.length; j++)
                 if (min > arr[j]) {
                     arr[j] ^= arr[i];
-                    arr[i] = arr[i] ^ arr[j];
+                    arr[i] ^= arr[j];
                     arr[j] ^= arr[i];
                     min = arr[i];
                 }
