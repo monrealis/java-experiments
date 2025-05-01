@@ -652,4 +652,25 @@ public class VariousTests {
         assertEquals(3, arr[3]);
         assertEquals(5, arr[4]);
     }
+
+    @Test
+    public void minimaxSort() {
+        int[] arr = { -1, 5, 3, 1, 2 };
+        for (int i = 0; i < arr.length; i++) {
+            int min = arr[i];
+            for (int j = i + 1; j < arr.length; j++)
+                if (min > arr[j]) {
+                    int temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                    min = arr[i];
+                }
+        }
+
+        assertEquals(-1, arr[0]);
+        assertEquals(1, arr[1]);
+        assertEquals(2, arr[2]);
+        assertEquals(3, arr[3]);
+        assertEquals(5, arr[4]);
+    }
 }
