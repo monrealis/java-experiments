@@ -660,9 +660,9 @@ public class VariousTests {
             int min = arr[i];
             for (int j = i + 1; j < arr.length; j++)
                 if (min > arr[j]) {
-                    int temp = arr[j];
-                    arr[j] = arr[i];
-                    arr[i] = temp;
+                    arr[j] ^= arr[i];
+                    arr[i] = arr[i] ^ arr[j];
+                    arr[j] ^= arr[i];
                     min = arr[i];
                 }
         }
