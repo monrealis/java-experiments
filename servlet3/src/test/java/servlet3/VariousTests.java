@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -672,5 +673,25 @@ public class VariousTests {
         assertEquals(2, arr[2]);
         assertEquals(3, arr[3]);
         assertEquals(5, arr[4]);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "aa,a", "bbaa,b", "baaa,a" })
+    public void maxOccursInString(String string, char expectedResult) {
+        Map<Character, Integer> counts = new LinkedHashMap<>();
+        for (int i = 0; i < string.toCharArray().length; i++)
+            counts.put(string.charAt(i), counts.getOrDefault(string.charAt(i), 0) + 1);
+
+        int maxOccurs = -1;
+        Character result = null;
+        for (int i = 0; i < string.toCharArray().length; i++) {
+            int count = counts.get(string.charAt(i));
+            if (count > maxOccurs) {
+                maxOccurs = count;
+                result = string.charAt(i);
+            }
+        }
+
+        assertEquals(result, expectedResult);
     }
 }
