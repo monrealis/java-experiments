@@ -694,4 +694,12 @@ public class VariousTests {
 
         assertEquals(result, expectedResult);
     }
+
+    @ParameterizedTest
+    @CsvSource({ " a  aa  ,aaa" })
+    public void removeAllWhitespace(String string, String expectedResult) {
+        String withoutWhitespace = string.replaceAll("\\s", "");
+
+        assertEquals(withoutWhitespace, expectedResult);
+    }
 }
