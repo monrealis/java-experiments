@@ -702,4 +702,12 @@ public class VariousTests {
 
         assertEquals(withoutWhitespace, expectedResult);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "test,true", "Test,false" })
+    public void stringContains(String string, boolean contains) {
+        boolean stringContains = string.contains("test");
+
+        assertEquals(stringContains, contains);
+    }
 }
