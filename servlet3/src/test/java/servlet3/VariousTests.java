@@ -379,6 +379,17 @@ public class VariousTests {
     }
 
     @ParameterizedTest
+    @CsvSource({ "automation,4" })
+    public void countConsonants(String string, int expectedCount) {
+        int count = 0;
+        for (char a : string.toCharArray())
+            if ("qwrtpsdfghjklzxcvbnmQWRTPSDFGHJKLZXCVBNM".indexOf(a) >= 0)
+                count++;
+
+        assertEquals(expectedCount, count);
+    }
+
+    @ParameterizedTest
     @CsvSource({ "automation,6" })
     public void countVowels(String string, int expectedCount) {
         int count = 0;
