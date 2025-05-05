@@ -379,7 +379,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "automation,4" })
+    @CsvSource({ "automation,4", "AUTOMATION,4" })
     public void countConsonants(String string, int expectedCount) {
         int count = 0;
         for (char a : string.toCharArray())
@@ -390,7 +390,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "automation,6" })
+    @CsvSource({ "automation,6", "AUTOMATION,6" })
     public void countVowels(String string, int expectedCount) {
         int count = 0;
         for (char a : string.toCharArray())
