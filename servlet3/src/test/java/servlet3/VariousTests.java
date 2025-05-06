@@ -19,6 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
@@ -720,5 +721,15 @@ public class VariousTests {
         boolean stringContains = string.contains("test");
 
         assertEquals(stringContains, contains);
+    }
+
+    @Test
+    public void randomNumbersAreNotSoRandom() {
+        Random random = new Random(0);
+        int sum = 0;
+        for (int i = 0; i < 10; i++)
+            sum += random.nextInt(10);
+
+        assertNotEquals(0, sum);
     }
 }
