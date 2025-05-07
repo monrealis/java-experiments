@@ -2,6 +2,7 @@ package servlet3;
 
 import static java.lang.Integer.MIN_VALUE;
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.toBinaryString;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
 import static java.util.Collections.emptyList;
@@ -731,5 +732,13 @@ public class VariousTests {
             sum += random.nextInt(10);
 
         assertNotEquals(0, sum);
+    }
+
+    @ParameterizedTest
+    @CsvSource("10,1010")
+    public void convertsNumberToBinary(int decimal, String binary) {
+        String b = toBinaryString(decimal);
+
+        assertEquals(binary, b);
     }
 }
