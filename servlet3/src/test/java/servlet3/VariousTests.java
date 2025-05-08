@@ -741,4 +741,15 @@ public class VariousTests {
 
         assertEquals(binary, b);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "automation,z,0", "automation,a,2" })
+    public void numberOfCharacterOccurences(String string, char character, int expectedCount) {
+        int n = 0;
+        for (char c : string.toCharArray())
+            if (c == character)
+                ++n;
+
+        assertEquals(expectedCount, n);
+    }
 }
