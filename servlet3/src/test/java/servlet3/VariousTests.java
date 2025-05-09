@@ -752,4 +752,15 @@ public class VariousTests {
 
         assertEquals(expectedCount, n);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "user,pwd,userpwd" })
+    public void login(String username, String password, String expectedJoined) {
+        String string = username + " " + password;
+        try (Scanner scanner = new Scanner(string)) {
+            String joined = scanner.next() + scanner.next();
+
+            assertEquals(expectedJoined, joined);
+        }
+    }
 }
