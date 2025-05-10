@@ -763,4 +763,12 @@ public class VariousTests {
             assertEquals(expectedJoined, joined);
         }
     }
+
+    @ParameterizedTest
+    @CsvSource({ "automation,automation,true", "automation,Automation,false", "aAA,AA,true", "AA,AAa,false" })
+    public void stringContains(String first, String second, boolean expectedValue) {
+        boolean contains = first.contains(second);
+
+        assertEquals(contains, expectedValue);
+    }
 }
