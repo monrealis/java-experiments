@@ -771,4 +771,17 @@ public class VariousTests {
 
         assertEquals(contains, expectedValue);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "1-3-2-2,1-2-2-3" })
+    public void sortArrays(String input, String expectedResult) {
+        List<Integer> ints = stream(input.split("-")).map(Integer::parseInt).collect(toList());
+
+        sort(ints);
+
+        List<String> strings = new ArrayList<String>();
+        for (Integer i : ints)
+            strings.add(i + "");
+        assertEquals(String.join("-", strings), expectedResult);
+    }
 }
