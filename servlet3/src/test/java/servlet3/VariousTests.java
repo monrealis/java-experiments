@@ -1,5 +1,6 @@
 package servlet3;
 
+import static java.lang.Character.isLetter;
 import static java.lang.Integer.MIN_VALUE;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.toBinaryString;
@@ -381,25 +382,18 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "automation,4", "AUTOMATION,4" })
-    public void countConsonants(String string, int expectedCount) {
-        int count = 0;
-        for (char a : string.toCharArray())
-            if ("qwrtpsdfghjklzxcvbnmQWRTPSDFGHJKLZXCVBNM".indexOf(a) >= 0)
-                count++;
-
-        assertEquals(expectedCount, count);
-    }
-
-    @ParameterizedTest
-    @CsvSource({ "automation,6", "AUTOMATION,6" })
-    public void countVowels(String string, int expectedCount) {
-        int count = 0;
+    @CsvSource({ "automation,6,4", "AUTOMATION,6,4", "/*-+ ,0,0" })
+    public void countVowels(String string, int expectedVowelCount, int expectedConsonantCount) {
+        int vowelCount = 0;
+        int consonantCount = 0;
         for (char a : string.toCharArray())
             if ("aoiueAOIUE".indexOf(a) >= 0)
-                count++;
+                vowelCount++;
+            else if (isLetter(a))
+                consonantCount++;
 
-        assertEquals(expectedCount, count);
+        assertEquals(expectedVowelCount, vowelCount);
+        assertEquals(expectedConsonantCount, consonantCount);
     }
 
     @ParameterizedTest
