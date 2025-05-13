@@ -4,6 +4,7 @@ import static java.lang.Character.isLetter;
 import static java.lang.Integer.MIN_VALUE;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.toBinaryString;
+import static java.lang.String.join;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
 import static java.util.Collections.emptyList;
@@ -773,9 +774,7 @@ public class VariousTests {
 
         sort(ints);
 
-        List<String> strings = new ArrayList<String>();
-        for (Integer i : ints)
-            strings.add(i + "");
-        assertEquals(String.join("-", strings), expectedResult);
+        List<String> strings = ints.stream().map(i -> i + "").collect(toList());
+        assertEquals(join("-", strings), expectedResult);
     }
 }
