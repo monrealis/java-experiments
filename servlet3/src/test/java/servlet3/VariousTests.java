@@ -770,11 +770,8 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "1-3-2-2,1-2-2-3" })
     public void sortArrays(String input, String expectedResult) {
-        List<Integer> ints = stream(input.split("-")).map(Integer::parseInt).collect(toList());
-
-        sort(ints);
-
-        List<String> strings = ints.stream().map(i -> i + "").collect(toList());
-        assertEquals(join("-", strings), expectedResult);
+        assertEquals(
+                join("-", stream(input.split("-")).map(Integer::parseInt).sorted().map(i -> i + "").collect(toList())),
+                expectedResult);
     }
 }
