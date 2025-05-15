@@ -9,7 +9,7 @@ import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
-import static java.util.Collections.reverse;
+import static java.util.Collections.reverseOrder;
 import static java.util.Collections.sort;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -411,10 +411,7 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "4,3,2,1" })
     public void findLargest(int a, int b, int c, int d) {
-        List<Integer> result = stream(new int[] { a, b, c, d }).sorted().boxed().collect(toList());
-        reverse(result);
-
-        assertEquals(result.get(0), 4);
+        assertEquals(stream(new int[] { a, b, c, d }).boxed().sorted(reverseOrder()).findFirst().get(), 4);
     }
 
     @ParameterizedTest
