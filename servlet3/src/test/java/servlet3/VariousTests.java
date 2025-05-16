@@ -481,14 +481,10 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "9,5,5,5", "7,7,7,7", "9,5,3,5" })
-    public void findSecondLargestWithStreamsOtherWay(int first, int second, int third, int expectedResult) {
-        int[] array = { first, second, third };
-
-        List<Integer> list = stream(array).sorted().boxed().collect(toList());
-        int secondMax = list.get(list.size() - 2);
-
-        assertEquals(expectedResult, secondMax);
+    @CsvSource({ "9-5-5,5", "7-7-7,7", "9-5-3,5", "1-1-9-9,9", "1-1-1-9,1" })
+    public void findSecondLargestWithStreamsOtherWay(String numbers, int secondMax) {
+        assertEquals(stream(numbers.split("-")).map(Integer::parseInt).sorted(reverseOrder()).skip(1).findFirst().get(),
+                secondMax);
     }
 
     @ParameterizedTest
