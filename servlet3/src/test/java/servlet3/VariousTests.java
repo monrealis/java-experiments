@@ -12,6 +12,7 @@ import static java.util.Collections.emptyMap;
 import static java.util.Collections.reverseOrder;
 import static java.util.Collections.sort;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Stream.concat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -26,6 +27,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -363,20 +365,14 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "1,2,3,4,5" })
-    public void mergeArrays(int first, int second, int third, int fourth, int fifth) {
-        int[] firstPart = new int[] { first, second, third };
-        int[] secondPart = new int[] { fourth, fifth };
-        int[] result = new int[5];
+    @CsvSource({ "1-2-5,4-5,1-2-5-4-5" })
+    public void mergeArrays(String array1, String array2, String expectedResult) {
+        Stream<Integer> firstPart = stream(array1.split("-")).map(Integer::parseInt);
+        Stream<Integer> secondPart = stream(array2.split("-")).map(Integer::parseInt);
 
-        System.arraycopy(firstPart, 0, result, 0, 3);
-        System.arraycopy(secondPart, 0, result, 3, 2);
+        List<String> result = concat(firstPart, secondPart).map(i -> i.toString()).collect(toList());
 
-        assertEquals(first, result[0]);
-        assertEquals(second, result[1]);
-        assertEquals(third, result[2]);
-        assertEquals(fourth, result[3]);
-        assertEquals(fifth, result[4]);
+        assertEquals(join("-", result.toArray(new String[] {})), expectedResult);
     }
 
     @ParameterizedTest
