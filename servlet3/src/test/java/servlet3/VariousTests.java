@@ -366,9 +366,8 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "1-2-5,4-5,1-2-5-4-5" })
     public void mergeArrays(String array1, String array2, String expectedResult) {
-        List<String> result = concat(stream(array1.split("-")), stream(array2.split("-"))).collect(toList());
-
-        assertEquals(join("-", result.toArray(new String[] {})), expectedResult);
+        assertEquals(join("-", concat(stream(array1.split("-")), stream(array2.split("-"))).collect(toList())
+                .toArray(new String[] {})), expectedResult);
     }
 
     @ParameterizedTest
