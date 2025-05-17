@@ -27,7 +27,6 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -367,10 +366,7 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "1-2-5,4-5,1-2-5-4-5" })
     public void mergeArrays(String array1, String array2, String expectedResult) {
-        Stream<Integer> firstPart = stream(array1.split("-")).map(Integer::parseInt);
-        Stream<Integer> secondPart = stream(array2.split("-")).map(Integer::parseInt);
-
-        List<String> result = concat(firstPart, secondPart).map(i -> i.toString()).collect(toList());
+        List<String> result = concat(stream(array1.split("-")), stream(array2.split("-"))).collect(toList());
 
         assertEquals(join("-", result.toArray(new String[] {})), expectedResult);
     }
