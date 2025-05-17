@@ -121,10 +121,9 @@ public class VariousTests {
     private strictfp boolean isPrimeNumber(int n) {
         if (n < 2)
             throw new IllegalArgumentException();
-        for (int i = 2; i <= Math.sqrt(n); ++i) {
+        for (int i = 2; i <= Math.sqrt(n); ++i)
             if (n % i == 0)
                 return false;
-        }
         return true;
     }
 
@@ -146,9 +145,8 @@ public class VariousTests {
         if (n < 0)
             throw new IllegalArgumentException();
         int f = 1;
-        for (int i = 1; i < n; ++i) {
+        for (int i = 1; i < n; ++i)
             f *= i + 1;
-        }
         return f;
     }
 
@@ -268,10 +266,9 @@ public class VariousTests {
     @CsvSource({ "2,false", "6,true", "28,true", "27,false", "496,true", "8128,true" })
     public void perfect(int n, boolean perfect) {
         int p = 0;
-        for (int i = 1; i < n; ++i) {
+        for (int i = 1; i < n; ++i)
             if (n % i == 0)
                 p += i;
-        }
 
         assertEquals(p == n, perfect);
     }
