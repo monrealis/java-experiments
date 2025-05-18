@@ -87,7 +87,7 @@ public class VariousTests {
     private int fibonacciNoChecks(int n) {
         int i = 0;
         int j = 1;
-        for (int ii = 2; ii < n; ++ii) {
+        for (int k = 2; k < n; ++k) {
             int l = i + j;
             i = j;
             j = l;
@@ -386,14 +386,10 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "4,3,2,1" })
-    public void sortAnArray(int a, int b, int c, int d) {
-        List<Integer> result = stream(new int[] { a, b, c, d }).sorted().boxed().collect(toList());
-
-        assertEquals(result.get(0), 1);
-        assertEquals(result.get(1), 2);
-        assertEquals(result.get(2), 3);
-        assertEquals(result.get(3), 4);
+    @CsvSource({ "4-3-2-1,1-2-3-4" })
+    public void sortAnArray(String array, String expectedResult) {
+        assertEquals(join("-", stream(array.split("-")).map(Integer::parseInt).sorted().map(Object::toString)
+                .collect(toList()).toArray(new String[] {})), expectedResult);
     }
 
     @ParameterizedTest
