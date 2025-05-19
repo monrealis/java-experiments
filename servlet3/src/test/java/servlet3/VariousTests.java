@@ -393,9 +393,9 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "4,3,2,1" })
-    public void findLargest(int a, int b, int c, int d) {
-        assertEquals(stream(new int[] { a, b, c, d }).boxed().sorted(reverseOrder()).findFirst().get(), 4);
+    @CsvSource({ "4-3-2-1,4" })
+    public void findLargest(String array, int expectedLargest) {
+        assertEquals(stream(array.split("-")).map(Integer::parseInt).sorted(reverseOrder()).findFirst().get(), 4);
     }
 
     @ParameterizedTest
