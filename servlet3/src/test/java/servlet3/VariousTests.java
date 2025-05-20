@@ -399,14 +399,14 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "4,4,2,2" })
-    public void removeDuplicates(int a, int b, int c, int d) {
-        List<Integer> nonUnique = stream(new int[] { a, b, c, d }).boxed().collect(toList());
-        List<Integer> unique = new ArrayList<>(new LinkedHashSet<>(nonUnique));
-
-        assertEquals(unique.get(0), 4);
-        assertEquals(unique.get(1), 2);
-        assertEquals(unique.size(), 2);
+    @CsvSource({ "4-4-2-2,4-2" })
+    public void removeDuplicates(String array, String expectedResult) {
+        assertEquals(
+                join("-",
+                        new ArrayList<>(
+                                new LinkedHashSet<>(stream(array.split("-")).map(Integer::parseInt).collect(toList())))
+                                .stream().map(Object::toString).collect(toList()).toArray(new String[] {})),
+                expectedResult);
     }
 
     @ParameterizedTest
