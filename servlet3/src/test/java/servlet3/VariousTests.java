@@ -401,11 +401,7 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "4-4-2-2,4-2" })
     public void removeDuplicates(String array, String expectedResult) {
-        assertEquals(
-                join("-",
-                        new ArrayList<>(
-                                new LinkedHashSet<>(stream(array.split("-")).map(Integer::parseInt).collect(toList())))
-                                .stream().map(Object::toString).collect(toList()).toArray(new String[] {})),
+        assertEquals(join("-", stream(array.split("-")).distinct().collect(toList()).toArray(new String[] {})),
                 expectedResult);
     }
 
