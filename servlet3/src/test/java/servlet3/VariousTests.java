@@ -366,8 +366,8 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "1-2-5,4-5,1-2-5-4-5" })
     public void mergeArrays(String array1, String array2, String expectedResult) {
-        assertEquals(join("-", concat(stream(array1.split("-")), stream(array2.split("-"))).collect(toList())
-                .toArray(new String[] {})), expectedResult);
+        assertEquals(join("-", concat(stream(array1.split("-")), stream(array2.split("-"))).toArray(String[]::new)),
+                expectedResult);
     }
 
     @ParameterizedTest
@@ -388,8 +388,9 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "4-3-2-1,1-2-3-4" })
     public void sortAnArray(String array, String expectedResult) {
-        assertEquals(join("-", stream(array.split("-")).map(Integer::parseInt).sorted().map(Object::toString)
-                .collect(toList()).toArray(new String[] {})), expectedResult);
+        assertEquals(join("-",
+                stream(array.split("-")).map(Integer::parseInt).sorted().map(Object::toString).toArray(String[]::new)),
+                expectedResult);
     }
 
     @ParameterizedTest
@@ -401,8 +402,7 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "4-4-2-2,4-2" })
     public void removeDuplicates(String array, String expectedResult) {
-        assertEquals(join("-", stream(array.split("-")).distinct().collect(toList()).toArray(new String[] {})),
-                expectedResult);
+        assertEquals(join("-", stream(array.split("-")).distinct().toArray(String[]::new)), expectedResult);
     }
 
     @ParameterizedTest
