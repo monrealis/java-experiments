@@ -635,9 +635,10 @@ public class VariousTests {
         assertEquals(5, arr[4]);
     }
 
-    @Test
-    public void minimaxSort() {
-        int[] arr = { -1, 5, 3, 1, 2 };
+    @ParameterizedTest
+    @CsvSource("1-5-3-1-2,1-1-2-3-5")
+    public void minimaxSort(String inputArray, String expectedResult) {
+        int[] arr = stream(inputArray.split("-")).mapToInt(Integer::parseInt).toArray();
         for (int i = 0; i < arr.length; i++) {
             int min = arr[i];
             for (int j = i + 1; j < arr.length; j++)
@@ -649,11 +650,7 @@ public class VariousTests {
                 }
         }
 
-        assertEquals(-1, arr[0]);
-        assertEquals(1, arr[1]);
-        assertEquals(2, arr[2]);
-        assertEquals(3, arr[3]);
-        assertEquals(5, arr[4]);
+        assertEquals(join("-", stream(arr).boxed().map(Object::toString).toArray(String[]::new)), expectedResult);
     }
 
     @ParameterizedTest
