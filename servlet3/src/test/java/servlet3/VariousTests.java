@@ -5,7 +5,6 @@ import static java.lang.Integer.MIN_VALUE;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.toBinaryString;
 import static java.lang.String.join;
-import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
@@ -152,23 +151,23 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "1, 2, 2, -1", "1,1,2,-1" })
-    public void findsDuplicates(int first, int second, int third, int fourth) {
-        List<Integer> l = asList(first, second, third, fourth);
+    @CsvSource({ "1-2-2-1", "1-1-2-1" })
+    public void findsDuplicates(String array) {
+        List<Integer> l = stream(array.split("-")).map(Integer::parseInt).collect(toList());
 
-        assertEquals(distinct(l), uniqueList(l));
+        assertEquals(distinct(l), unique(l));
     }
 
     private List<Integer> distinct(List<Integer> list) {
-        List<Integer> distinct = new ArrayList<Integer>();
+        List<Integer> distinct = new ArrayList<>();
         for (Integer i : list)
             if (!distinct.contains(i))
                 distinct.add(i);
         return new ArrayList<Integer>(distinct);
     }
 
-    private List<Integer> uniqueList(List<Integer> list) {
-        return new ArrayList<Integer>(new LinkedHashSet<Integer>(list));
+    private List<Integer> unique(List<Integer> list) {
+        return new ArrayList<>(new LinkedHashSet<Integer>(list));
     }
 
     @ParameterizedTest
