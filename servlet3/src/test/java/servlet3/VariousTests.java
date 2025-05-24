@@ -433,9 +433,12 @@ public class VariousTests {
         assertEquals(count, expectedResult);
     }
 
-    @Test
-    public void findSecondLargest() {
-        int[] array = { 1, 2, 9, 3, 5 };
+    @ParameterizedTest
+    @CsvSource({ "1-2-9-3-5,5", "1-1-2,1", "1-2-2,2" })
+    public void findSecondLargest(String inputArray, int result) {
+        int[] array = stream(inputArray.split("-")).mapToInt(Integer::parseInt).toArray();
+        if (array.length < 2)
+            throw new IllegalArgumentException();
         int first = MIN_VALUE;
         int second = MIN_VALUE;
 
@@ -443,10 +446,10 @@ public class VariousTests {
             if (num > first) {
                 second = first;
                 first = num;
-            } else if (num > second && num != first)
+            } else if (num > second)
                 second = num;
 
-        assertEquals(5, second);
+        assertEquals(result, second);
     }
 
     @Test
