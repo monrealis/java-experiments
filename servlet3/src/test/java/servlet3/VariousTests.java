@@ -452,14 +452,15 @@ public class VariousTests {
         assertEquals(result, second);
     }
 
-    @Test
-    public void findSecondLargestWithStreams() {
-        int[] array = { 1, 2, 9, 3, 5 };
+    @ParameterizedTest
+    @CsvSource({ "1-2-9-3-5,5" })
+    public void findSecondLargestWithStreams(String inputArray, int expectedResult) {
+        int[] array = stream(inputArray.split("-")).mapToInt(Integer::parseInt).toArray();
 
         int max = stream(array).boxed().reduce(Integer::max).get();
         int secondMax = stream(array).boxed().filter(a -> a.compareTo(max) < 0).reduce(Integer::max).get();
 
-        assertEquals(5, secondMax);
+        assertEquals(expectedResult, secondMax);
     }
 
     @ParameterizedTest
