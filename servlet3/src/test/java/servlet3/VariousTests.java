@@ -536,16 +536,17 @@ public class VariousTests {
         assertEquals(second, fourth);
     }
 
-    @Test
-    public void findMissingNumberInAnArray() {
-        int[] array = { 1, 2, 3, 5, 6, 7 };
+    @ParameterizedTest
+    @CsvSource("1-2-3-5-6-7,4")
+    public void findMissingNumberInAnArray(String inputArray, int expectedResult) {
+        int[] array = stream(inputArray.split("-")).mapToInt(Integer::parseInt).toArray();
 
         int n = array.length + 1;
         int sum = n * (n + 1) / 2;
         for (int i : array)
             sum -= i;
 
-        assertEquals(4, sum);
+        assertEquals(expectedResult, sum);
     }
 
     @ParameterizedTest
