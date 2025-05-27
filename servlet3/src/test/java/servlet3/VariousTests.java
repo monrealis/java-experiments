@@ -26,6 +26,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -453,14 +454,33 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "1-2-9-3-5,5" })
+    @CsvSource({ "1-2-9-3-5,5", "1-2-9-9-5,9" })
     public void findSecondLargestWithStreams(String inputArray, int expectedResult) {
         int[] array = stream(inputArray.split("-")).mapToInt(Integer::parseInt).toArray();
 
         int max = stream(array).boxed().reduce(Integer::max).get();
-        int secondMax = stream(array).boxed().filter(a -> a.compareTo(max) < 0).reduce(Integer::max).get();
+        int secondMax = stream(array).boxed().filter(new ExceptOneLargest(max)).reduce(Integer::max).get();
 
         assertEquals(expectedResult, secondMax);
+    }
+
+    private static class ExceptOneLargest implements Predicate<Integer> {
+        private final int max;
+        private boolean found;
+
+        public ExceptOneLargest(int max) {
+            this.max = max;
+        }
+
+        @Override
+        public boolean test(Integer t) {
+            if (found)
+                return true;
+            boolean result = t >= max;
+            if (result)
+                found = true;
+            return false;
+        }
     }
 
     @ParameterizedTest
