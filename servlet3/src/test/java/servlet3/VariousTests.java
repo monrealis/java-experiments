@@ -459,24 +459,28 @@ public class VariousTests {
         int[] array = stream(inputArray.split("-")).mapToInt(Integer::parseInt).toArray();
 
         int max = stream(array).boxed().reduce(Integer::max).get();
-        int secondMax = stream(array).boxed().filter(new SkipOneLargest(max)).reduce(Integer::max).get();
+        int secondMax = stream(array).boxed().filter(new SkipOneGreatest(max)).reduce(Integer::max).get();
 
         assertEquals(expectedResult, secondMax);
     }
 
-    private static class SkipOneLargest implements Predicate<Integer> {
-        private final int largest;
+    private static class SkipOneGreatest implements Predicate<Integer> {
+        private final int greatest;
         private boolean found;
 
-        public SkipOneLargest(int largest) {
-            this.largest = largest;
+        public SkipOneGreatest(int number) {
+            this.greatest = number;
         }
 
         @Override
-        public boolean test(Integer t) {
+        public boolean test(Integer number) {
             if (found)
                 return true;
-            boolean result = t >= largest;
+            return handleNotFound(number);
+        }
+
+        private boolean handleNotFound(int number) {
+            boolean result = number == greatest;
             if (result)
                 found = true;
             return false;
