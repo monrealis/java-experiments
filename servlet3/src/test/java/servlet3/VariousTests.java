@@ -15,6 +15,7 @@ import static java.util.stream.Stream.concat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -760,5 +761,15 @@ public class VariousTests {
         assertEquals(
                 join("-", stream(input.split("-")).map(Integer::parseInt).sorted().map(i -> i + "").collect(toList())),
                 expectedResult);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "72,180", "60,165", "50,150", "30,140", "90,180" })
+    public void bodyMassIndex(int weight, int height) {
+        float bmi = 1.0f * weight / height / height * 1000;
+        // System.out.println(bmi);
+
+        assertTrue(18.5 > bmi);
+        assertTrue(24.9 > bmi);
     }
 }
