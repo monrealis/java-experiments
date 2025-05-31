@@ -769,7 +769,7 @@ public class VariousTests {
         float bmi = 1.0f * weight / height / height * 1000;
         // System.out.println(bmi);
 
-        assertTrue(18.5 > bmi);
-        assertTrue(24.9 > bmi);
+        assertTrue(18.5 > bmi, "Too lightweight");
+        assertTrue(24.9 > bmi, "Too heavy");
     }
 }
