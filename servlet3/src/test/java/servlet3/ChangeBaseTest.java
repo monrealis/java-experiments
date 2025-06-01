@@ -36,7 +36,7 @@ public class ChangeBaseTest {
         private final String number;
         private final int fromBase;
         private int sum;
-        private int sumInParen;
+        private int sumInParentheses;
         private boolean opened;
 
         public Parser(String number, int fromBase) {
@@ -62,8 +62,8 @@ public class ChangeBaseTest {
             if (cc < 0 || cc > fromBase)
                 throw new IllegalArgumentException();
             if (opened) {
-                sumInParen *= 10;
-                sumInParen += cc;
+                sumInParentheses *= 10;
+                sumInParentheses += cc;
             } else {
                 sum *= fromBase;
                 sum += cc;
@@ -81,8 +81,8 @@ public class ChangeBaseTest {
                 throw new IllegalArgumentException();
             opened = false;
             sum *= fromBase;
-            sum += sumInParen;
-            sumInParen = 0;
+            sum += sumInParentheses;
+            sumInParentheses = 0;
         }
 
         private void ensureNotOpened() {
