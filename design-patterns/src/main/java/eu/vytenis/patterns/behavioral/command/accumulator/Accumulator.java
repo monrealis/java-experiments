@@ -1,7 +1,7 @@
 package eu.vytenis.patterns.behavioral.command.accumulator;
 
 public class Accumulator {
-    int sum;
+    private int sum;
 
     public Accumulator(int sum) {
         this.sum = sum;
