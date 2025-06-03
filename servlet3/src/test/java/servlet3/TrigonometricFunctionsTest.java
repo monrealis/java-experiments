@@ -12,11 +12,9 @@ public class TrigonometricFunctionsTest {
     @CsvSource({ "0,0", "1,0.841", "-1,-0.841" })
     public void sinX(double x, double expectedResult) {
         double sin = 0;
-        int inverse = 1;
-        for (int i = 1; i < 10; i += 2) {
-            double added = inverse * pow(x, i) / factorial(i);
+        for (int i = 0; i < 10; ++i) {
+            double added = (i % 2 == 0 ? 1 : -1) * pow(x, 2 * i + 1) / factorial(2 * i + 1);
             sin += added;
-            inverse = -inverse;
         }
         assertTrue(abs(sin - expectedResult) < 0.001, sin + " " + expectedResult);
     }
