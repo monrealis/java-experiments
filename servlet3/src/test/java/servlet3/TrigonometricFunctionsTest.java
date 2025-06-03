@@ -9,16 +9,16 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class TrigonometricFunctionsTest {
     @ParameterizedTest
-    @CsvSource({ "0,0"/* , "1,0.6" */ })
+    @CsvSource({ "0,0", "1,0.841", "-1,-0.841" })
     public void sinX(double x, double expectedResult) {
         double sin = 0;
-        int inverse = 0;
-        for (int i = 1; i < 6; i += 2) {
-            double added = pow(x, i) / factorial(i);
+        int inverse = 1;
+        for (int i = 1; i < 10; i += 2) {
+            double added = inverse * pow(x, i) / factorial(i);
             sin += added;
             inverse = -inverse;
         }
-        assertTrue(abs(sin - expectedResult) < 0.1, sin + " " + expectedResult);
+        assertTrue(abs(sin - expectedResult) < 0.001, sin + " " + expectedResult);
     }
 
     private double factorial(int n) {
