@@ -16,8 +16,8 @@ public class TrigonometricFunctionsTest {
         for (int i = 0; i < 10; ++i) {
             double f = factorial(2 * i + 1);
             double added = (i % 2 == 0 ? 1 : -1) * x / f;
-            x = x * x * x;
-            double factorial1 = factorial * (factorial + 2 * i + 1) * (factorial + 2 * i + 2);
+            x *= x * x;
+            double factorial1 = factorial * (factorial + 1) * (factorial + 2);
             factorial = factorial1;
             sin += added;
         }
