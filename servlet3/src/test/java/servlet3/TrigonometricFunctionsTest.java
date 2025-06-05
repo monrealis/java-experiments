@@ -14,17 +14,15 @@ public class TrigonometricFunctionsTest {
         double factorial = 1;
 
         for (int i = 0; i < 10; ++i) {
-            double f = factorial(2 * i + 1);
-            double added = (i % 2 == 0 ? 1 : -1) * x / f;
+            double added = (i % 2 == 0 ? 1 : -1) * x / factorial;
             x *= x * x;
-            double factorial1 = factorial * (factorial + 1) * (factorial + 2);
-            factorial = factorial1;
+            factorial = factorial * (2 * i + 2) * (2 * i + 3);
             sin += added;
         }
         assertTrue(abs(sin - expectedResult) < 0.0001, sin + " " + expectedResult);
     }
 
-    private double factorial(int n) {
+    double factorial(int n) {
         double f = 1;
         for (int i = 1; i < n; ++i)
             f *= i + 1;
