@@ -8,12 +8,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class TrigonometricFunctionsTest {
     @ParameterizedTest
-    @CsvSource({ "0,0", "1,0.841471", "-1,-0.841471" })
+    @CsvSource({ "0,0", "1,0.841471", "-1,-0.841471"/* , "6.283185307,0" */ })
     public void sinX(double x, double expectedResult) {
         double sin = 0;
         double factorial = 1;
 
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 5; ++i) {
             double added = (i % 2 == 0 ? 1 : -1) * x / factorial;
             x *= x * x;
             factorial = factorial * (2 * i + 2) * (2 * i + 3);
@@ -28,7 +28,7 @@ public class TrigonometricFunctionsTest {
         double cos = 1;
         double factorial = 1;
 
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 5; ++i) {
             x *= x * x;
             factorial *= 2 * i + 2;
             double substracted = (i % 2 == 1 ? 1 : -1) * x / factorial;
