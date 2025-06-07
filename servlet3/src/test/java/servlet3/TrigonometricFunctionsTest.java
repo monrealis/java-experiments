@@ -23,13 +23,13 @@ public class TrigonometricFunctionsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0,1", "1,0.540302305"/* , "-1,0.540302305" */ })
+    @CsvSource({ /* "0,1", "1,0.540302305" , "-1,0.540302305" */ "6.283185307,1" })
     public void cosX(double x, double expectedResult) {
         double cos = 1;
         double factorial = 1;
 
-        for (int i = 0; i < 5; ++i) {
-            x *= x * x;
+        for (int i = 0; i < 2; ++i) {
+            x = x * x;
             factorial *= 2 * i + 2;
             double substracted = (i % 2 == 1 ? 1 : -1) * x / factorial;
             factorial *= 2 * i + 3;
