@@ -35,11 +35,12 @@ public class TrigonometricFunctionsTest {
 
         for (int i = 0; i < 10; ++i) {
             x = x.multiply(x);
-            factorial = factorial.multiply(new BigDecimal("2")).add(new BigDecimal("0"));
+            BigDecimal times2 = factorial.multiply(new BigDecimal("2"));
+            factorial = times2.add(new BigDecimal("2"));
             BigDecimal bd = (i % 2 == 1 ? BigDecimal.ONE : BigDecimal.ONE.negate());
             BigDecimal multiply = bd.multiply(new BigDecimal(x.toString()));
             BigDecimal substracted = multiply.divide(factorial, 10, RoundingMode.UP);
-            factorial = factorial.multiply(new BigDecimal("2")).add(new BigDecimal("2"));
+            factorial = times2.add(new BigDecimal("3"));
             cos = cos.add(substracted);
         }
         // assertTrue(abs(cos - expectedResult) < 0.0001, cos + " " + x + ": " +
