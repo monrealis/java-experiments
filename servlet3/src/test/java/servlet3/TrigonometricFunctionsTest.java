@@ -37,9 +37,9 @@ public class TrigonometricFunctionsTest {
             x = x.multiply(x);
             BigDecimal times2 = new BigDecimal(i).multiply(new BigDecimal("2"));
             factorial = factorial.multiply(times2.add(new BigDecimal("2")));
-            BigDecimal bd = (i % 2 == 1 ? BigDecimal.ONE : BigDecimal.ONE.negate());
-            BigDecimal multiply = bd.multiply(new BigDecimal(x.toString()));
-            BigDecimal substracted = multiply.divide(factorial, 10, RoundingMode.UP);
+            BigDecimal sign = i % 2 == 1 ? BigDecimal.ONE : BigDecimal.ONE.negate();
+            BigDecimal multiply = sign.multiply(new BigDecimal(x.toString()));
+            BigDecimal substracted = multiply.divide(factorial, 100, RoundingMode.UP);
             factorial = factorial.multiply(times2.add(new BigDecimal("3")));
             cos = cos.add(substracted);
         }
