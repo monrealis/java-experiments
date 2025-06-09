@@ -35,16 +35,32 @@ public class TrigonometricFunctionsTest {
 
         for (int i = 0; i < 10; ++i) {
             x = x.multiply(x);
-            BigDecimal times2 = factorial.multiply(new BigDecimal("2"));
-            factorial = times2.add(new BigDecimal("2"));
+            BigDecimal times2 = new BigDecimal(i).multiply(new BigDecimal("2"));
+            factorial = factorial.multiply(times2.add(new BigDecimal("2")));
             BigDecimal bd = (i % 2 == 1 ? BigDecimal.ONE : BigDecimal.ONE.negate());
             BigDecimal multiply = bd.multiply(new BigDecimal(x.toString()));
             BigDecimal substracted = multiply.divide(factorial, 10, RoundingMode.UP);
-            factorial = times2.add(new BigDecimal("3"));
+            factorial = factorial.multiply(times2.add(new BigDecimal("3")));
             cos = cos.add(substracted);
         }
         // assertTrue(abs(cos - expectedResult) < 0.0001, cos + " " + x + ": " +
         // expectedResult);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "1,0.540302305"/* , "-1,0.540302305" */ })
+    public void cosXX(double x, double expectedResult) {
+        double cos = 1;
+        double factorial = 1;
+
+        for (int i = 0; i < 5; ++i) {
+            x *= x * x;
+            factorial *= 2 * i + 2;
+            double substracted = (i % 2 == 1 ? 1 : -1) * x / factorial;
+            factorial *= 2 * i + 3;
+            cos += substracted;
+        }
+        assertTrue(abs(cos - expectedResult) < 0.0001, cos + " " + x + ": " + expectedResult);
     }
 
     double factorial(int n) {
