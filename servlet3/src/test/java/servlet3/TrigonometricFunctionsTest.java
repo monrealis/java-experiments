@@ -29,8 +29,7 @@ public class TrigonometricFunctionsTest {
     @ParameterizedTest
     @CsvSource({ /* "0,1", "1,0.540302305" , "-1,0.540302305" */ "6.283185307,1" })
     public void cosX(double xx, double expectedResult) {
-        BigDecimal initialX2 = new BigDecimal(Double.valueOf(xx)).multiply(BigDecimal.valueOf(xx));
-        BigDecimal x = new BigDecimal(Double.valueOf(xx));
+        BigDecimal x = BigDecimal.ONE;
         BigDecimal cos = BigDecimal.ONE;
         BigDecimal factorial = BigDecimal.ONE;
 
@@ -38,10 +37,10 @@ public class TrigonometricFunctionsTest {
             BigDecimal times2 = new BigDecimal(i).multiply(new BigDecimal("2"));
             factorial = factorial.multiply(times2.add(new BigDecimal("2")));
             BigDecimal sign = i % 2 == 1 ? BigDecimal.ONE : BigDecimal.ONE.negate();
-            BigDecimal multiply = sign.multiply(initialX2);
+            BigDecimal multiply = sign.multiply(x);
             BigDecimal substracted = multiply.divide(factorial, 100, RoundingMode.UP);
             factorial = factorial.multiply(times2.add(new BigDecimal("3")));
-            x = x.multiply(initialX2);
+            x = x.multiply(new BigDecimal(Double.valueOf(xx)).multiply(BigDecimal.valueOf(xx)));
             cos = cos.add(substracted);
         }
         // assertTrue(abs(cos - expectedResult) < 0.0001, cos + " " + x + ": " +
