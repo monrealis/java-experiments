@@ -1,6 +1,7 @@
 package servlet3;
 
 import static java.lang.Math.abs;
+import static java.math.BigDecimal.ONE;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -10,6 +11,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class TrigonometricFunctionsTest {
+    private static final BigDecimal THREE = new BigDecimal("3");
+    private static final BigDecimal TWO = new BigDecimal("2");
+
     @ParameterizedTest
     @CsvSource({ "0,0", "1,0.841471", "-1,-0.841471"/* , "6.283185307,0" */ })
     public void sinX(double x, double expectedResult) {
@@ -29,22 +33,21 @@ public class TrigonometricFunctionsTest {
     @ParameterizedTest
     @CsvSource({ /* "0,1", "1,0.540302305" , "-1,0.540302305" */ "6.283185307,1" })
     public void cosX(double xx, double expectedResult) {
-        BigDecimal x = BigDecimal.ONE;
-        BigDecimal cos = BigDecimal.ONE;
-        BigDecimal factorial = BigDecimal.ONE;
+        BigDecimal x = ONE;
+        BigDecimal cos = ONE;
+        BigDecimal factorial = ONE;
 
         for (int i = 0; i < 10; ++i) {
-            BigDecimal times2 = new BigDecimal(i).multiply(new BigDecimal("2"));
-            factorial = factorial.multiply(times2.add(new BigDecimal("2")));
-            BigDecimal sign = i % 2 == 1 ? BigDecimal.ONE : BigDecimal.ONE.negate();
-            BigDecimal multiply = sign.multiply(x);
+            BigDecimal times2 = new BigDecimal(i).multiply(TWO);
+            factorial = factorial.multiply(times2.add(TWO));
+            BigDecimal multiply = (i % 2 == 1 ? ONE : ONE.negate()).multiply(x);
             BigDecimal substracted = multiply.divide(factorial, 100, RoundingMode.UP);
-            factorial = factorial.multiply(times2.add(new BigDecimal("3")));
+            factorial = factorial.multiply(times2.add(THREE));
             x = x.multiply(new BigDecimal(Double.valueOf(xx)).multiply(BigDecimal.valueOf(xx)));
             cos = cos.add(substracted);
         }
-        // assertTrue(abs(cos - expectedResult) < 0.0001, cos + " " + x + ": " +
-        // expectedResult);
+        double d = Double.valueOf(x.toString());
+        assertTrue(abs(d - expectedResult) < 0.0001, "cos(" + xx + "): " + expectedResult + ". Instead was : " + d);
     }
 
     @ParameterizedTest
