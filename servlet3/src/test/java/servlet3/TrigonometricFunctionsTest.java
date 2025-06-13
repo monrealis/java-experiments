@@ -40,10 +40,10 @@ public class TrigonometricFunctionsTest {
         for (int i = 0; i < 10; ++i) {
             BigDecimal times2 = new BigDecimal(i).multiply(TWO);
             factorial = factorial.multiply(times2.add(TWO));
+            x = x.multiply(new BigDecimal(Double.valueOf(xx)).multiply(BigDecimal.valueOf(xx)));
             BigDecimal multiply = (i % 2 == 1 ? ONE : ONE.negate()).multiply(x);
             BigDecimal substracted = multiply.divide(factorial, 100, RoundingMode.UP);
             factorial = factorial.multiply(times2.add(THREE));
-            x = x.multiply(new BigDecimal(Double.valueOf(xx)).multiply(BigDecimal.valueOf(xx)));
             cos = cos.add(substracted);
         }
         double d = Double.valueOf(x.toString());
