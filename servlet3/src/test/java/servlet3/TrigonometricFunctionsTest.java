@@ -31,22 +31,29 @@ public class TrigonometricFunctionsTest {
 
     @ParameterizedTest
     @CsvSource({ "0,1", "1,0.540302305", "-1,0.540302305", "6.283185307,1" })
-    public void cosX(double xx, double expectedResult) {
-        BigDecimal x = ONE;
+    public void cosX(double x, double expectedResult) {
+        BigDecimal currentFactorial = ONE;
         BigDecimal cos = ONE;
         BigDecimal factorial = ONE;
 
         for (int i = 0; i < 20; ++i) {
-            BigDecimal times2 = new BigDecimal(i).multiply(TWO);
-            factorial = factorial.multiply(times2.add(TWO));
-            x = x.multiply(new BigDecimal(Double.valueOf(xx)).multiply(BigDecimal.valueOf(xx)));
-            BigDecimal multiply = (i % 2 == 1 ? ONE : ONE.negate()).multiply(x);
+            factorial = factorial.multiply(twice(i).add(TWO));
+            currentFactorial = currentFactorial.multiply(timesXSquared(x));
+            BigDecimal multiply = (i % 2 == 1 ? ONE : ONE.negate()).multiply(currentFactorial);
             BigDecimal substracted = multiply.divide(factorial, 100, RoundingMode.UP);
-            factorial = factorial.multiply(times2.add(THREE));
+            factorial = factorial.multiply(twice(i).add(THREE));
             cos = cos.add(substracted);
         }
         double d = Double.valueOf(cos.toString());
-        assertTrue(abs(d - expectedResult) < 0.0001, "cos(" + xx + "): " + expectedResult + ". Instead was : " + d);
+        assertTrue(abs(d - expectedResult) < 0.0001, "cos(" + x + "): " + expectedResult + ". Instead was : " + d);
+    }
+
+    private BigDecimal timesXSquared(double xx) {
+        return new BigDecimal(Double.valueOf(xx)).multiply(BigDecimal.valueOf(xx));
+    }
+
+    private BigDecimal twice(int i) {
+        return new BigDecimal(i).multiply(TWO);
     }
 
     double factorial(int n) {
