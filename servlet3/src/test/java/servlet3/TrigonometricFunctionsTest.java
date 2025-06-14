@@ -29,15 +29,14 @@ public class TrigonometricFunctionsTest {
         assertTrue(abs(sin - expectedResult) < 0.0001, sin + " " + x + ": " + expectedResult);
     }
 
-    // TODO
     @ParameterizedTest
-    @CsvSource({ /* "0,1", "1,0.540302305" , "-1,0.540302305" */ "6.283185307,1" })
+    @CsvSource({ "0,1", "1,0.540302305", "-1,0.540302305", "6.283185307,1" })
     public void cosX(double xx, double expectedResult) {
         BigDecimal x = ONE;
         BigDecimal cos = ONE;
         BigDecimal factorial = ONE;
 
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 20; ++i) {
             BigDecimal times2 = new BigDecimal(i).multiply(TWO);
             factorial = factorial.multiply(times2.add(TWO));
             x = x.multiply(new BigDecimal(Double.valueOf(xx)).multiply(BigDecimal.valueOf(xx)));
@@ -46,24 +45,8 @@ public class TrigonometricFunctionsTest {
             factorial = factorial.multiply(times2.add(THREE));
             cos = cos.add(substracted);
         }
-        double d = Double.valueOf(x.toString());
+        double d = Double.valueOf(cos.toString());
         assertTrue(abs(d - expectedResult) < 0.0001, "cos(" + xx + "): " + expectedResult + ". Instead was : " + d);
-    }
-
-    @ParameterizedTest
-    @CsvSource({ "1,0.540302305"/* , "-1,0.540302305" */ })
-    public void cosXX(double x, double expectedResult) {
-        double cos = 1;
-        double factorial = 1;
-
-        for (int i = 0; i < 5; ++i) {
-            x *= x * x;
-            factorial *= 2 * i + 2;
-            double substracted = (i % 2 == 1 ? 1 : -1) * x / factorial;
-            factorial *= 2 * i + 3;
-            cos += substracted;
-        }
-        assertTrue(abs(cos - expectedResult) < 0.0001, cos + " " + x + ": " + expectedResult);
     }
 
     double factorial(int n) {
