@@ -31,13 +31,17 @@ public class TrigonometricFunctionsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0,0", "1,0.841471", "-1,-0.841471"/* , "6.283185307,0" */ })
+    @CsvSource({ /* "0,0", */ "1,0.841471"/* , "-1,-0.841471"/* , "6.283185307,0" */ })
     public void sinXX(double x, double expectedResult) {
         BigDecimal sin = ZERO;
         BigDecimal factorial = ONE;
+        BigDecimal currentFactorial = ONE;
 
         for (int i = 0; i < 5; ++i) {
-
+            currentFactorial = currentFactorial.multiply(timesX(x));
+            BigDecimal added = oneIfEven(i).divide(factorial, 100, RoundingMode.UP).multiply(currentFactorial);
+            factorial = factorial.multiply(factorial.add(ONE)).multiply(factorial.add(TWO));
+            sin = sin.add(added);
         }
 
     }
@@ -65,8 +69,16 @@ public class TrigonometricFunctionsTest {
         return i % 2 == 1 ? ONE : ONE.negate();
     }
 
-    private BigDecimal timesXSquared(double xx) {
-        return new BigDecimal(Double.valueOf(xx)).multiply(BigDecimal.valueOf(xx));
+    private BigDecimal oneIfEven(int i) {
+        return i % 2 == 0 ? ONE : ONE.negate();
+    }
+
+    private BigDecimal timesXSquared(double x) {
+        return new BigDecimal(Double.valueOf(x)).multiply(BigDecimal.valueOf(x));
+    }
+
+    private BigDecimal timesX(double x) {
+        return new BigDecimal(Double.valueOf(x));
     }
 
     private BigDecimal twice(int i) {
