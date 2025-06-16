@@ -16,21 +16,6 @@ public class TrigonometricFunctionsTest {
     private static final BigDecimal TWO = new BigDecimal("2");
 
     @ParameterizedTest
-    @CsvSource({ "0,0", "1,0.841471", "-1,-0.841471"/* , "6.283185307,0" */ })
-    public void sinX(double x, double expectedResult) {
-        double sin = 0;
-        double factorial = 1;
-
-        for (int i = 0; i < 5; ++i) {
-            double added = (i % 2 == 0 ? 1 : -1) * x / factorial;
-            x *= x * x;
-            factorial = factorial * (2 * i + 2) * (2 * i + 3);
-            sin += added;
-        }
-        assertTrue(abs(sin - expectedResult) < 0.0001, sin + " " + x + ": " + expectedResult);
-    }
-
-    @ParameterizedTest
     @CsvSource({ "0,0", "1,0.841471", "1.1,0.89120736", "-1,-0.841471", "6.283185307,0" })
     public void sinXX(double x, double expectedResult) {
         BigDecimal sin = ZERO;
