@@ -31,15 +31,17 @@ public class TrigonometricFunctionsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({ /* "0,0", */ "1,0.841471"/* , "-1,-0.841471"/* , "6.283185307,0" */ })
+    @CsvSource({ /* "0,0", */ /* "1,0.841471", */ "1.1,0.89120736"/* , "-1,-0.841471"/* , "6.283185307,0" */ })
     public void sinXX(double x, double expectedResult) {
         BigDecimal sin = ZERO;
         BigDecimal factorial = ONE;
-        BigDecimal currentFactorial = ONE;
 
         for (int i = 0; i < 5; ++i) {
-            currentFactorial = currentFactorial.multiply(timesX(2 * i + 1));
-            BigDecimal added = oneIfEven(i).divide(factorial, 100, RoundingMode.UP);
+            BigDecimal timesX = timesX(x);
+            BigDecimal timesXX = oneIfEven(i).multiply(timesX);
+            BigDecimal added = timesXX.divide(factorial, 100, RoundingMode.UP);
+            //  TODO
+            x *= x * x;
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
             sin = sin.add(added);
         }
