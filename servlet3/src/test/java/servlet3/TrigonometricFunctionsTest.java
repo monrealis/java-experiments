@@ -38,8 +38,9 @@ public class TrigonometricFunctionsTest {
         BigDecimal currentFactorial = ONE;
 
         for (int i = 0; i < 5; ++i) {
-            currentFactorial = currentFactorial.multiply(timesX(x));
-            BigDecimal added = oneIfEven(i).divide(factorial, 100, RoundingMode.UP).multiply(currentFactorial);
+            currentFactorial = currentFactorial.multiply(timesX(2 * i + 1));
+            BigDecimal added = oneIfEven(i).divide(factorial, 100, RoundingMode.UP);
+            // TODO
             factorial = factorial.multiply(factorial.add(ONE)).multiply(factorial.add(TWO));
             sin = sin.add(added);
         }
