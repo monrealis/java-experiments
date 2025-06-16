@@ -40,11 +40,11 @@ public class TrigonometricFunctionsTest {
         for (int i = 0; i < 5; ++i) {
             currentFactorial = currentFactorial.multiply(timesX(2 * i + 1));
             BigDecimal added = oneIfEven(i).divide(factorial, 100, RoundingMode.UP);
-            // TODO
-            factorial = factorial.multiply(factorial.add(ONE)).multiply(factorial.add(TWO));
+            factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
             sin = sin.add(added);
         }
-
+        double d = Double.valueOf(sin.toString());
+        assertTrue(abs(d - expectedResult) < 0.0001, "sin(" + x + "): " + expectedResult + ". Instead was : " + d);
     }
 
     @ParameterizedTest
