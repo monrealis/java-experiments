@@ -33,20 +33,24 @@ public class TrigonometricFunctionsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0,1", "1,0.540302305", "-1,0.540302305", "3.141592654,-1", "6.283185307,1", "12.56637061,1" })
+    @CsvSource({ "0,1", "1,0.540302305", "-1,0.540302305", "3.141592654,1", "6.283185307,1", "12.56637061,1" })
     public void cosX(double x, double expectedResult) {
         BigDecimal cos = ONE;
         BigDecimal factorial = ONE;
         double xSquared = x * x;
+        double currentX = 1;
 
         for (int i = 0; i < 20; ++i) {
             factorial = factorial.multiply(twice(i).add(TWO));
-            BigDecimal multiply = oneIfOdd(i).multiply(timesX(x));
-            BigDecimal substracted = multiply.divide(factorial, 100, RoundingMode.UP);
-            x = x * xSquared;
+            BigDecimal multiply = oneIfOdd(i).multiply(timesX(currentX * xSquared));
+            BigDecimal substracted = multiply.divide(factorial, 20, RoundingMode.UP);
+            currentX = currentX * xSquared;
+
             factorial = factorial.multiply(twice(i).add(THREE));
             cos = cos.add(substracted);
+            System.out.println(substracted + " " + cos);
         }
+
         double d = Double.valueOf(cos.toString());
         assertTrue(abs(d - expectedResult) < 0.0001, "cos(" + x + "): " + expectedResult + ". Instead was : " + d);
     }
