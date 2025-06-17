@@ -35,14 +35,14 @@ public class TrigonometricFunctionsTest {
     @ParameterizedTest
     @CsvSource({ "0,1", "1,0.540302305", "-1,0.540302305", "3.141592654,-1", "6.283185307,1", "12.56637061,1" })
     public void cosX(double x, double expectedResult) {
-        BigDecimal currentFactorial = ONE;
+        BigDecimal currentX = ONE;
         BigDecimal cos = ONE;
         BigDecimal factorial = ONE;
 
         for (int i = 0; i < 20; ++i) {
             factorial = factorial.multiply(twice(i).add(TWO));
-            currentFactorial = currentFactorial.multiply(timesXSquared(x));
-            BigDecimal multiply = oneIfOdd(i).multiply(currentFactorial);
+            currentX = currentX.multiply(timesXSquared(x));
+            BigDecimal multiply = oneIfOdd(i).multiply(currentX);
             BigDecimal substracted = multiply.divide(factorial, 100, RoundingMode.UP);
             factorial = factorial.multiply(twice(i).add(THREE));
             cos = cos.add(substracted);
