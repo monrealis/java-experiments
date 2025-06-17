@@ -33,7 +33,7 @@ public class TrigonometricFunctionsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0,1", "1,0.540302305", "-1,0.540302305", "3.141592654,1", "6.283185307,1", "12.56637061,1" })
+    @CsvSource({ "0,1", "1,0.540302305", "-1,0.540302305", "3.141592654,-1", "6.283185307,1", "12.56637061,1" })
     public void cosX(double x, double expectedResult) {
         BigDecimal currentFactorial = ONE;
         BigDecimal cos = ONE;
