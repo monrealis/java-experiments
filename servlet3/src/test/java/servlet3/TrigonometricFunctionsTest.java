@@ -20,9 +20,9 @@ public class TrigonometricFunctionsTest {
     public void sinX(double x, double expectedResult) {
         BigDecimal sin = ZERO;
         BigDecimal factorial = ONE;
-        double xSquared = x * x;
+        final double xSquared = x * x;
 
-        for (int i = 0; i < 15; ++i) {
+        for (int i = 0; i < 20; ++i) {
             BigDecimal added = oneIfEven(i).multiply(timesX(x)).divide(factorial, 100, RoundingMode.UP);
             x = x * xSquared;
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
@@ -38,15 +38,14 @@ public class TrigonometricFunctionsTest {
         double currentX = 1;
         BigDecimal cos = ONE;
         BigDecimal factorial = ONE;
-        double xSquared = x * x;
+        final double xSquared = x * x;
 
         for (int i = 0; i < 20; ++i) {
             factorial = factorial.multiply(twice(i).add(TWO));
             currentX = currentX * xSquared;
-            BigDecimal multiply = oneIfOdd(i).multiply(new BigDecimal(currentX));
-            BigDecimal substracted = multiply.divide(factorial, 100, RoundingMode.UP);
+            BigDecimal added = oneIfOdd(i).multiply(timesX(currentX)).divide(factorial, 100, RoundingMode.UP);
             factorial = factorial.multiply(twice(i).add(THREE));
-            cos = cos.add(substracted);
+            cos = cos.add(added);
         }
         double d = Double.valueOf(cos.toString());
         assertTrue(abs(d - expectedResult) < 0.0001, "cos(" + x + "): " + expectedResult + ". Instead was : " + d);
