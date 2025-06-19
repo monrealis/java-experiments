@@ -73,4 +73,10 @@ public class TrigonometricFunctionsTest {
             f *= i + 1;
         return f;
     }
+
+    @ParameterizedTest
+    @CsvSource({ "2,0,1" })
+    public void powerX(double base, double x, double expectedResult) {
+        double ln = Math.log(base);
+    }
 }
