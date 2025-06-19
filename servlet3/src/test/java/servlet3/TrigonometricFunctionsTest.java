@@ -1,6 +1,7 @@
 package servlet3;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.log;
 import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.ZERO;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -75,8 +76,18 @@ public class TrigonometricFunctionsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({ "2,0,1" })
+    @CsvSource({ "2.718281826,1,2.718281826" })
     public void powerX(double base, double x, double expectedResult) {
-        double ln = Math.log(base);
+        double initial = x;
+        double ln = log(base);
+        double pow = 2;
+        double factorial = 1;
+        for (int i = 1; i < 20; i++) {
+            x *= initial * x;
+            factorial = factorial * (i + 1);
+            double added = x * ln / factorial;
+            pow += added;
+        }
+        assertTrue(abs(pow - expectedResult) < 0.0001, "e^" + x + ": " + expectedResult + ". Instead was : " + pow);
     }
 }
