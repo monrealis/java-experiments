@@ -76,7 +76,7 @@ public class TrigonometricFunctionsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({ "2.718281826,1,2.718281826" })
+    @CsvSource({ "2.718281826,1,2.718281826", "2,3,8" })
     public void powerX(double base, double x, double expectedResult) {
         double initial = x;
         double ln = log(base);
