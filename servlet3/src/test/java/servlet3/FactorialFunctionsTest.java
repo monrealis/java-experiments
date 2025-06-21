@@ -80,14 +80,15 @@ public class FactorialFunctionsTest {
     public void powerX(double base, double x, double expectedResult) {
         double initial = x;
         double ln = log(base);
-        double pow = 2;
-        double factorial = 1;
+        BigDecimal pow = TWO;
+        BigDecimal factorial = ONE;
         for (int i = 1; i < 20; i++) {
             x *= initial * x;
-            factorial = factorial * (i + 1);
-            double added = x * ln / factorial;
-            pow += added;
+            factorial = factorial.multiply(timesX(i + 1));
+            BigDecimal added = ONE.multiply(timesX(x * ln)).divide(factorial, 100, RoundingMode.UP);
+            pow = pow.add(added);
         }
-        assertTrue(abs(pow - expectedResult) < 0.0001, "e^" + x + ": " + expectedResult + ". Instead was : " + pow);
+        double d = Double.valueOf(pow.toString());
+        assertTrue(abs(d - expectedResult) < 0.0001, "e^" + x + ": " + expectedResult + ". Instead was : " + pow);
     }
 }
