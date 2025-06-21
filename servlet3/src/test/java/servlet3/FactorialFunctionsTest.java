@@ -12,7 +12,7 @@ import java.math.RoundingMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class TrigonometricFunctionsTest {
+public class FactorialFunctionsTest {
     private static final BigDecimal THREE = new BigDecimal("3");
     private static final BigDecimal TWO = new BigDecimal("2");
 
