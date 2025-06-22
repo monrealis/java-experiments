@@ -76,16 +76,17 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({ "2.718281826,1,2.718281826", "2,3,8" })
+    @CsvSource({ "2.718281826,1,2.718281826", "2,3,8", "2.718281826,2,7.389056099" })
     public void powerX(double base, double x, double expectedResult) {
         double initial = x;
         double ln = log(base);
-        BigDecimal pow = TWO;
+        BigDecimal pow = ONE;
         BigDecimal factorial = ONE;
         for (int i = 1; i < 20; i++) {
-            x *= initial * x;
-            factorial = factorial.multiply(timesX(i + 1));
-            BigDecimal added = ONE.multiply(timesX(x * ln)).divide(factorial, 100, RoundingMode.UP);
+            factorial = factorial.multiply(timesX(i));
+            BigDecimal multiply = ONE.multiply(timesX(x * ln));
+            BigDecimal added = multiply.divide(factorial, 100, RoundingMode.UP);
+            x = initial * x;
             pow = pow.add(added);
         }
         double d = Double.valueOf(pow.toString());
