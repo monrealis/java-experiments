@@ -86,7 +86,7 @@ public class FactorialFunctionsTest {
             factorial = factorial.multiply(timesX(i));
             BigDecimal multiply = ONE.multiply(timesX(x * ln));
             BigDecimal added = multiply.divide(factorial, 100, RoundingMode.UP);
-            x = initial * x;
+            x = initial * x * ln;
             pow = pow.add(added);
         }
         double d = Double.valueOf(pow.toString());
