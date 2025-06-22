@@ -79,16 +79,17 @@ public class FactorialFunctionsTest {
     @ParameterizedTest
     @CsvSource({ "2,3,8", })
     public void powerX(double base, double x, double expectedResult) {
-        power(base, x, log(base), expectedResult);
+        power(base, x, expectedResult);
     }
 
     @ParameterizedTest
     @CsvSource({ "1,2.718281826", "2,7.389056099" })
     public void eX(double x, double expectedResult) {
-        power(E, x, 1, expectedResult);
+        power(E, x, expectedResult);
     }
 
-    private void power(double base, double x, double ln, double expectedResult) {
+    private void power(double base, double x, double expectedResult) {
+        double ln = log(base);
         double initial = x;
         BigDecimal pow = ONE;
         BigDecimal factorial = ONE;
