@@ -1,5 +1,6 @@
 package servlet3;
 
+import static java.lang.Math.E;
 import static java.lang.Math.abs;
 import static java.lang.Math.log;
 import static java.math.BigDecimal.ONE;
@@ -76,10 +77,19 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({ "2.718281826,1,2.718281826", "2,3,8", "2.718281826,2,7.389056099" })
+    @CsvSource({ "2,3,8", })
     public void powerX(double base, double x, double expectedResult) {
+        power(base, x, log(base), expectedResult);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "1,2.718281826", "2,7.389056099" })
+    public void eX(double x, double expectedResult) {
+        power(E, x, 1, expectedResult);
+    }
+
+    private void power(double base, double x, double ln, double expectedResult) {
         double initial = x;
-        double ln = log(base);
         BigDecimal pow = ONE;
         BigDecimal factorial = ONE;
         for (int i = 1; i < 20; i++) {
