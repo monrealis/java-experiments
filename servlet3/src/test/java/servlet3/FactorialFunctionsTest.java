@@ -95,9 +95,8 @@ public class FactorialFunctionsTest {
         BigDecimal factorial = ONE;
         for (int i = 1; i < 20; i++) {
             factorial = factorial.multiply(timesX(i));
-            BigDecimal multiply = ONE.multiply(timesX(x * ln));
-            BigDecimal added = multiply.divide(factorial, 100, RoundingMode.UP);
-            x = initial * x * ln;
+            BigDecimal added = timesX(x * ln).divide(factorial, 100, RoundingMode.UP);
+            x *= initial * ln;
             pow = pow.add(added);
         }
         double d = Double.valueOf(pow.toString());
