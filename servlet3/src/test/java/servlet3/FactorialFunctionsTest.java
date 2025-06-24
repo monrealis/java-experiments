@@ -77,13 +77,13 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({ "2,3,8", })
+    @CsvSource({ "2,3,8", "1,1,1", "2,2,4" })
     public void powerX(double base, double x, double expectedResult) {
         power(base, x, expectedResult);
     }
 
     @ParameterizedTest
-    @CsvSource({ "1,2.718281826", "2,7.389056099" })
+    @CsvSource({ "1,2.718281826", "2,7.389056099", "2.5,12.18249396" })
     public void eX(double x, double expectedResult) {
         power(E, x, expectedResult);
     }
