@@ -102,4 +102,17 @@ public class FactorialFunctionsTest {
         double d = Double.valueOf(pow.toString());
         assertTrue(abs(d - expectedResult) < 0.0001, "e^" + x + ": " + expectedResult + ". Instead was : " + pow);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "2.718281826,1" })
+    public void lnX(double x, double expectedResult) {
+        BigDecimal y = new BigDecimal(x + 1);
+        BigDecimal factorial = ONE;
+
+        for (int i = 1; i < 20; i++) {
+            factorial = factorial.multiply(timesX(i));
+            BigDecimal added = oneIfEven(i).multiply(timesX(x).divide(factorial, 100, RoundingMode.UP));
+            y = y.add(added);
+        }
+    }
 }
