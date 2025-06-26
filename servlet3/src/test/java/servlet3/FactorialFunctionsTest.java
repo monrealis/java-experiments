@@ -104,15 +104,22 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({ "2.718281826,1" })
+    @CsvSource({ "2,1" })
     public void lnX(double x, double expectedResult) {
-        BigDecimal y = new BigDecimal(x + 1);
+        double y = x + 1;
+        double initial = x + 1;
         BigDecimal factorial = ONE;
+        BigDecimal ln = ONE;
 
-        for (int i = 1; i < 20; i++) {
+        for (int i = 1; i < 2; i++) {
             factorial = factorial.multiply(timesX(i));
-            BigDecimal added = oneIfEven(i).multiply(timesX(x).divide(factorial, 100, RoundingMode.UP));
-            y = y.add(added);
+            BigDecimal multiply = oneIfEven(i).multiply(timesX(i));
+            BigDecimal added = multiply.divide(factorial, 100, RoundingMode.UP);
+            y *= initial * y;
+            ln = ln.add(added);
         }
+
+        double d = Double.valueOf(ln.toString());
+        assertTrue(abs(d - expectedResult) < 0.0001, "ln " + x + ": " + expectedResult + ". Instead was : " + d);
     }
 }
