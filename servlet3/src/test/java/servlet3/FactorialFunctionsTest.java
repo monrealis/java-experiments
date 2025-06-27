@@ -106,8 +106,8 @@ public class FactorialFunctionsTest {
     @ParameterizedTest
     @CsvSource({ "2,1" })
     public void lnX(double x, double expectedResult) {
-        double y = x + 1;
-        double initial = x + 1;
+        double y = x - 1;
+        double initial = x - 1;
         BigDecimal factorial = ONE;
         BigDecimal ln = ONE;
 
@@ -119,7 +119,7 @@ public class FactorialFunctionsTest {
             ln = ln.add(added);
         }
 
-        double d = Double.valueOf(ln.toString());
+        double d = Double.valueOf(ln.toString()) - 1;
         assertTrue(abs(d - expectedResult) < 0.0001, "ln " + x + ": " + expectedResult + ". Instead was : " + d);
     }
 }
