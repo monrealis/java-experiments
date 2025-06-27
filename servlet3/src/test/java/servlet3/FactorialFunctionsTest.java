@@ -125,16 +125,16 @@ public class FactorialFunctionsTest {
         assertTrue(abs(d - expectedResult) < 0.0001, "ln " + x + ": " + expectedResult + ". Instead was : " + d);
     }
 
-    @ParameterizedTest(name = "ln(1 + {0}) ≈ {1} (tolerance: {2})")
-    @CsvSource({ "1.0, 0.693147, 0.1", // ln(2)
-            "0.5, 0.405465, 0.05", // ln(1.5)
-            "0.25, 0.223143, 0.01", // ln(1.25)
-            "0.1, 0.095310, 0.005", // ln(1.1)
-            "0.0, 0.000000, 0.0001" // ln(1) = 0
+    @ParameterizedTest(name = "ln({0}) ≈ {1} (tolerance: {2})")
+    @CsvSource({ "2.0, 0.693147, 0.1", 
+            "1.5, 0.405465, 0.05",     
+            "1.25, 0.223143, 0.01",    
+            "1.1, 0.095310, 0.005",    
+            "1.0, 0.000000, 0.0001"    
     })
-    public void testLnApproximation(double x, double expected, double tolerance) {
-        double approx = lnX(x);
-        double actual = Math.log(1 + x);
+    public void lnX(double x, double expected, double tolerance) {
+        double approx = lnX(x - 1);
+        double actual = Math.log(x);
         double error = Math.abs(approx - actual);
 
         assertTrue(error < tolerance,
