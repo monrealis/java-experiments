@@ -3,6 +3,7 @@ package servlet3;
 import static java.lang.Math.E;
 import static java.lang.Math.abs;
 import static java.lang.Math.log;
+import static java.lang.Math.pow;
 import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.ZERO;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -148,7 +149,7 @@ public class FactorialFunctionsTest {
         long denominatorFact = 1; // n!
         for (int n = 1; n <= 5; n++) {
             denominatorFact *= n;
-            double term = Math.pow(-1, n + 1) * ((double) numeratorFact / denominatorFact) * Math.pow(x, n);
+            double term = pow(-1, n + 1) * ((double) numeratorFact / denominatorFact) * Math.pow(x, n);
             result += term;
             numeratorFact = denominatorFact;
         }
