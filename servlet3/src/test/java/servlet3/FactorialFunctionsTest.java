@@ -10,7 +10,6 @@ import static java.math.RoundingMode.UP;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,7 +27,8 @@ public class FactorialFunctionsTest {
         final double xSquared = x * x;
 
         for (int i = 0; i < 20; ++i) {
-            BigDecimal added = oneIfEven(i).multiply(timesX(x)).divide(factorial, 100, RoundingMode.UP);
+            BigDecimal multiply = oneIfEven(i).multiply(timesX(x));
+            BigDecimal added = divide(multiply, factorial);
             x = x * xSquared;
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
             sin = sin.add(added);
@@ -48,7 +48,8 @@ public class FactorialFunctionsTest {
         for (int i = 0; i < 20; ++i) {
             factorial = factorial.multiply(twice(i).add(TWO));
             currentX = currentX * xSquared;
-            BigDecimal added = oneIfOdd(i).multiply(timesX(currentX)).divide(factorial, 100, RoundingMode.UP);
+            BigDecimal multiply = oneIfOdd(i).multiply(timesX(currentX));
+            BigDecimal added = divide(multiply, factorial);
             factorial = factorial.multiply(twice(i).add(THREE));
             cos = cos.add(added);
         }
@@ -98,7 +99,8 @@ public class FactorialFunctionsTest {
         BigDecimal factorial = ONE;
         for (int i = 1; i < 20; i++) {
             factorial = factorial.multiply(timesX(i));
-            BigDecimal added = timesX(x * ln).divide(factorial, 100, RoundingMode.UP);
+            BigDecimal timesX = timesX(x * ln);
+            BigDecimal added = divide(timesX, factorial);
             x *= initial * ln;
             pow = pow.add(added);
         }
@@ -118,7 +120,7 @@ public class FactorialFunctionsTest {
         for (int i = 1; i < 2; i++) {
             factorial = factorial.multiply(timesX(i));
             BigDecimal multiply = oneIfEven(i).multiply(timesX(i));
-            BigDecimal added = multiply.divide(factorial, 100, RoundingMode.UP);
+            BigDecimal added = divide(multiply, factorial);
             y *= initial * y;
             ln = ln.add(added);
         }
@@ -148,13 +150,17 @@ public class FactorialFunctionsTest {
         BigDecimal result = ZERO;
         BigDecimal numeratorFact = ONE;
         BigDecimal denominatorFact = ONE;
-        for (int n = 1; n <= 5; n++) {
+        for (int n = 1; n <= 20; n++) {
             denominatorFact = denominatorFact.multiply(timesX(n));
-            BigDecimal term = oneIfOdd(n).multiply(numeratorFact.divide(denominatorFact, 100, UP));
+            BigDecimal term = oneIfOdd(n).multiply(divide(numeratorFact, denominatorFact));
             term = term.multiply(new BigDecimal(pow(x, n)));
             result = result.add(term);
             numeratorFact = denominatorFact;
         }
         return result.doubleValue();
+    }
+
+    private BigDecimal divide(BigDecimal nominator, BigDecimal denominator) {
+        return nominator.divide(denominator, 100, UP);
     }
 }
