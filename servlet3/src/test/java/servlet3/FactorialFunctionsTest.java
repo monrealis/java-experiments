@@ -6,6 +6,7 @@ import static java.lang.Math.log;
 import static java.lang.Math.pow;
 import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.ZERO;
+import static java.math.RoundingMode.UP;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -144,15 +145,16 @@ public class FactorialFunctionsTest {
     }
 
     private double lnX(double x) {
-        double result = 0.0;
-        long numeratorFact = 1; // (n - 1)!
-        long denominatorFact = 1; // n!
+        BigDecimal result = ZERO;
+        BigDecimal numeratorFact = ONE;
+        BigDecimal denominatorFact = ONE;
         for (int n = 1; n <= 5; n++) {
-            denominatorFact *= n;
-            double term = pow(-1, n + 1) * ((double) numeratorFact / denominatorFact) * Math.pow(x, n);
-            result += term;
+            denominatorFact = denominatorFact.multiply(timesX(n));
+            BigDecimal term = oneIfOdd(n).multiply(numeratorFact.divide(denominatorFact, 100, UP));
+            term = term.multiply(new BigDecimal(pow(x, n)));
+            result = result.add(term);
             numeratorFact = denominatorFact;
         }
-        return result;
+        return result.doubleValue();
     }
 }
