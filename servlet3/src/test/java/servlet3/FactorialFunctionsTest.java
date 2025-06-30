@@ -134,12 +134,11 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest(name = "ln({0}) ≈ {1} (tolerance: {2})")
-    @CsvSource({ "2.0, 0.693147, 0.1", 
-            "1.5, 0.405465, 0.05",     
-            "1.25, 0.223143, 0.01",    
-            "1.1, 0.095310, 0.005",    
-            "1.0, 0.000000, 0.0001"    
-    })
+    @CsvSource({ "2.0, 0.693147, 0.1", //
+            "1.5, 0.405465, 0.05", //
+            "1.25, 0.223143, 0.01", //
+            "1.1, 0.095310, 0.005", //
+            "1.0, 0.000000, 0.0001" })
     public void lnX(double x, double expected, double tolerance) {
         double approx = lnX(x - 1);
         double actual = Math.log(x);
