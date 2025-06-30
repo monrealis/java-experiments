@@ -3,7 +3,6 @@ package servlet3;
 import static java.lang.Math.E;
 import static java.lang.Math.abs;
 import static java.lang.Math.log;
-import static java.lang.Math.pow;
 import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.ZERO;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -61,6 +60,14 @@ public class FactorialFunctionsTest {
 
     private BigDecimal oneIfEven(int i) {
         return i % 2 == 0 ? ONE : ONE.negate();
+    }
+
+    private int odd(int i) {
+        return i % 2 == 1 ? 1 : -1;
+    }
+
+    private int even(int i) {
+        return i % 2 == 0 ? 1 : -1;
     }
 
     private BigDecimal timesX(double x) {
@@ -145,11 +152,11 @@ public class FactorialFunctionsTest {
 
     private double lnX(double x) {
         double result = 0.0;
-        long numeratorFact = 1; // (n - 1)!
-        long denominatorFact = 1; // n!
-        for (int n = 1; n <= 5; n++) {
-            denominatorFact *= n;
-            double term = pow(-1, n + 1) * ((double) numeratorFact / denominatorFact) * Math.pow(x, n);
+        long numeratorFact = 1;
+        long denominatorFact = 1;
+        for (int i = 1; i <= 5; i++) {
+            denominatorFact *= i;
+            double term = odd(i) * ((double) numeratorFact / denominatorFact) * Math.pow(x, i);
             result += term;
             numeratorFact = denominatorFact;
         }
