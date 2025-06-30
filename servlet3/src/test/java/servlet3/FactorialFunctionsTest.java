@@ -151,12 +151,14 @@ public class FactorialFunctionsTest {
     }
 
     private double lnX(double x) {
-        double result = 0.0;
+        double initialX = x;
+        double result = 0;
         long numeratorFact = 1;
         long denominatorFact = 1;
         for (int i = 1; i <= 5; i++) {
             denominatorFact *= i;
-            double term = odd(i) * ((double) numeratorFact / denominatorFact) * Math.pow(x, i);
+            double term = odd(i) * ((double) numeratorFact / denominatorFact) * x;
+            x *= initialX;
             result += term;
             numeratorFact = denominatorFact;
         }
