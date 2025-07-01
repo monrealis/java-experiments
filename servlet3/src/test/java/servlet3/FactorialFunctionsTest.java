@@ -99,16 +99,15 @@ public class FactorialFunctionsTest {
     private void power(double base, double x, double expectedResult) {
         double ln = log(base);
         double initial = x;
-        BigDecimal pow = ONE;
-        BigDecimal factorial = ONE;
+        double pow = 1;
+        long factorial = 1;
         for (int i = 1; i < 20; i++) {
-            factorial = factorial.multiply(timesX(i));
-            BigDecimal added = timesX(x * ln).divide(factorial, 100, RoundingMode.UP);
+            factorial *= i;
+            double added = x * ln / factorial;
             x *= initial * ln;
-            pow = pow.add(added);
+            pow += added;
         }
-        double d = Double.valueOf(pow.toString());
-        assertTrue(abs(d - expectedResult) < 0.0001, "e^" + x + ": " + expectedResult + ". Instead was : " + pow);
+        assertTrue(abs(pow - expectedResult) < 0.0001, "e^" + x + ": " + expectedResult + ". Instead was : " + pow);
     }
 
     @ParameterizedTest(name = "ln({0}) ≈ {1} (tolerance: {2})")
