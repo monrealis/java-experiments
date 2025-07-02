@@ -36,7 +36,7 @@ public class FactorialFunctionsTest {
     @CsvSource({ "0,1", "1,0.540302305", "-1,0.540302305", "3.141592654,-1", "6.283185307,1", "12.56637061,1" })
     public void cosX(double x, double expectedResult) {
         double currentX = 1;
-        BigDecimal cos = ONE;
+        double cos = 1;
         BigDecimal factorial = ONE;
         final double xSquared = x * x;
 
@@ -45,10 +45,9 @@ public class FactorialFunctionsTest {
             currentX = currentX * xSquared;
             BigDecimal added = oneIfOdd(i).multiply(timesX(currentX)).divide(factorial, 100, RoundingMode.UP);
             factorial = factorial.multiply(twice(i).add(THREE));
-            cos = cos.add(added);
+            cos = cos + Double.parseDouble(added.toString());
         }
-        double d = Double.valueOf(cos.toString());
-        assertTrue(abs(d - expectedResult) < 0.0001, "cos(" + x + "): " + expectedResult + ". Instead was : " + d);
+        assertTrue(abs(cos - expectedResult) < 0.0001, "cos(" + x + "): " + expectedResult + ". Instead was : " + cos);
     }
 
     private BigDecimal oneIfOdd(int i) {
