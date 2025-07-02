@@ -1,5 +1,6 @@
 package servlet3;
 
+import static java.lang.Double.parseDouble;
 import static java.lang.Math.E;
 import static java.lang.Math.abs;
 import static java.lang.Math.log;
@@ -27,7 +28,7 @@ public class FactorialFunctionsTest {
             BigDecimal added = oneIfEven(i).multiply(timesX(x)).divide(factorial, 100, RoundingMode.UP);
             x = x * xSquared;
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
-            sin = sin + Double.parseDouble(added.toString());
+            sin += parseDouble(added.toString());
         }
         assertTrue(abs(sin - expectedResult) < 0.0001, "sin(" + x + "): " + expectedResult + ". Instead was : " + sin);
     }
@@ -45,7 +46,7 @@ public class FactorialFunctionsTest {
             currentX = currentX * xSquared;
             BigDecimal added = oneIfOdd(i).multiply(timesX(currentX)).divide(factorial, 100, RoundingMode.UP);
             factorial = factorial.multiply(twice(i).add(THREE));
-            cos = cos + Double.parseDouble(added.toString());
+            cos += parseDouble(added.toString());
         }
         assertTrue(abs(cos - expectedResult) < 0.0001, "cos(" + x + "): " + expectedResult + ". Instead was : " + cos);
     }
