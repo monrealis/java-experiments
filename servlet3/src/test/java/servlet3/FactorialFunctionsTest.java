@@ -4,7 +4,6 @@ import static java.lang.Math.E;
 import static java.lang.Math.abs;
 import static java.lang.Math.log;
 import static java.math.BigDecimal.ONE;
-import static java.math.BigDecimal.ZERO;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -20,7 +19,7 @@ public class FactorialFunctionsTest {
     @ParameterizedTest
     @CsvSource({ "0,0", "1,0.841471", "1.1,0.89120736", "-1,-0.841471", "6.283185307,0" })
     public void sinX(double x, double expectedResult) {
-        BigDecimal sin = ZERO;
+        double sin = 0;
         BigDecimal factorial = ONE;
         final double xSquared = x * x;
 
@@ -28,10 +27,9 @@ public class FactorialFunctionsTest {
             BigDecimal added = oneIfEven(i).multiply(timesX(x)).divide(factorial, 100, RoundingMode.UP);
             x = x * xSquared;
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
-            sin = sin.add(added);
+            sin = sin + Double.parseDouble(added.toString());
         }
-        double d = Double.valueOf(sin.toString());
-        assertTrue(abs(d - expectedResult) < 0.0001, "sin(" + x + "): " + expectedResult + ". Instead was : " + d);
+        assertTrue(abs(sin - expectedResult) < 0.0001, "sin(" + x + "): " + expectedResult + ". Instead was : " + sin);
     }
 
     @ParameterizedTest
