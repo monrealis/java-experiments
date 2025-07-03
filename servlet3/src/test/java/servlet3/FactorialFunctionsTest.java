@@ -25,7 +25,7 @@ public class FactorialFunctionsTest {
         final double xSquared = x * x;
 
         for (int i = 0; i < 20; ++i) {
-            BigDecimal added = oneIfEven(i).multiply(timesX(x)).divide(factorial, 100, RoundingMode.UP);
+            BigDecimal added = oneIfEven(i).multiply(toBigDecimal(x)).divide(factorial, 100, RoundingMode.UP);
             x = x * xSquared;
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
             sin += parseDouble(added.toString());
@@ -44,7 +44,7 @@ public class FactorialFunctionsTest {
         for (int i = 0; i < 20; ++i) {
             factorial = factorial.multiply(twice(i).add(TWO));
             currentX = currentX * xSquared;
-            BigDecimal added = oneIfOdd(i).multiply(timesX(currentX)).divide(factorial, 100, RoundingMode.UP);
+            BigDecimal added = oneIfOdd(i).multiply(toBigDecimal(currentX)).divide(factorial, 100, RoundingMode.UP);
             factorial = factorial.multiply(twice(i).add(THREE));
             cos += parseDouble(added.toString());
         }
@@ -67,7 +67,7 @@ public class FactorialFunctionsTest {
         return i % 2 == 0 ? 1 : -1;
     }
 
-    private BigDecimal timesX(double x) {
+    private BigDecimal toBigDecimal(double x) {
         return new BigDecimal(Double.valueOf(x));
     }
 
