@@ -25,12 +25,17 @@ public class FactorialFunctionsTest {
         final double xSquared = x * x;
 
         for (int i = 0; i < 20; ++i) {
-            BigDecimal added = oneIfEven(i).multiply(toBigDecimal(x)).divide(factorial, 100, RoundingMode.UP);
+            BigDecimal sign = oneIfEven(i);
+            BigDecimal added = divide(sign.multiply(toBigDecimal(x)), factorial);
             x = x * xSquared;
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
             sin += parseDouble(added.toString());
         }
         assertTrue(abs(sin - expectedResult) < 0.0001, "sin(" + x + "): " + expectedResult + ". Instead was : " + sin);
+    }
+
+    private BigDecimal divide(BigDecimal numerator, BigDecimal denominator) {
+        return numerator.divide(denominator, 100, RoundingMode.UP);
     }
 
     @ParameterizedTest
