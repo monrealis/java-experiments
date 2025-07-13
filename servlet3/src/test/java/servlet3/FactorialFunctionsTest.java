@@ -90,16 +90,16 @@ public class FactorialFunctionsTest {
     @ParameterizedTest
     @CsvSource({ "2,3,8", "1,1,1", "2,2,4" })
     public void powerX(double base, double x, double expectedResult) {
-        power(base, x, expectedResult);
+        power(base, x, expectedResult, 0.0001);
     }
 
-    @ParameterizedTest
-    @CsvSource({ "1,2.718281826", "2,7.389056099", "2.5,12.18249396" })
-    public void eX(double x, double expectedResult) {
-        power(E, x, expectedResult);
+    @ParameterizedTest(name = "{0}^x ≈ {1} (tolerance: {2})")
+    @CsvSource({ "1,2.718281826,0.0001", "2,7.389056099,0.0001", "2.5,12.18249396,0.0001" })
+    public void eX(double x, double expectedResult, double tolerance) {
+        power(E, x, expectedResult, tolerance);
     }
 
-    private void power(double base, double x, double expectedResult) {
+    private void power(double base, double x, double expectedResult, double tolerance) {
         double ln = log(base);
         double initial = x;
         double pow = 1;
