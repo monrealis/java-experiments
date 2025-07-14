@@ -87,13 +87,13 @@ public class FactorialFunctionsTest {
         return f;
     }
 
-    @ParameterizedTest
-    @CsvSource({ "2,3,8", "1,1,1", "2,2,4" })
-    public void powerX(double base, double x, double expectedResult) {
-        power(base, x, expectedResult, 0.0001);
+    @ParameterizedTest(name = "{0}^{1} ≈ {2} (tolerance: {3})")
+    @CsvSource({ "2,3,8,0.0001", "1,1,1,0.0001", "2,2,4,0.0001" })
+    public void powerX(double base, double x, double expectedResult, double tolerance) {
+        power(base, x, expectedResult, tolerance);
     }
 
-    @ParameterizedTest(name = "{0}^x ≈ {1} (tolerance: {2})")
+    @ParameterizedTest(name = "e^{0} ≈ {1} (tolerance: {2})")
     @CsvSource({ "1,2.718281826,0.0001", "2,7.389056099,0.0001", "2.5,12.18249396,0.0001" })
     public void eX(double x, double expectedResult, double tolerance) {
         power(E, x, expectedResult, tolerance);
