@@ -4,6 +4,7 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Math.E;
 import static java.lang.Math.abs;
 import static java.lang.Math.log;
+import static java.lang.String.format;
 import static java.math.BigDecimal.ONE;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -110,7 +111,7 @@ public class FactorialFunctionsTest {
             x *= initial * ln;
             pow += added;
         }
-        assertTrue(abs(pow - expectedResult) < 0.0001, "e^" + x + ": " + expectedResult + ". Instead was : " + pow);
+        assertTrue(abs(pow - expectedResult) < tolerance, "e^" + x + ": " + expectedResult + ". Instead was : " + pow);
     }
 
     @ParameterizedTest(name = "ln({0}) ≈ {1} (tolerance: {2})")
@@ -121,11 +122,11 @@ public class FactorialFunctionsTest {
             "1.0, 0.000000, 0.0001" })
     public void lnX(double x, double expected, double tolerance) {
         double approx = lnX(x - 1);
-        double actual = Math.log(x);
-        double error = Math.abs(approx - actual);
+        double actual = log(x);
+        double error = abs(approx - actual);
 
         assertTrue(error < tolerance,
-                String.format("x = %.2f → approx = %.6f, actual = %.6f, error = %.6f exceeds tolerance %.6f", x, approx,
+                format("x = %.2f → approx = %.6f, actual = %.6f, error = %.6f exceeds tolerance %.6f", x, approx,
                         actual, error, tolerance));
     }
 
