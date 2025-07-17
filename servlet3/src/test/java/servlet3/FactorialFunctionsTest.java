@@ -111,7 +111,8 @@ public class FactorialFunctionsTest {
             x *= initial * ln;
             pow += added;
         }
-        assertTrue(abs(pow - expectedResult) < tolerance, "e^" + x + ": " + expectedResult + ". Instead was : " + pow);
+        double error = abs(pow - expectedResult);
+        assertTrue(error < tolerance, "e^" + x + ": " + expectedResult + ". Instead was : " + pow);
     }
 
     @ParameterizedTest(name = "ln({0}) ≈ {1} (tolerance: {2})")
