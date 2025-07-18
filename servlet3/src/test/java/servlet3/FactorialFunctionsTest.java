@@ -112,7 +112,9 @@ public class FactorialFunctionsTest {
             pow += added;
         }
         double error = abs(pow - expectedResult);
-        assertTrue(error < tolerance, "e^" + x + ": " + expectedResult + ". Instead was : " + pow);
+        String msg = format("e^%.2f → approx = %.6f, actual = %.6f, error = %.6f exceeds tolerance %.6f", x, pow,
+                expectedResult, error, tolerance);
+        assertTrue(error < tolerance, msg);
     }
 
     @ParameterizedTest(name = "ln({0}) ≈ {1} (tolerance: {2})")
@@ -126,9 +128,9 @@ public class FactorialFunctionsTest {
         double actual = log(x);
         double error = abs(approx - actual);
 
-        assertTrue(error < tolerance,
-                format("x = %.2f → approx = %.6f, actual = %.6f, error = %.6f exceeds tolerance %.6f", x, approx,
-                        actual, error, tolerance));
+        String msg = format("x = %.2f → approx = %.6f, actual = %.6f, error = %.6f exceeds tolerance %.6f", x, approx,
+                actual, error, tolerance);
+        assertTrue(error < tolerance, msg);
     }
 
     private double lnX(double x) {
