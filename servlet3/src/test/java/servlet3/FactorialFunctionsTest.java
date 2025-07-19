@@ -69,10 +69,6 @@ public class FactorialFunctionsTest {
         return i % 2 == 1 ? 1 : -1;
     }
 
-    private int even(int i) {
-        return i % 2 == 0 ? 1 : -1;
-    }
-
     private BigDecimal toBigDecimal(double x) {
         return new BigDecimal(Double.valueOf(x));
     }
