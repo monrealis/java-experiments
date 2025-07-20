@@ -23,7 +23,7 @@ public class FactorialFunctionsTest {
     @ParameterizedTest
     @CsvSource({ "0", "1", "1.1", "-1", "6.283185307" })
     public void sinX(double x) {
-        double sinX = 0;
+        double sin = 0;
         double expectedResult = sin(x);
         BigDecimal factorial = ONE;
         final double xSquared = x * x;
@@ -33,10 +33,10 @@ public class FactorialFunctionsTest {
             BigDecimal added = divide(sign.multiply(toBigDecimal(x)), factorial);
             x = x * xSquared;
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
-            sinX += parseDouble(added.toString());
+            sin += parseDouble(added.toString());
         }
-        assertTrue(abs(sinX - expectedResult) < 0.0001,
-                "sin(" + x + "): " + expectedResult + ". Instead was : " + sinX);
+        assertTrue(abs(sin - expectedResult) < 0.0001,
+                "sin(" + x + "): " + expectedResult + ". Instead was : " + sin);
     }
 
     private BigDecimal divide(BigDecimal numerator, BigDecimal denominator) {
@@ -48,7 +48,7 @@ public class FactorialFunctionsTest {
     public void cosX(double x) {
         double expectedResult = cos(x);
         double currentX = 1;
-        double cosX = 1;
+        double cos = 1;
         BigDecimal factorial = ONE;
         final double xSquared = x * x;
 
@@ -57,10 +57,10 @@ public class FactorialFunctionsTest {
             currentX = currentX * xSquared;
             BigDecimal added = oneIfOdd(i).multiply(toBigDecimal(currentX)).divide(factorial, 100, RoundingMode.UP);
             factorial = factorial.multiply(twice(i).add(THREE));
-            cosX += parseDouble(added.toString());
+            cos += parseDouble(added.toString());
         }
-        assertTrue(abs(cosX - expectedResult) < 0.0001,
-                "cos(" + x + "): " + expectedResult + ". Instead was : " + cosX);
+        assertTrue(abs(cos - expectedResult) < 0.0001,
+                "cos(" + x + "): " + expectedResult + ". Instead was : " + cos);
     }
 
     private BigDecimal oneIfOdd(int i) {
