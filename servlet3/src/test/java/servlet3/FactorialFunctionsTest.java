@@ -4,6 +4,7 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Math.E;
 import static java.lang.Math.abs;
 import static java.lang.Math.log;
+import static java.lang.Math.sin;
 import static java.lang.String.format;
 import static java.math.BigDecimal.ONE;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,9 +20,10 @@ public class FactorialFunctionsTest {
     private static final BigDecimal TWO = new BigDecimal("2");
 
     @ParameterizedTest
-    @CsvSource({ "0,0", "1,0.841471", "1.1,0.89120736", "-1,-0.841471", "6.283185307,0" })
-    public void sinX(double x, double expectedResult) {
-        double sin = 0;
+    @CsvSource({ "0", "1", "1.1", "-1", "6.283185307" })
+    public void sinX(double x) {
+        double sinX = 0;
+        double expectedResult = sin(x);
         BigDecimal factorial = ONE;
         final double xSquared = x * x;
 
@@ -30,9 +32,10 @@ public class FactorialFunctionsTest {
             BigDecimal added = divide(sign.multiply(toBigDecimal(x)), factorial);
             x = x * xSquared;
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
-            sin += parseDouble(added.toString());
+            sinX += parseDouble(added.toString());
         }
-        assertTrue(abs(sin - expectedResult) < 0.0001, "sin(" + x + "): " + expectedResult + ". Instead was : " + sin);
+        assertTrue(abs(sinX - expectedResult) < 0.0001,
+                "sin(" + x + "): " + expectedResult + ". Instead was : " + sinX);
     }
 
     private BigDecimal divide(BigDecimal numerator, BigDecimal denominator) {
