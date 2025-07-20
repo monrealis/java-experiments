@@ -3,6 +3,7 @@ package servlet3;
 import static java.lang.Double.parseDouble;
 import static java.lang.Math.E;
 import static java.lang.Math.abs;
+import static java.lang.Math.cos;
 import static java.lang.Math.log;
 import static java.lang.Math.sin;
 import static java.lang.String.format;
@@ -43,10 +44,11 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0,1", "1,0.540302305", "-1,0.540302305", "3.141592654,-1", "6.283185307,1", "12.56637061,1" })
-    public void cosX(double x, double expectedResult) {
+    @CsvSource({ "0", "1", "-1", "3.141592654", "6.283185307", "12.56637061" })
+    public void cosX(double x) {
+        double expectedResult = cos(x);
         double currentX = 1;
-        double cos = 1;
+        double cosX = 1;
         BigDecimal factorial = ONE;
         final double xSquared = x * x;
 
@@ -55,9 +57,10 @@ public class FactorialFunctionsTest {
             currentX = currentX * xSquared;
             BigDecimal added = oneIfOdd(i).multiply(toBigDecimal(currentX)).divide(factorial, 100, RoundingMode.UP);
             factorial = factorial.multiply(twice(i).add(THREE));
-            cos += parseDouble(added.toString());
+            cosX += parseDouble(added.toString());
         }
-        assertTrue(abs(cos - expectedResult) < 0.0001, "cos(" + x + "): " + expectedResult + ". Instead was : " + cos);
+        assertTrue(abs(cosX - expectedResult) < 0.0001,
+                "cos(" + x + "): " + expectedResult + ". Instead was : " + cosX);
     }
 
     private BigDecimal oneIfOdd(int i) {
