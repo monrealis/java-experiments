@@ -35,7 +35,8 @@ public class FactorialFunctionsTest {
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
             sin += parseDouble(added.toString());
         }
-        assertTrue(abs(sin - expectedResult) < 0.0001,
+        double error = abs(sin - expectedResult);
+        assertTrue(error < 0.0001,
                 "sin(" + x + "): " + expectedResult + ". Instead was : " + sin);
     }
 
@@ -59,7 +60,8 @@ public class FactorialFunctionsTest {
             factorial = factorial.multiply(twice(i).add(THREE));
             cos += parseDouble(added.toString());
         }
-        assertTrue(abs(cos - expectedResult) < 0.0001,
+        double error = abs(cos - expectedResult);
+        assertTrue(error < 0.0001,
                 "cos(" + x + "): " + expectedResult + ". Instead was : " + cos);
     }
 
