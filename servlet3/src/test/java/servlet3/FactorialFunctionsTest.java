@@ -5,7 +5,6 @@ import static java.lang.Math.E;
 import static java.lang.Math.abs;
 import static java.lang.Math.cos;
 import static java.lang.Math.log;
-import static java.lang.Math.sin;
 import static java.lang.String.format;
 import static java.math.BigDecimal.ONE;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,11 +19,11 @@ public class FactorialFunctionsTest {
     private static final BigDecimal THREE = new BigDecimal("3");
     private static final BigDecimal TWO = new BigDecimal("2");
 
-    @ParameterizedTest
-    @CsvSource({ "0", "1", "1.1", "-1", "6.283185307" })
-    public void sinX(double x) {
+    @ParameterizedTest(name = "sin({1}) ≈ {2} (tolerance: {3})")
+    @CsvSource({ "0,0,0.0001", "1,0.841471,0.0001", "1.1,0.89120736,0.0001", "-1,-0.841471,0.0001",
+            "6.283185307,0,0.0001" })
+    public void sinX(double x, double expectedValue, double tolerance) {
         double sin = 0;
-        double expectedResult = sin(x);
         BigDecimal factorial = ONE;
         final double xSquared = x * x;
 
@@ -35,18 +34,18 @@ public class FactorialFunctionsTest {
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
             sin += parseDouble(added.toString());
         }
-        double error = abs(sin - expectedResult);
-        assertTrue(error < 0.0001,
-                "sin(" + x + "): " + expectedResult + ". Instead was : " + sin);
+        double error = abs(sin - expectedValue);
+        assertTrue(error < 0.0001, "sin(" + x + "): " + expectedValue + ". Instead was : " + sin);
     }
 
     private BigDecimal divide(BigDecimal numerator, BigDecimal denominator) {
         return numerator.divide(denominator, 100, RoundingMode.UP);
     }
 
-    @ParameterizedTest
-    @CsvSource({ "0", "1", "-1", "3.141592654", "6.283185307", "12.56637061" })
-    public void cosX(double x) {
+    @ParameterizedTest(name = "cos({1}) ≈ {2} (tolerance: {3})")
+    @CsvSource({ "0,1,0.0001", "1,0.540302305,0.0001", "-1,0.540302305,0.0001", "3.141592654,-1,0.0001",
+            "6.283185307,1,0.0001", "12.56637061,1,0.0001" })
+    public void cosX(double x, double expectedValue, double tolerance) {
         double expectedResult = cos(x);
         double currentX = 1;
         double cos = 1;
@@ -61,8 +60,7 @@ public class FactorialFunctionsTest {
             cos += parseDouble(added.toString());
         }
         double error = abs(cos - expectedResult);
-        assertTrue(error < 0.0001,
-                "cos(" + x + "): " + expectedResult + ". Instead was : " + cos);
+        assertTrue(error < 0.0001, "cos(" + x + "): " + expectedResult + ". Instead was : " + cos);
     }
 
     private BigDecimal oneIfOdd(int i) {
