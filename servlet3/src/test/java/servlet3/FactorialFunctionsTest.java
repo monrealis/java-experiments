@@ -34,8 +34,11 @@ public class FactorialFunctionsTest {
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
             sin += parseDouble(added.toString());
         }
+
         double error = abs(sin - expectedValue);
-        assertTrue(error < 0.0001, "sin(" + x + "): " + expectedValue + ". Instead was : " + sin);
+        String msg = format("sin(%.2f) → approx = %.6f, error = %.6f exceeds tolerance %.6f", x, expectedValue, error,
+                tolerance);
+        assertTrue(error < tolerance, msg);
     }
 
     private BigDecimal divide(BigDecimal numerator, BigDecimal denominator) {
