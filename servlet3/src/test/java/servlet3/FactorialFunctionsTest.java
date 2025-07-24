@@ -62,8 +62,11 @@ public class FactorialFunctionsTest {
             factorial = factorial.multiply(twice(i).add(THREE));
             cos += parseDouble(added.toString());
         }
+
         double error = abs(cos - expectedResult);
-        assertTrue(error < 0.0001, "cos(" + x + "): " + expectedResult + ". Instead was : " + cos);
+        String msg = format("cos(%.2f) → approx = %.6f, error = %.6f exceeds tolerance %.6f", x, expectedValue, error,
+                tolerance);
+        assertTrue(error < tolerance, msg);
     }
 
     private BigDecimal oneIfOdd(int i) {
