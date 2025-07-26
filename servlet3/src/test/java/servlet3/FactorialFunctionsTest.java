@@ -152,4 +152,12 @@ public class FactorialFunctionsTest {
         }
         return result;
     }
+
+    public void sinh(double x, double expected, double tolerance) {
+
+    }
+
+    public void cosh(double x, double expected, double tolerance) {
+
+    }
 }
