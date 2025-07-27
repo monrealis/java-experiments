@@ -154,7 +154,15 @@ public class FactorialFunctionsTest {
     }
 
     public void sinh(double x, double expected, double tolerance) {
-
+        double sinh = 0;
+        final double xSquared = x * x;
+        double denominatorFact = 1;
+        for (int i = 1; i < 5; i++) {
+            double added = x / denominatorFact;
+            x *= xSquared;
+            denominatorFact *= (i - 1) * i;
+            sinh += added;
+        }
     }
 
     public void cosh(double x, double expected, double tolerance) {
