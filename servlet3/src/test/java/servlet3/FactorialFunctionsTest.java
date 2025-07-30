@@ -167,7 +167,7 @@ public class FactorialFunctionsTest {
         }
     }
 
-    @ParameterizedTest(name = "cish({0}) ≈ {1} (tolerance: {2})")
+    @ParameterizedTest(name = "cosh({0}) ≈ {1} (tolerance: {2})")
     @CsvSource({ "0,1,0.0001" })
     public void cosh(double x, double expected, double tolerance) {
         double cosh = 0;
