@@ -162,7 +162,7 @@ public class FactorialFunctionsTest {
         for (int i = 1; i < 5; i++) {
             double added = x / denominatorFact;
             x *= xSquared;
-            denominatorFact *= (i - 1) * i;
+            denominatorFact *= (i * 2) * (i * 2 + 1);
             sinh += added;
         }
     }
