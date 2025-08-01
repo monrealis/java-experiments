@@ -154,7 +154,7 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest(name = "sinh({0}) ≈ {1} (tolerance: {2})")
-    @CsvSource({ "0,0,0.0001" })
+    @CsvSource({ "1,1.1752,0.0001" })
     public void sinh(double x, double expected, double tolerance) {
         double sinh = 0;
         final double xSquared = x * x;
@@ -165,6 +165,11 @@ public class FactorialFunctionsTest {
             denominatorFact *= (i * 2) * (i * 2 + 1);
             sinh += added;
         }
+
+//        double error = abs(approx - actual);       
+//        String msg = format("x = %.2f → approx = %.6f, actual = %.6f, error = %.6f exceeds tolerance %.6f", x, approx,
+//                actual, error, tolerance);
+//        assertTrue(error < tolerance, msg);
     }
 
     @ParameterizedTest(name = "cosh({0}) ≈ {1} (tolerance: {2})")
