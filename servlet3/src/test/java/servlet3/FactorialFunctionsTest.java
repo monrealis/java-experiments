@@ -165,11 +165,10 @@ public class FactorialFunctionsTest {
             denominatorFact *= (i * 2) * (i * 2 + 1);
             sinh += added;
         }
-
-//        double error = abs(approx - actual);       
-//        String msg = format("x = %.2f → approx = %.6f, actual = %.6f, error = %.6f exceeds tolerance %.6f", x, approx,
-//                actual, error, tolerance);
-//        assertTrue(error < tolerance, msg);
+        double error = abs(sinh - expected);
+        String msg = format("sinh(%f) → approx %.6f, error = %.6f exceeds tolerance %.6f", x, expected, error,
+                tolerance);
+        assertTrue(error < tolerance, msg);
     }
 
     @ParameterizedTest(name = "cosh({0}) ≈ {1} (tolerance: {2})")
