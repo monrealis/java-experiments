@@ -154,7 +154,7 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest(name = "sinh({0}) ≈ {1} (tolerance: {2})")
-    @CsvSource({ "1,1.1752,0.0001" })
+    @CsvSource({ "1,1.1752,0.0001", "0,0,0.0001", "-1,-1.1752,0.0001", "2,3.6268,0.01" })
     public void sinh(double x, double expected, double tolerance) {
         double sinh = 0;
         final double xSquared = x * x;
