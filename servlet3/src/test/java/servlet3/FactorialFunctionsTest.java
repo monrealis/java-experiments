@@ -172,16 +172,17 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest(name = "cosh({0}) ≈ {1} (tolerance: {2})")
-    @CsvSource({ "1,1.5430,0.0001" })
+    @CsvSource({ "1,1.5430,0.0001", "0,1,0.0001", "-1,1.5430,0.0001","2,3.7621,0.01" })
     public void cosh(double x, double expected, double tolerance) {
-        double cosh = 0;
+        double cosh = 1;
         final double xSquared = x * x;
         double denominatorFact = 1;
+        if (x < 0)
+            x = -x;
         for (int i = 1; i < 5; i++) {
+            denominatorFact *= (i * 2 - 1) * i * 2;
             double added = x / denominatorFact;
             x *= xSquared;
-            denominatorFact *= (i * 2 - 1);
-            denominatorFact *= i * 2;
             cosh += added;
         }
 
