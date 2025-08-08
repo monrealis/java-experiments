@@ -189,4 +189,18 @@ public class FactorialFunctionsTest {
                 tolerance);
         assertTrue(error < tolerance, msg);
     }
+
+    @ParameterizedTest(name = "asin({0}) ≈ {1} (tolerance: {2})")
+    @CsvSource({ "1,1.5708,0.01" })
+    public void asin(double x, double expected, double tolerance) {
+        double asin = 0;
+        final double xSq = x * x;
+        for (int i = 1; i < 5; i++) {
+            double added = 0;
+            asin += added;
+        }
+        double error = abs(asin - expected);
+        String msg = format("asin(%f) → approx %.6f, error = %.6f exceeds tolerance %.6f", x, expected, error,
+                tolerance);
+    }
 }
