@@ -194,6 +194,7 @@ public class FactorialFunctionsTest {
     @CsvSource({ "1,1.5708,0.01" })
     public void asin(double x, double expected, double tolerance) {
         double asin = 0;
+        @SuppressWarnings("unused")
         final double xSq = x * x;
         for (int i = 1; i < 5; i++) {
             double added = 0;
