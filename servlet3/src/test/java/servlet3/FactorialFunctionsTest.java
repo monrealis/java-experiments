@@ -202,5 +202,6 @@ public class FactorialFunctionsTest {
         double error = abs(asin - expected);
         String msg = format("asin(%f) → approx %.6f, error = %.6f exceeds tolerance %.6f", x, expected, error,
                 tolerance);
+        assertTrue(error < tolerance, msg);
     }
 }
