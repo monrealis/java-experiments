@@ -195,8 +195,13 @@ public class FactorialFunctionsTest {
     public void asin(double x, double expected, double tolerance) {
         double asin = 0;
         final double xSq = x * x;
+        double factorialNom = 1;
+        double factorialDen = 1;
         for (int i = 1; i < 5; i++) {
-            double added = 0;
+            factorialNom = (i * 2 - 1) * (i * 2);
+            factorialDen = factorialDen * i;
+            double added = x * factorialNom / factorialDen / i;
+            x = xSq * x;
             asin += added;
         }
         double error = abs(asin - expected);
