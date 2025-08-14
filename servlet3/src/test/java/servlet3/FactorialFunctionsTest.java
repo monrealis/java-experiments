@@ -191,7 +191,7 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest(name = "asin({0}) ≈ {1} (tolerance: {2})")
-    @CsvSource({ "1,1.5708,0.01" })
+    @CsvSource({ "1,1.5708,0.001" })
     public void asin(double x, double expected, double tolerance) {
         double asin = 0;
         final double xSq = x * x;
