@@ -197,10 +197,12 @@ public class FactorialFunctionsTest {
         final double xSq = x * x;
         double factorialNom = 1;
         double factorialDen = 1;
+        double fourToTheN = 1;
         for (int i = 1; i < 5; i++) {
-            double added = x * factorialNom / factorialDen / i;
+            double added = x * factorialNom / factorialDen / fourToTheN;
             factorialNom = (i * 2 - 1) * (i * 2);
-            factorialDen = factorialDen * i;
+            factorialDen = factorialDen;
+            fourToTheN *= 4;
             x = xSq * x;
             asin += added;
         }
