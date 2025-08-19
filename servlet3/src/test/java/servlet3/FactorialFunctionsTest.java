@@ -200,7 +200,7 @@ public class FactorialFunctionsTest {
         double fourToTheN = 1;
         for (int i = 1; i < 5; i++) {
             double added = x * factorialNom / factorialDen / fourToTheN;
-            factorialNom = (i * 2 - 1) * (i * 2);
+            factorialNom *= (i * 2 - 1) * (i * 2);
             factorialDen = factorialDen;
             fourToTheN *= 4;
             x = xSq * x;
