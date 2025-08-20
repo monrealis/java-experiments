@@ -199,9 +199,9 @@ public class FactorialFunctionsTest {
         double factorialDen = 1;
         double fourToTheN = 1;
         for (int i = 1; i < 5; i++) {
-            double added = x * factorialNom / factorialDen / fourToTheN;
+            double added = x * factorialNom / factorialDen / fourToTheN / (i * 2);
             factorialNom *= (i * 2 - 1) * (i * 2);
-            factorialDen = factorialDen;
+            factorialDen = factorialDen * i;
             fourToTheN *= 4;
             x = xSq * x;
             asin += added;
