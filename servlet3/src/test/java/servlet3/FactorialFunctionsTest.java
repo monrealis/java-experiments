@@ -191,15 +191,16 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest(name = "asin({0}) ≈ {1} (tolerance: {2})")
-    @CsvSource({ "1,1.5708,0.001" })
+    @CsvSource({ "0.5,0.5,0.001" })
     public void asin(double x, double expected, double tolerance) {
         double asin = 0;
         final double xSq = x * x;
         double factorialNom = 1;
         double factorialDen = 1;
         double fourToTheN = 1;
-        for (int i = 1; i < 5; i++) {
-            double added = x * factorialNom / factorialDen / fourToTheN / (i * 2);
+        for (int i = 1; i <= 5; i++) {
+            double denominator = factorialDen * factorialDen * fourToTheN * (i * 2 - 1);
+            double added = x * factorialNom / denominator;
             factorialNom *= (i * 2 - 1) * (i * 2);
             factorialDen = factorialDen * i;
             fourToTheN *= 4;
