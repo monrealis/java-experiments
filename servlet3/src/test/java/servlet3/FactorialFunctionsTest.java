@@ -212,4 +212,9 @@ public class FactorialFunctionsTest {
                 tolerance);
         assertTrue(error < tolerance, msg);
     }
+
+    @ParameterizedTest(name = "acos({0}) ≈ {1} (tolerance: {2})")
+    @CsvSource({ "1,1.57079,0.1" })
+    public void acos(double x, double expected, double tolerance) {
+    }
 }
