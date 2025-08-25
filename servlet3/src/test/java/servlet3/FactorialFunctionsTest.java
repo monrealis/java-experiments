@@ -216,5 +216,9 @@ public class FactorialFunctionsTest {
     @ParameterizedTest(name = "acos({0}) ≈ {1} (tolerance: {2})")
     @CsvSource({ "1,1.57079,0.1" })
     public void acos(double x, double expected, double tolerance) {
+        double acos = 0;
+        double piOver2 = Math.PI / 2;
+        double error = abs(acos - expected);
+        assertTrue(error < tolerance);
     }
 }
