@@ -218,6 +218,8 @@ public class FactorialFunctionsTest {
     public void acos(double x, double expected, double tolerance) {
         double acos = 0;
         double piOver2 = Math.PI / 2;
+        acos = piOver2;
+        final double xSq = x * x;
         double error = abs(acos - expected);
         assertTrue(error < tolerance);
     }
