@@ -220,9 +220,11 @@ public class FactorialFunctionsTest {
         double piOver2 = Math.PI / 2;
         acos = piOver2;
         final double xSq = x * x;
+        double fourToTheN = 1;
         for (int i = 1; i <= 5; i++) {
             double added = x;
             x = xSq * x;
+            fourToTheN *= 4;
             acos += added;
         }
         double error = abs(acos - expected);
