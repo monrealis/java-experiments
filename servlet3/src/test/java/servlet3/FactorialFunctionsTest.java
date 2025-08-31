@@ -224,7 +224,7 @@ public class FactorialFunctionsTest {
         double factorialDen = 1;
         double fourToTheN = 1;
         for (int i = 1; i <= 5; i++) {
-            double added = x / factorialDen;
+            double added = x * factorialNom / factorialDen;
             x = xSq * x;
             fourToTheN *= 4;
             factorialNom = (i * 2 - 1) * (i * 2);
