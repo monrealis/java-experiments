@@ -2,6 +2,7 @@ package servlet3;
 
 import static java.lang.Double.parseDouble;
 import static java.lang.Math.E;
+import static java.lang.Math.PI;
 import static java.lang.Math.abs;
 import static java.lang.Math.cos;
 import static java.lang.Math.log;
@@ -193,6 +194,10 @@ public class FactorialFunctionsTest {
     @ParameterizedTest(name = "asin({0}) ≈ {1} (tolerance: {2})")
     @CsvSource({ "0.5,0.5235,0.001", "0,0,0.001", "1,1.57079,0.1", "-1,-1.57079,0.1" })
     public void asin(double x, double expected, double tolerance) {
+        aFunction(x, expected, tolerance, 0);
+    }
+
+    private void aFunction(double x, double expected, double tolerance, double delta) {
         double asin = 0;
         final double xSq = x * x;
         double factorialNom = 1;
@@ -207,31 +212,16 @@ public class FactorialFunctionsTest {
             x = xSq * x;
             asin += added;
         }
-        double error = abs(asin - expected);
+        double error = abs(asin - expected + delta);
         String msg = format("asin(%f) → approx %.6f, error = %.6f exceeds tolerance %.6f", x, expected, error,
                 tolerance);
         assertTrue(error < tolerance, msg);
     }
 
     @ParameterizedTest(name = "acos({0}) ≈ {1} (tolerance: {2})")
-    @CsvSource({ "1,1.57079,0.1", "0,1,0.1" })
+    @CsvSource({ "0.5,1.0472111,0.001" })
     public void acos(double x, double expected, double tolerance) {
-        double acos = 0;
-        double piOver2 = Math.PI / 2;
-        acos = piOver2;
-        final double xSq = x * x;
-        double factorialNom = 1;
-        double factorialDen = 1;
-        double fourToTheN = 1;
-        for (int i = 1; i <= 5; i++) {
-            double added = x * factorialNom / factorialDen / fourToTheN;
-            x = xSq * x;
-            fourToTheN *= 4;
-            factorialNom = (i * 2 - 1) * (i * 2);
-            factorialDen = factorialDen * i;
-            acos += added;
-        }
-        double error = abs(acos - expected);
-        assertTrue(error < tolerance);
+        double piOver2 = PI / 2;
+        aFunction(-x, expected, tolerance, piOver2);
     }
 }
