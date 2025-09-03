@@ -194,10 +194,10 @@ public class FactorialFunctionsTest {
     @ParameterizedTest(name = "asin({0}) ≈ {1} (tolerance: {2})")
     @CsvSource({ "0.5,0.5235,0.001", "0,0,0.001", "1,1.57079,0.1", "-1,-1.57079,0.1" })
     public void asin(double x, double expected, double tolerance) {
-        aFunction(x, expected, tolerance, 0);
+        arcFunction(x, expected, tolerance, 0, "arcsin");
     }
 
-    private void aFunction(double x, double expected, double tolerance, double delta) {
+    private void arcFunction(double x, double expected, double tolerance, double delta, String function) {
         double asin = 0;
         final double xSq = x * x;
         double factorialNom = 1;
@@ -213,7 +213,7 @@ public class FactorialFunctionsTest {
             asin += added;
         }
         double error = abs(asin - expected + delta);
-        String msg = format("asin(%f) → approx %.6f, error = %.6f exceeds tolerance %.6f", x, expected, error,
+        String msg = format("%s(%f) → approx %.6f, error = %.6f exceeds tolerance %.6f", function, x, expected, error,
                 tolerance);
         assertTrue(error < tolerance, msg);
     }
@@ -222,6 +222,6 @@ public class FactorialFunctionsTest {
     @CsvSource({ "0.5,1.0472111,0.001" })
     public void acos(double x, double expected, double tolerance) {
         double piOver2 = PI / 2;
-        aFunction(-x, expected, tolerance, piOver2);
+        arcFunction(-x, expected, tolerance, piOver2, "arccos");
     }
 }
