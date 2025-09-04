@@ -219,7 +219,7 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest(name = "acos({0}) ≈ {1} (tolerance: {2})")
-    @CsvSource({ "0.5,1.0472111,0.001" })
+    @CsvSource({ "1,0,0.1", "0.5,1.0472111,0.001", "0,1.5707,0.001", "-0.5,2.094395102,0.001", "-1,3.141596,0.1" })
     public void acos(double x, double expected, double tolerance) {
         double piOver2 = PI / 2;
         arcFunction(-x, expected, tolerance, piOver2, "arccos");
