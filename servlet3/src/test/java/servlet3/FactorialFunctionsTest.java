@@ -224,4 +224,10 @@ public class FactorialFunctionsTest {
         double piOver2 = PI / 2;
         arcFunction(-x, expected, tolerance, piOver2, "arccos");
     }
+
+    @ParameterizedTest(name = "tgx({0}) ≈ {1} (tolerance: {2})")
+    @CsvSource({ "1,0,0.00001" })
+    public void tgx(double x, double expected, double tolerance) {
+
+    }
 }
