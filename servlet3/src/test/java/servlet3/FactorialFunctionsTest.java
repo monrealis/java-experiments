@@ -24,6 +24,14 @@ public class FactorialFunctionsTest {
     @CsvSource({ "0,0,0.0001", "1,0.841471,0.0001", "1.1,0.89120736,0.0001", "-1,-0.841471,0.0001",
             "6.283185307,0,0.0001" })
     public void sinX(double x, double expectedValue, double tolerance) {
+        double sin = sin(x);
+        double error = abs(sin - expectedValue);
+        String msg = format("sin(%.2f) → approx = %.6f, error = %.6f exceeds tolerance %.6f", x, expectedValue, error,
+                tolerance);
+        assertTrue(error < tolerance, msg);
+    }
+
+    private double sin(double x) {
         double sin = 0;
         BigDecimal factorial = ONE;
         final double xSquared = x * x;
@@ -35,11 +43,7 @@ public class FactorialFunctionsTest {
             factorial = factorial.multiply(twice(i).add(TWO)).multiply(twice(i).add(THREE));
             sin += parseDouble(added.toString());
         }
-
-        double error = abs(sin - expectedValue);
-        String msg = format("sin(%.2f) → approx = %.6f, error = %.6f exceeds tolerance %.6f", x, expectedValue, error,
-                tolerance);
-        assertTrue(error < tolerance, msg);
+        return sin;
     }
 
     private BigDecimal divide(BigDecimal numerator, BigDecimal denominator) {
