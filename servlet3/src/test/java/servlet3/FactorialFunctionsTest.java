@@ -4,7 +4,6 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
 import static java.lang.Math.abs;
-import static java.lang.Math.cos;
 import static java.lang.Math.log;
 import static java.lang.String.format;
 import static java.math.BigDecimal.ONE;
@@ -54,7 +53,6 @@ public class FactorialFunctionsTest {
     @CsvSource({ "0,1,0.0001", "1,0.540302305,0.0001", "-1,0.540302305,0.0001", "3.141592654,-1,0.0001",
             "6.283185307,1,0.0001", "12.56637061,1,0.0001" })
     public void cosX(double x, double expectedValue, double tolerance) {
-        double expectedResult = cos(x);
         double currentX = 1;
         double cos = 1;
         BigDecimal factorial = ONE;
@@ -68,7 +66,7 @@ public class FactorialFunctionsTest {
             cos += parseDouble(added.toString());
         }
 
-        double error = abs(cos - expectedResult);
+        double error = abs(cos - expectedValue);
         String msg = format("cos(%.2f) → approx = %.6f, error = %.6f exceeds tolerance %.6f", x, expectedValue, error,
                 tolerance);
         assertTrue(error < tolerance, msg);
