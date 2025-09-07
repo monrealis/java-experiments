@@ -4,6 +4,7 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
 import static java.lang.Math.abs;
+import static java.lang.Math.cos;
 import static java.lang.Math.log;
 import static java.lang.String.format;
 import static java.math.BigDecimal.ONE;
@@ -230,6 +231,8 @@ public class FactorialFunctionsTest {
     @ParameterizedTest(name = "tgx({0}) ≈ {1} (tolerance: {2})")
     @CsvSource({ "1,0,0.00001" })
     public void tgx(double x, double expected, double tolerance) {
+        double tgx = sin(x) / cos(x);
+        double error = abs(tgx - expected);
 
     }
 }
