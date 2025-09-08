@@ -229,10 +229,12 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest(name = "tgx({0}) ≈ {1} (tolerance: {2})")
-    @CsvSource({ "1,0,0.00001" })
+    @CsvSource({ "1,1.5574,0.001","0,0,0.001","-1,-1.5574,0.001" })
     public void tgx(double x, double expected, double tolerance) {
         double tgx = sin(x) / cos(x);
         double error = abs(tgx - expected);
 
+        String msg = format("tg(%f) → approx %.6f, error = %.6f exceeds tolerance %.6f", x, expected, error, tolerance);
+        assertTrue(error < tolerance, msg);
     }
 }
