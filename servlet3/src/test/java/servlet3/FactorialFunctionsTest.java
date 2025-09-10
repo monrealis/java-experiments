@@ -237,4 +237,26 @@ public class FactorialFunctionsTest {
         String msg = format("tg(%f) → approx %.6f, error = %.6f exceeds tolerance %.6f", x, expected, error, tolerance);
         assertTrue(error < tolerance, msg);
     }
+
+    @ParameterizedTest(name = "arctgx({0}) ≈ {1} (tolerance: {2})")
+    @CsvSource({ "1,1.5574,0.001" })
+    public void arctgx(double x, double expected, double tolerance) {
+        double arctg = 0;
+        double factorialNom = 1;
+        double factorialDen = 1;
+        final double xSq = x * x;
+        for (int i = 1; i <= 40; i++) {
+            double added = x * factorialNom / factorialDen;
+            factorialNom *= (i * 2 - 1) * (i * 2);
+            factorialDen = factorialDen * i;
+            x = xSq * x;
+            arctg += added;
+        }
+
+        double error = abs(arctg - expected);
+
+        String msg = format("arctg(%f) → approx %.6f, error = %.6f exceeds tolerance %.6f", x, expected, error,
+                tolerance);
+        assertTrue(error < tolerance, msg);
+    }
 }
