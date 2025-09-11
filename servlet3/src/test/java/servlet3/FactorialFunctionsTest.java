@@ -244,11 +244,13 @@ public class FactorialFunctionsTest {
         double arctg = 0;
         double factorialNom = 1;
         double factorialDen = 1;
+        int negate = 1;
         final double xSq = x * x;
-        for (int i = 1; i <= 40; i++) {
-            double added = x * factorialNom / factorialDen;
+        for (int i = 1; i <= 5; i++) {
+            double added = negate * x * factorialNom / factorialDen;
+            negate *= -1;
             factorialNom *= (i * 2 - 1) * (i * 2);
-            factorialDen = factorialDen * i;
+            factorialDen *= (i * 2 + 1) * (i * 2);
             x = xSq * x;
             arctg += added;
         }
