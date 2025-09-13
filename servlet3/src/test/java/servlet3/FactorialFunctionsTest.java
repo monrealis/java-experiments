@@ -239,7 +239,7 @@ public class FactorialFunctionsTest {
     }
 
     @ParameterizedTest(name = "arctgx({0}) ≈ {1} (tolerance: {2})")
-    @CsvSource({ "1,0.7853,0.01", "0,0,0.001", "-1,-0.7853,0.01" })
+    @CsvSource({ "1,0.7853,0.01", "0,0,0.001", "-1,-0.7853,0.01", "0.5,.463,0.001" })
     public void arctgx(double x, double expected, double tolerance) {
         double arctg = 0;
         double factorialNom = 1;
