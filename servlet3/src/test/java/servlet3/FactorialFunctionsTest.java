@@ -241,16 +241,16 @@ public class FactorialFunctionsTest {
     @ParameterizedTest(name = "arcctgx({0}) ≈ {1} (tolerance: {2})")
     @CsvSource({ "1,0.7853,0.01", "0,0,0.001", "-1,-0.7853,0.01", "0.5,.463,0.001", "-0.5,-0.463,0.001" })
     public void arcctgx(double x, double expected, double tolerance) {
-        arcTgOrCtg(x, expected, tolerance, "arcctg");
+        arcTgOrCtg(x, expected, tolerance, 0, "arcctg");
     }
 
     @ParameterizedTest(name = "arctgx({0}) ≈ {1} (tolerance: {2})")
     @CsvSource({ "1,0.7853,0.01", "0,0,0.001", "-1,-0.7853,0.01", "0.5,.463,0.001", "-0.5,-0.463,0.001" })
     public void arctgx(double x, double expected, double tolerance) {
-        arcTgOrCtg(x, expected, tolerance, "arctg");
+        arcTgOrCtg(x, expected, tolerance, 0, "arctg");
     }
 
-    private void arcTgOrCtg(double x, double expected, double tolerance, String function) {
+    private void arcTgOrCtg(double x, double expected, double tolerance, double delta, String function) {
         double arctg = 0;
         double factorialNom = 1;
         double factorialDen = 1;
