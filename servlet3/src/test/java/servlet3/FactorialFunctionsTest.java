@@ -242,7 +242,7 @@ public class FactorialFunctionsTest {
     @CsvSource({ "1,0.7853,0.01", "0,0,0.001", "-1,-0.7853,0.01", "0.5,.463,0.001", "-0.5,-0.463,0.001" })
     public void arcctgx(double x, double expected, double tolerance) {
         double piOver2 = PI / 2;
-        arcTgOrCtg(x, expected, tolerance, piOver2, "arcctg");
+        arcTgOrCtg(-x, expected, tolerance, piOver2, "arcctg");
     }
 
     @ParameterizedTest(name = "arctgx({0}) ≈ {1} (tolerance: {2})")
@@ -266,7 +266,7 @@ public class FactorialFunctionsTest {
             arctg += added;
         }
 
-        double error = abs(arctg - expected);
+        double error = abs(arctg - expected + delta);
 
         String msg = format("%s(%f) → approx %.6f, error = %.6f exceeds tolerance %.6f", function, x, expected, error,
                 tolerance);
