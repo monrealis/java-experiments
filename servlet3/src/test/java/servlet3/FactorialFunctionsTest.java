@@ -272,4 +272,11 @@ public class FactorialFunctionsTest {
                 tolerance);
         assertTrue(error < tolerance, msg);
     }
+
+    @ParameterizedTest(name = "hyperbolic({0}) ≈ {1} (tolerance: {2})")
+    @CsvSource({ "0,0,0.01" })
+    public void hyperbolic(double x, double expected, double tolerance) {
+
+    }
+
 }
