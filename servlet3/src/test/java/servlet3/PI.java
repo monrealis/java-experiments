@@ -1,7 +1,16 @@
 package servlet3;
 
 public class PI {
-    public void pi() {
+    public void wallis() {
 
     }
+
+    public void stirling() {
+
+    }
+
+    public void ramanujan() {
+
+    }
+
 }
