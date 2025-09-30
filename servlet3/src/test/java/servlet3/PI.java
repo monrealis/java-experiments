@@ -2,13 +2,15 @@ package servlet3;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class PI {
     private static double pi = Math.PI;
 
-    @Test
-    public void wallis() {
+    @ParameterizedTest
+    @CsvSource({ "0.001" })
+    public void wallis(double tolerance) {
         double sum = 0;
         for (int i = 1; i < 3; i++) {
             double nom = 2 * i * 2 * i;
@@ -16,7 +18,7 @@ public class PI {
             double added = 1.0 * nom / den;
             sum += added;
         }
-        assertEquals(pi, 2 * sum, 0.001);
+        assertEquals(pi, 2 * sum, tolerance);
     }
 
     public void stirling(double tolerance) {
