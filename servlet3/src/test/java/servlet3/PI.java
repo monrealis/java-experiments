@@ -11,14 +11,14 @@ public class PI {
     @ParameterizedTest
     @CsvSource({ "0.001" })
     public void wallis(double tolerance) {
-        double sum = 0;
-        for (int i = 1; i <= 30; i++) {
+        double result = 1;
+        for (int i = 1; i <= 1000; i++) {
             double nom = 4 * i * i;
             double den = 4 * i * i - 1;
-            double added = 1.0 * nom / den;
-            sum += added;
+            double product = 1.0 * nom / den;
+            result *= product;
         }
-        assertEquals(pi / 2, sum, tolerance);
+        assertEquals(pi, result * 2, tolerance);
     }
 
     public void stirling(double tolerance) {
