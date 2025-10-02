@@ -1,5 +1,6 @@
 package servlet3;
 
+import static java.lang.Math.PI;
 import static java.lang.Math.pow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static servlet3.Factorials.factorial;
@@ -7,8 +8,8 @@ import static servlet3.Factorials.factorial;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class PI {
-    private static double pi = Math.PI;
+public class Pi {
+    private static double pi = PI;
 
     @ParameterizedTest
     @CsvSource({ "0.001" })
