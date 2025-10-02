@@ -16,9 +16,9 @@ public class PI {
         for (int i = 1; i <= 1000; i++) {
             double nom = 4 * i * i;
             double den = 4 * i * i - 1;
-            double product = 1.0 * nom / den;
-            result *= product;
+            result *= nom / den;
         }
+
         assertEquals(pi, result * 2, tolerance);
     }
 
@@ -26,12 +26,10 @@ public class PI {
     @CsvSource({ "0.05" })
     public void wallisFactorial(double tolerance) {
         int n = 30;
-        double fact = factorial(n);
-        double fact4th = pow(fact, 4);
-        double nom1 = pow(2, 4 * n);
-        double nom = nom1 * fact4th;
+        double nom = pow(2, 4 * n) * pow(factorial(n), 4);
         double den = factorial(2 * n) * factorial(2 * n + 1);
         double result = nom / den;
+
         assertEquals(pi, result * 2, tolerance);
     }
 
