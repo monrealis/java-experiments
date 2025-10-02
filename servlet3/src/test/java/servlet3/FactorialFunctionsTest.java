@@ -93,13 +93,6 @@ public class FactorialFunctionsTest {
         return new BigDecimal(i).multiply(TWO);
     }
 
-    double factorial(int n) {
-        double f = 1;
-        for (int i = 1; i < n; ++i)
-            f *= i + 1;
-        return f;
-    }
-
     @ParameterizedTest(name = "{0}^{1} ≈ {2} (tolerance: {3})")
     @CsvSource({ "2,3,8,0.0001", "1,1,1,0.0001", "2,2,4,0.0001" })
     public void powerX(double base, double x, double expectedResult, double tolerance) {
