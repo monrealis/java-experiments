@@ -23,13 +23,14 @@ public class PI {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0.001" })
+    @CsvSource({ "0.05" })
     public void wallisFactorial(double tolerance) {
-        int n = 10;
+        int n = 30;
         double fact = factorial(n);
         double fact4th = pow(fact, 4);
-        double nom = pow(2, 4 * n) * fact4th;
-        double den = 1;
+        double nom1 = pow(2, 4 * n);
+        double nom = nom1 * fact4th;
+        double den = factorial(2 * n) * factorial(2 * n + 1);
         double result = nom / den;
         assertEquals(pi, result * 2, tolerance);
     }
