@@ -1,5 +1,6 @@
 package servlet3;
 
+import static java.lang.Math.pow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,6 +20,25 @@ public class PI {
             result *= product;
         }
         assertEquals(pi, result * 2, tolerance);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "0.001" })
+    public void wallisFactorial(double tolerance) {
+        int n = 10;
+        double fact = factorial(n);
+        double fact4th = pow(fact, 4);
+        double nom = pow(2, 4 * n) * fact4th;
+        double den = 1;
+        double result = nom / den;
+        assertEquals(pi, result * 2, tolerance);
+    }
+
+    private double factorial(int n) {
+        double f = 1;
+        for (int i = 1; i < n; ++i)
+            f *= i + 1;
+        return f;
     }
 
     public void stirling(double tolerance) {
