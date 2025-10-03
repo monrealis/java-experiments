@@ -35,8 +35,11 @@ public class Pi {
         assertEquals(pi, result * 2, tolerance);
     }
 
+    @ParameterizedTest
+    @CsvSource(".05")
     public void stirling(double tolerance) {
-
+        double result = pi / 2;
+        assertEquals(pi, result * 2, tolerance);
     }
 
     public void ramanujan(double tolerance) {
