@@ -38,8 +38,12 @@ public class Pi {
     @ParameterizedTest
     @CsvSource(".05")
     public void stirling(double tolerance) {
-        double result = pi / 2;
-        assertEquals(pi, result * 2, tolerance);
+        int n = 30;
+        double nominator = pow(factorial(n), 2) * pow(2, 2 * n + 1);
+        double denumerator = factorial(2 * n + 1);
+        double result = nominator / denumerator;
+
+        assertEquals(pi, result, tolerance);
     }
 
     public void ramanujan(double tolerance) {
