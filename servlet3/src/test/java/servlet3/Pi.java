@@ -48,6 +48,18 @@ public class Pi {
         assertEquals(pi, result * 2, tolerance);
     }
 
+    @ParameterizedTest
+    @CsvSource("0.05")
+    @Disabled
+    public void stirlingApproximation(double tolerance) {
+        int n = 500;
+        double nominator = 1;
+        double denumerator = 1;
+        double result = nominator / denumerator;
+
+        assertEquals(pi, result * 2, tolerance);
+    }
+
     public void ramanujan(double tolerance) {
 
     }
