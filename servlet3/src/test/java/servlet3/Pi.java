@@ -53,7 +53,7 @@ public class Pi {
     @CsvSource("0.05")
     public void ramanujan(double tolerance) {
         double result = 0;
-        double factor = 2 * sqrt(2) / 9801;
+        double factor = 2 * sqrt(2) / (99 * 99);
         for (int k = 0; k < 5; ++k) {
             double f = factorial(k);
             double numerator = factorial(4 * k) * (1103 + 26390 * k);
