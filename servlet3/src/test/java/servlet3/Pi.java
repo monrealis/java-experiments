@@ -2,6 +2,7 @@ package servlet3;
 
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
+import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,8 +55,10 @@ public class Pi {
         int n = 50;
         double factorial = factorial(n);
         double approximation = sqrt(2 * pi * n) * pow(1.0 * n / E, n);
+        double ratio = factorial / approximation;
 
-        assertEquals(factorial, approximation, tolerance);
+        double delta = abs(1 - ratio);
+        assertEquals(factorial, approximation, delta);
     }
 
     @ParameterizedTest
