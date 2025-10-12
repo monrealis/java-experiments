@@ -2,7 +2,6 @@ package servlet3;
 
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
-import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -50,15 +49,13 @@ public class Pi {
     }
 
     @ParameterizedTest
-    @CsvSource("0.1")
+    @CsvSource("0.01")
     public void stirlingApproximation(double tolerance) {
-        int n = 50;
+        int n = 10;
         double factorial = factorial(n);
         double approximation = sqrt(2 * pi * n) * pow(1.0 * n / E, n);
-        double ratio = factorial / approximation;
 
-        double delta = abs(1 - ratio);
-        assertEquals(factorial, approximation, delta);
+        assertEquals(factorial, approximation, factorial * tolerance);
     }
 
     @ParameterizedTest
