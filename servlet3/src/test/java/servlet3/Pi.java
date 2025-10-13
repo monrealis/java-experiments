@@ -38,7 +38,7 @@ public class Pi {
     }
 
     @ParameterizedTest
-    @CsvSource("3")
+    @CsvSource("4")
     public void stirling(double tolerance) {
         int n = 50;
         double nominator = pow(factorial(n), 2) * pow(2, 2 * n + 1);
