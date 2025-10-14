@@ -2,6 +2,7 @@ package servlet3;
 
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
+import static java.lang.Math.exp;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,14 +39,14 @@ public class Pi {
     }
 
     @ParameterizedTest
-    @CsvSource("4")
+    @CsvSource("0.01")
     public void stirling(double tolerance) {
-        int n = 50;
-        double nominator = pow(factorial(n), 2) * pow(2, 2 * n + 1);
-        double denumerator = factorial(2 * n + 1);
+        int n = 75;
+        double nominator = factorial(n) * factorial(n) * exp(2 * n);
+        double denumerator = 2 * pow(n, 2 * n + 1);
         double result = nominator / denumerator;
 
-        assertEquals(pi, result * 2, tolerance);
+        assertEquals(pi, result, tolerance);
     }
 
     @ParameterizedTest
