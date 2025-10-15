@@ -28,9 +28,9 @@ public class Pi {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0.05" })
-    public void wallisFactorial(double tolerance) {
-        int n = 30;
+    @CsvSource({ "0.05,30" })
+    public void wallisFactorial(double tolerance, int iterations) {
+        int n = iterations;
         double nominator = pow(2, 4 * n) * pow(factorial(n), 4);
         double denumerator = factorial(2 * n) * factorial(2 * n + 1);
         double result = nominator / denumerator;
