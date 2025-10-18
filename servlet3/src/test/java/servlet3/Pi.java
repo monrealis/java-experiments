@@ -79,11 +79,14 @@ public class Pi {
     @ParameterizedTest
     @CsvSource("0.05")
     public void ramanujan1(double tolerance) {
-        double result = 0;
-        for (int k = 0; k < 5; ++k) {
-            double added = 0;
-            result += added;
+        double sum = 0;
+        for (int n = 0; n < 5; ++n) {
+            double numerator = (6 * n + 1) * pow(0.5, 3);
+            double denominator = pow(4, n) / pow(factorial(n), 3);
+            double added = numerator / denominator;
+            sum += added;
         }
+        double result = 4 / sum;
         assertEquals(pi, result, tolerance);
     }
 
