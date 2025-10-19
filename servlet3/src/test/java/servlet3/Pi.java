@@ -93,11 +93,12 @@ public class Pi {
     @ParameterizedTest
     @CsvSource("0.05")
     public void ramanujan2(double tolerance) {
-        double result = 0;
-        for (int k = 0; k < 5; ++k) {
-            double added = 0;
-            result += added;
+        double sum = 0;
+        for (int n = 0; n < 5; ++n) {
+            double added = (15 * n + 2) * 1.0 * 1.0 * 1.0 / factorial(n) * pow(2.0 / 27, n);
+            sum += added;
         }
+        double result = 27.0 / 4 / sum;
         assertEquals(pi, result, tolerance);
     }
 }
