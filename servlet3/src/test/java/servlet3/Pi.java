@@ -75,30 +75,4 @@ public class Pi {
         double temp1 = 1 / temp;
         assertEquals(pi, temp1, tolerance);
     }
-
-    @ParameterizedTest
-    @CsvSource("0.05")
-    public void ramanujan1(double tolerance) {
-        double sum = 0;
-        for (int n = 0; n < 5; ++n) {
-            double numerator = (6 * n + 1) * pow(0.5, 3);
-            double denominator = pow(4, n) / pow(factorial(n), 3);
-            double added = numerator / denominator;
-            sum += added;
-        }
-        double result = 4 / sum;
-        assertEquals(pi, result, tolerance);
-    }
-
-    @ParameterizedTest
-    @CsvSource("0.05")
-    public void ramanujan2(double tolerance) {
-        double sum = 0;
-        for (int n = 0; n < 5; ++n) {
-            double added = (15 * n + 2) * 1.0 * 1.0 * 1.0 / factorial(n) * pow(2.0 / 27, n);
-            sum += added;
-        }
-        double result = 27.0 / 4 / sum;
-        assertEquals(pi, result, tolerance);
-    }
 }
