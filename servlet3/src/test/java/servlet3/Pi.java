@@ -62,32 +62,31 @@ public class Pi {
     @ParameterizedTest
     @CsvSource("0.05")
     public void ramanujan(double tolerance) {
-        double result = 0;
+        double sum = 0;
         double factor = 2 * sqrt(2) / (99 * 99);
         for (int k = 0; k < 5; ++k) {
             double f = factorial(k);
             double numerator = factorial(4 * k) * (1103 + 26390 * k);
             double denominator = f * f * f * f * pow(396, 4 * k);
             double added = numerator / denominator;
-            result += added;
+            sum += added;
         }
-        double temp = result * factor;
-        double temp1 = 1 / temp;
-        assertEquals(pi, temp1, tolerance);
+        double actual = 1 / (sum * factor);
+        assertEquals(pi, actual, tolerance);
     }
 
     @ParameterizedTest
-    @CsvSource("0.05")
+    @CsvSource("0.0001")
     public void ramanujan1(double tolerance) {
-        double result = 0;
-        for (int k = 0; k < 5; ++k) {
-            double numerator = pow(factorial(2 * k), 3) * (42 * k + 5);
-            double denominator = pow(2, 12 * k) * pow(factorial(k), 6);
+        double sum = 0;
+        for (int n = 0; n < 5; ++n) {
+            double numerator = pow(factorial(2 * n), 3) * (42 * n + 5);
+            double denominator = pow(2, 12 * n + 4) * pow(factorial(n), 6);
             double added = numerator / denominator;
-            result += added;
+            sum += added;
         }
-        double res = 1 / result;
-        assertEquals(pi, res, tolerance);
+        double actual = 1 / sum;
+        assertEquals(pi, actual, tolerance);
     }
 
 }
