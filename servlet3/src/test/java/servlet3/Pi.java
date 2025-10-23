@@ -89,4 +89,17 @@ public class Pi {
         assertEquals(pi, actual, tolerance);
     }
 
+    @ParameterizedTest
+    @CsvSource("0.0001")
+    public void ramanujan2(double tolerance) {
+        double sum = 0;
+        for (int n = 0; n < 5; ++n) {
+            double numerator = 1;
+            double denominator = 3;
+            double added = numerator / denominator;
+            sum += added;
+        }
+        double actual = 1 / sum;
+        assertEquals(pi, actual, tolerance);
+    }
 }
