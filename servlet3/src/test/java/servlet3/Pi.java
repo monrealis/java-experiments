@@ -94,12 +94,12 @@ public class Pi {
     public void ramanujan2(double tolerance) {
         double sum = 0;
         for (int n = 0; n < 5; ++n) {
-            double numerator = 1;
-            double denominator = 3;
+            double numerator = pow(-1, n) * factorial(4 * n) * (1123 + 21460 * n);
+            double denominator = pow(2, 10 * n + 1) * pow(factorial(n), 4) * pow(441, 2 * n + 1);
             double added = numerator / denominator;
             sum += added;
         }
-        double actual = 1 / sum;
+        double actual = 4 / sum;
         assertEquals(pi, actual, tolerance);
     }
 }
