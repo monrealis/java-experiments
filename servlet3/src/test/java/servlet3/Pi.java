@@ -102,18 +102,20 @@ public class Pi {
         double actual = 4 / sum;
         assertEquals(pi, actual, tolerance);
     }
-    
+
     @ParameterizedTest
     @CsvSource("0.01")
-    public void ramanujan3(double tolerance) {
+    public void gregoryLeibniz(double tolerance) {
         double sum = 0;
-        for (int n = 0; n < 5; ++n) {
-            double numerator = 1;
-            double denominator = 1;
+        double num = 1;
+        for (int n = 0; n < 199; ++n) {
+            double numerator = num;
+            double denominator = 2 * n + 1;
             double added = numerator / denominator;
+            num *= -1;
             sum += added;
         }
-        double actual = 4 / sum;
+        double actual = 4 * sum;
         assertEquals(pi, actual, tolerance);
     }
 }
