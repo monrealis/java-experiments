@@ -118,4 +118,21 @@ public class Pi {
         double actual = 4 * sum;
         assertEquals(pi, actual, tolerance);
     }
+
+    @ParameterizedTest
+    @CsvSource("0.01")
+    public void nilakantha(double tolerance) {
+        double sum = 0;
+        double num = 1;
+        for (int n = 1; n < 5; ++n) {
+            double numerator = num;
+            double denominator = (2 * n) * (2 * n + 1) * (2 * n + 2);
+            double added = numerator / denominator;
+            num *= -1;
+            sum += added;
+        }
+        double actual = 3 + 4 * sum;
+        assertEquals(pi, actual, tolerance);
+    }
+
 }
