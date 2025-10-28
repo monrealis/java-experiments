@@ -135,4 +135,17 @@ public class Pi {
         assertEquals(pi, actual, tolerance);
     }
 
+    @ParameterizedTest
+    @CsvSource("0.01")
+    public void eulerBasel(double tolerance) {
+        double sum = 0;
+        for (int n = 1; n < 97; ++n) {
+            double numerator = 6;
+            double denominator = n * n;
+            double added = numerator / denominator;
+            sum += added;
+        }
+        double actual = sqrt(sum);
+        assertEquals(pi, actual, tolerance);
+    }
 }
