@@ -148,4 +148,17 @@ public class Pi {
         double actual = sqrt(sum);
         assertEquals(pi, actual, tolerance);
     }
+
+    double arctan(double x) {
+        double sum = 0;
+        double nom = 1;
+        for (int n = 0; n < 10; ++n) {
+            double numerator = nom * pow(x, 2 * n + 1);
+            double denominator = 2 * n + 1;
+            double added = numerator / denominator;
+            nom *= -1;
+            sum += added;
+        }
+        return sum;
+    }
 }
