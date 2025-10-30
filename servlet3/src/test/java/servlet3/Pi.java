@@ -152,7 +152,7 @@ public class Pi {
     double arctan(double x) {
         double sum = 0;
         double nom = 1;
-        for (int n = 0; n < 10; ++n) {
+        for (int n = 0; n < 4000; ++n) {
             double numerator = nom * pow(x, 2 * n + 1);
             double denominator = 2 * n + 1;
             double added = numerator / denominator;
@@ -160,5 +160,13 @@ public class Pi {
             sum += added;
         }
         return sum;
+    }
+
+    @ParameterizedTest
+    @CsvSource("0.01")
+    public void machineLike(double tolerance) {
+        double actual = 16 * arctan(1.0 / 5) + 4 * arctan(1.0 / 239);
+
+        assertEquals(pi, actual, tolerance);
     }
 }
