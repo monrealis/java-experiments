@@ -173,29 +173,34 @@ public class Pi {
     @ParameterizedTest
     @CsvSource("0.01")
     public void machinLike2(double tolerance) {
-        double sum1 = 0;
-        {
-            double nom = 1;
-            for (int n = 0; n < 5; ++n) {
-                double numerator = nom;
-                double denominator = (2 * n + 1) * pow(5, 2 * n + 1);
-                double added = numerator / denominator;
-                nom *= -1;
-                sum1 += added;
-            }
-        }
-        double sum2 = 0;
-        {
-            double nom = 1;
-            for (int n = 0; n < 5; ++n) {
-                double numerator = nom;
-                double denominator = (2 * n + 1) * pow(239, 2 * n + 1);
-                double added = numerator / denominator;
-                nom *= -1;
-                sum2 += added;
-            }
-        }
-        double actual = 16 * sum1 - 4 * sum2;
+        double actual = 16 * arctan5() - 4 * arctan39();
+
         assertEquals(pi, actual, tolerance);
+    }
+
+    private double arctan39() {
+        double sum = 0;
+        double nom = 1;
+        for (int n = 0; n < 5; ++n) {
+            double numerator = nom;
+            double denominator = (2 * n + 1) * pow(239, 2 * n + 1);
+            double added = numerator / denominator;
+            nom *= -1;
+            sum += added;
+        }
+        return sum;
+    }
+
+    private double arctan5() {
+        double sum = 0;
+        double nom = 1;
+        for (int n = 0; n < 5; ++n) {
+            double numerator = nom;
+            double denominator = (2 * n + 1) * pow(5, 2 * n + 1);
+            double added = numerator / denominator;
+            nom *= -1;
+            sum += added;
+        }
+        return sum;
     }
 }
