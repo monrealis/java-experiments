@@ -173,12 +173,12 @@ public class Pi {
     @ParameterizedTest
     @CsvSource("0.01")
     public void machinLike2(double tolerance) {
-        double actual = 16 * arctan5() - 4 * arctan39();
+        double actual = 16 * arctan1over5() - 4 * arctan1over239();
 
         assertEquals(pi, actual, tolerance);
     }
 
-    private double arctan39() {
+    private double arctan1over239() {
         double sum = 0;
         double nom = 1;
         for (int n = 0; n < 5; ++n) {
@@ -191,7 +191,7 @@ public class Pi {
         return sum;
     }
 
-    private double arctan5() {
+    private double arctan1over5() {
         double sum = 0;
         double nom = 1;
         for (int n = 0; n < 5; ++n) {
