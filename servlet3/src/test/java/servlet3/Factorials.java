@@ -7,4 +7,11 @@ public class Factorials {
             f *= i + 1;
         return f;
     }
+
+    static double factorial(double initial, int fromN, int n) {
+        double f = initial;
+        for (int i = fromN; i < n; ++i)
+            f *= i + 1;
+        return f;
+    }
 }

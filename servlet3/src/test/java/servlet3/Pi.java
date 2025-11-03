@@ -31,10 +31,12 @@ public class Pi {
     @CsvSource({ "0.05,30" })
     public void wallisFactorial(double tolerance, int iterations) {
         int n = iterations;
-        double nominator = pow(2, 4 * n) * pow(factorial(n), 4);
-        double denumerator = factorial(2 * n) * factorial(2 * n + 1);
+        double fact = factorial(n);
+        double fact2 = factorial(fact, n, 2 * n);
+        double fact3 = fact2 * (2 * n + 1);
+        double nominator = pow(2, 4 * n) * fact * fact * fact * fact;
+        double denumerator = fact2 * fact3;
         double result = nominator / denumerator;
-
         assertEquals(pi, result * 2, tolerance);
     }
 
