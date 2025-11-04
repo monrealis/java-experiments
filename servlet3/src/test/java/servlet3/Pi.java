@@ -44,7 +44,8 @@ public class Pi {
     @CsvSource("0.01")
     public void stirling(double tolerance) {
         int n = 75;
-        double nominator = factorial(n) * factorial(n) * exp(2 * n);
+        double factorial = factorial(n);
+        double nominator = factorial * factorial * exp(2 * n);
         double denumerator = 2 * pow(n, 2 * n + 1);
         double result = nominator / denumerator;
 
