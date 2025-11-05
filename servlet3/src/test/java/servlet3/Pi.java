@@ -7,6 +7,8 @@ import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static servlet3.Factorials.factorial;
+import static servlet3.Powers.power;
+import static servlet3.Powers.power2;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -34,7 +36,7 @@ public class Pi {
         double fact = factorial(n);
         double fact2 = factorial(fact, n, 2 * n);
         double fact3 = fact2 * (2 * n + 1);
-        double nominator = pow(2, 4 * n) * fact * fact * fact * fact;
+        double nominator = power2(4 * n) * fact * fact * fact * fact;
         double denumerator = fact2 * fact3;
         double result = nominator / denumerator;
         assertEquals(pi, result * 2, tolerance);
@@ -46,7 +48,7 @@ public class Pi {
         int n = 75;
         double factorial = factorial(n);
         double nominator = factorial * factorial * exp(2 * n);
-        double denumerator = 2 * pow(n, 2 * n + 1);
+        double denumerator = 2 * power(n, 2 * n + 1);
         double result = nominator / denumerator;
 
         assertEquals(pi, result, tolerance);
