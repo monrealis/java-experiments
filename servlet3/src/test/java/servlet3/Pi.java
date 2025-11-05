@@ -59,7 +59,7 @@ public class Pi {
     public void stirlingApproximation(double tolerance) {
         int n = 10;
         double factorial = factorial(n);
-        double approximation = sqrt(2 * pi * n) * pow(1.0 * n / E, n);
+        double approximation = sqrt(2 * pi * n) * power(1.0 * n / E, n);
 
         assertEquals(factorial, approximation, factorial * tolerance);
     }
@@ -72,7 +72,7 @@ public class Pi {
         for (int k = 0; k < 5; ++k) {
             double f = factorial(k);
             double numerator = factorial(4 * k) * (1103 + 26390 * k);
-            double denominator = f * f * f * f * pow(396, 4 * k);
+            double denominator = f * f * f * f * power(396, 4 * k);
             double added = numerator / denominator;
             sum += added;
         }
@@ -85,8 +85,10 @@ public class Pi {
     public void ramanujan1(double tolerance) {
         double sum = 0;
         for (int n = 0; n < 5; ++n) {
-            double numerator = pow(factorial(2 * n), 3) * (42 * n + 5);
-            double denominator = pow(2, 12 * n + 4) * pow(factorial(n), 6);
+            double f2 = factorial(2 * n);
+            double numerator = f2 * f2 * f2 * (42 * n + 5);
+            double f = factorial(n);
+            double denominator = power2(12 * n + 4) * f * f * f * f * f * f;
             double added = numerator / denominator;
             sum += added;
         }
