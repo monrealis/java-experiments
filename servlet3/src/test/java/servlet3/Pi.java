@@ -102,7 +102,8 @@ public class Pi {
         double sum = 0;
         for (int n = 0; n < 5; ++n) {
             double numerator = pow(-1, n) * factorial(4 * n) * (1123 + 21460 * n);
-            double denominator = pow(2, 10 * n + 1) * pow(factorial(n), 4) * pow(441, 2 * n + 1);
+            double f = factorial(n);
+            double denominator = power2(10 * n + 1) * f * f * f * f * pow(441, 2 * n + 1);
             double added = numerator / denominator;
             sum += added;
         }
