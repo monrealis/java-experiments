@@ -3,7 +3,6 @@ package servlet3;
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
 import static java.lang.Math.exp;
-import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static servlet3.Factorials.factorial;
@@ -101,9 +100,9 @@ public class Pi {
     public void ramanujan2(double tolerance) {
         double sum = 0;
         for (int n = 0; n < 5; ++n) {
-            double numerator = pow(-1, n) * factorial(4 * n) * (1123 + 21460 * n);
+            double numerator = power(-1, n) * factorial(4 * n) * (1123 + 21460 * n);
             double f = factorial(n);
-            double denominator = power2(10 * n + 1) * f * f * f * f * pow(441, 2 * n + 1);
+            double denominator = power2(10 * n + 1) * f * f * f * f * power(441, 2 * n + 1);
             double added = numerator / denominator;
             sum += added;
         }
@@ -161,7 +160,7 @@ public class Pi {
         double sum = 0;
         double nom = 1;
         for (int n = 0; n < 3; ++n) {
-            double numerator = nom * pow(x, 2 * n + 1);
+            double numerator = nom * power(x, 2 * n + 1);
             double denominator = 2 * n + 1;
             double added = numerator / denominator;
             nom *= -1;
@@ -191,7 +190,7 @@ public class Pi {
         double nom = 1;
         for (int n = 0; n < 5; ++n) {
             double numerator = nom;
-            double denominator = (2 * n + 1) * pow(239, 2 * n + 1);
+            double denominator = (2 * n + 1) * power(239, 2 * n + 1);
             double added = numerator / denominator;
             nom *= -1;
             sum += added;
@@ -204,7 +203,7 @@ public class Pi {
         double nom = 1;
         for (int n = 0; n < 5; ++n) {
             double numerator = nom;
-            double denominator = (2 * n + 1) * pow(5, 2 * n + 1);
+            double denominator = (2 * n + 1) * power(5, 2 * n + 1);
             double added = numerator / denominator;
             nom *= -1;
             sum += added;
