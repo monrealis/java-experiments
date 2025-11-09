@@ -210,4 +210,11 @@ public class Pi {
         }
         return sum;
     }
+
+    @CsvSource("0.01")
+    public void somethingElse(double tolerance) {
+        double actual = 16 * arctan1over5() - 4 * arctan1over239();
+
+        assertEquals(pi, actual, tolerance);
+    }
 }
