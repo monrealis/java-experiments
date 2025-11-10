@@ -111,6 +111,21 @@ public class Pi {
     }
 
     @ParameterizedTest
+    @CsvSource("0.0001")
+    public void ramanujan3(double tolerance) {
+        double sum = 0;
+        for (int n = 0; n < 5; ++n) {
+            double numerator = power(-1, n) * factorial(4 * n) * (1123 + 21460 * n);
+            double f = factorial(n);
+            double denominator = power2(10 * n + 1) * f * f * f * f * power(441, 2 * n + 1);
+            double added = numerator / denominator;
+            sum += added;
+        }
+        double actual = 9801 / sqrt(8) * sum;
+        assertEquals(pi, actual, tolerance);
+    }
+
+    @ParameterizedTest
     @CsvSource("0.01")
     public void gregoryLeibniz(double tolerance) {
         double sum = 0;
