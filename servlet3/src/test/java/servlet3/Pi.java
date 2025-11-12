@@ -115,17 +115,13 @@ public class Pi {
     public void ramanujan3(double tolerance) {
         double sum = 0;
         for (int n = 0; n < 5; ++n) {
-            double part1 = factorial(4 * n);
-            double part2 = 1103 + 26390 * n;
-            double part3 = factorial(n) * factorial(n) * factorial(n) * factorial(n);
-            double part4 = power(396, 4 * n);
-            double numerator = power(-1, n) * factorial(4 * n) * (1123 + 21460 * n);
             double f = factorial(n);
-            double denominator = power2(10 * n + 1) * f * f * f * f * power(441, 2 * n + 1);
-            double added = numerator / denominator;
+            double num = factorial(4 * n) * (1103 + 26390 * n);
+            double den = (f * f * f * f) * power(396, 4 * n);
+            double added = num / den;
             sum += added;
         }
-        double actual = 9801 / sqrt(8) * sum;
+        double actual = 9801 / sqrt(8) / sum;
         assertEquals(pi, actual, tolerance);
     }
 
