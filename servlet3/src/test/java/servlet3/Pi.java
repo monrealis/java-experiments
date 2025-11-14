@@ -17,6 +17,19 @@ public class Pi {
 
     @ParameterizedTest
     @CsvSource({ "0.001" })
+    public void wallisProduct(double tolerance) {
+        double result = 1;
+        for (int i = 1; i <= 1000; i++) {
+            double nominator = 4 * i * i;
+            double denumerator = 4 * i * i - 1;
+            result *= nominator / denumerator;
+        }
+
+        assertEquals(pi, result * 2, tolerance);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "0.001" })
     public void wallis(double tolerance) {
         double result = 1;
         for (int i = 1; i <= 1000; i++) {
