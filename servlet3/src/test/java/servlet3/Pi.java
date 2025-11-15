@@ -128,10 +128,10 @@ public class Pi {
     public void ramanujan3(double tolerance) {
         double sum = 0;
         for (int n = 0; n < 5; ++n) {
-            double f = factorial(n);
-            double num = factorial(4 * n) * (1103 + 26390 * n);
-            double den = (f * f * f * f) * power(396, 4 * n);
-            double added = num / den;
+            double factorial = factorial(n);
+            double numerator = factorial(4 * n) * (1103 + 26390 * n);
+            double denominator = power(factorial, 4) * power(396, 4 * n);
+            double added = numerator / denominator;
             sum += added;
         }
         double actual = 9801 / sqrt(8) / sum;
