@@ -35,7 +35,7 @@ public class Pi {
         for (int i = 1; i <= 1000; i++) {
             double nominator = 4 * i * i;
             double denumerator = 4 * i * i - 1;
-            result *= nominator / denumerator;
+            result += nominator / denumerator;
         }
 
         assertEquals(pi, result * 2, tolerance);
