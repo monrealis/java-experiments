@@ -3,6 +3,7 @@ package servlet3;
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
 import static java.lang.Math.exp;
+import static java.lang.Math.log;
 import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static servlet3.Factorials.factorial;
@@ -31,14 +32,14 @@ public class Pi {
     @ParameterizedTest
     @CsvSource({ "0.001" })
     public void wallis(double tolerance) {
-        double result = 1;
+        double result = 0;
         for (int i = 1; i <= 1000; i++) {
-            double nominator = 4 * i * i;
-            double denumerator = 4 * i * i - 1;
-            result += nominator / denumerator;
+            double n2 = i * 2;
+            double part = log(n2 / (n2 - 1)) * log(n2 / (n2 + 1));
+            result += part;
         }
-
-        assertEquals(pi, result * 2, tolerance);
+        double result1 = exp(result);
+        assertEquals(pi, result1 * 2, tolerance);
     }
 
     @ParameterizedTest
