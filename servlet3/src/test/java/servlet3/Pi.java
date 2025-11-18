@@ -34,12 +34,12 @@ public class Pi {
     public void wallis(double tolerance) {
         double result = 0;
         for (int i = 1; i <= 1000; i++) {
-            double n2 = i * 2;
-            double part = log(n2 / (n2 - 1)) * log(n2 / (n2 + 1));
+            double nTimes2 = i * 2;
+            double part = log(nTimes2 / (nTimes2 - 1)) + log(nTimes2 / (nTimes2 + 1));
             result += part;
         }
-        double result1 = exp(result);
-        assertEquals(pi, result1 * 2, tolerance);
+        double expected = exp(result);
+        assertEquals(pi, expected * 2, tolerance);
     }
 
     @ParameterizedTest
