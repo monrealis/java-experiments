@@ -29,4 +29,18 @@ public class E {
         }
         assertEquals(Math.E, result, tolerance);
     }
+
+    @ParameterizedTest
+    @CsvSource({ "0.1" })
+    public void alternating(double tolerance) {
+        int n = 10000;
+        double minus1 = 1;
+        double result = 2;
+        for (int i = 1; i <= n; i++) {
+            double term = minus1 / factorial(i) / i;
+            minus1 *= -1;
+            result += term;
+        }
+        assertEquals(Math.E, result, tolerance);
+    }
 }
