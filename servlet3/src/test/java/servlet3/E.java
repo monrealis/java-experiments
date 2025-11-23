@@ -43,4 +43,14 @@ public class E {
         }
         assertEquals(Math.E, result, tolerance);
     }
+    
+    @ParameterizedTest
+    @CsvSource({ "0.001" })
+    public void someOtherWay(double tolerance) {
+        int pow = 10000;
+
+        double result = power(1 + 1.0 / pow, pow);
+
+        assertEquals(Math.E, result, tolerance);
+    }
 }
