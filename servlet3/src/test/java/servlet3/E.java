@@ -10,10 +10,24 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class E {
     @ParameterizedTest
     @CsvSource({ "0.001" })
-    public void e(double tolerance) {
+    public void definition(double tolerance) {
         int pow = 10000;
 
         double result = power(1 + 1.0 / pow, pow);
+
+        assertEquals(Math.E, result, tolerance);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "0.01" })
+    public void binomial(double tolerance) {
+        int n = 150;
+
+        double result = 0;
+        for (int i = 0; i <= n; i++) {
+            double added = factorial(n) / factorial(i) / factorial(n - i) / power(n, i);
+            result += added;
+        }
 
         assertEquals(Math.E, result, tolerance);
     }
@@ -43,14 +57,5 @@ public class E {
         }
         assertEquals(Math.E, result, tolerance);
     }
-    
-    @ParameterizedTest
-    @CsvSource({ "0.001" })
-    public void someOtherWay(double tolerance) {
-        int pow = 10000;
 
-        double result = power(1 + 1.0 / pow, pow);
-
-        assertEquals(Math.E, result, tolerance);
-    }
 }
