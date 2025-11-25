@@ -33,6 +33,20 @@ public class E {
     }
 
     @ParameterizedTest
+    @CsvSource({ "0.01" })
+    public void product(double tolerance) {
+        int n = 300;
+
+        double result = 0;
+        for (int i = 0; i <= n; i++) {
+            double added = (1 - 1.0 * i / n) / factorial(i);
+            result += added;
+        }
+
+        assertEquals(Math.E, result, tolerance);
+    }
+
+    @ParameterizedTest
     @CsvSource({ "0.001" })
     public void taylor(double tolerance) {
         int n = 6;
@@ -57,5 +71,4 @@ public class E {
         }
         assertEquals(Math.E, result, tolerance);
     }
-
 }
