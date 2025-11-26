@@ -36,10 +36,11 @@ public class E {
     @CsvSource({ "0.01" })
     public void product(double tolerance) {
         int n = 300;
-
+        double factorial = 1;
         double result = 0;
         for (int i = 0; i <= n; i++) {
-            double added = (1 - 1.0 * i / n) / factorial(i);
+            double added = (1 - 1.0 * i / n) / factorial;
+            factorial *= i + 1;
             result += added;
         }
 
