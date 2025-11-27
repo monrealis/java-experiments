@@ -22,10 +22,13 @@ public class E {
     @CsvSource({ "0.01" })
     public void binomial(double tolerance) {
         int n = 150;
-
+        double factorial = factorial(n);
+        double fact = 1;
         double result = 0;
         for (int i = 0; i <= n; i++) {
-            double added = factorial(n) / factorial(i) / factorial(n - i) / power(n, i);
+            double added = factorial / factorial(i) / factorial(n - i) / power(n, i);
+            if (fact > 0)
+                fact *= i;
             result += added;
         }
 
