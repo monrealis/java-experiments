@@ -26,9 +26,9 @@ public class E {
         double fact = 1;
         double result = 0;
         for (int i = 0; i <= n; i++) {
-            double added = factorial / factorial(i) / factorial(n - i) / power(n, i);
-            if (fact > 0)
+            if (i > 0)
                 fact *= i;
+            double added = factorial / fact / factorial(n - i) / power(n, i);
             result += added;
         }
 
