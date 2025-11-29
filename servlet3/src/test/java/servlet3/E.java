@@ -54,9 +54,11 @@ public class E {
     @CsvSource({ "0.001" })
     public void taylor(double tolerance) {
         int n = 6;
+        double factorial = 1;
         double result = 0;
         for (int i = 0; i <= n; i++) {
-            double term = 1.0 / factorial(i);
+            double term = 1.0 / factorial;
+            factorial *= i + 1;
             result += term;
         }
         assertEquals(Math.E, result, tolerance);
