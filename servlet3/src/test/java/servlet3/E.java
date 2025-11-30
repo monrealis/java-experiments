@@ -71,7 +71,8 @@ public class E {
         double minus1 = 1;
         double result = 2;
         for (int i = 1; i <= n; i++) {
-            double term = minus1 / factorial(i) / i;
+            double f = factorial(i);
+            double term = minus1 / f / i;
             minus1 *= -1;
             result += term;
         }
