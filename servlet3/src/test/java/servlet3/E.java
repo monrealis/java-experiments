@@ -70,9 +70,10 @@ public class E {
         int n = 10000;
         double minus1 = 1;
         double result = 2;
+        double factorial = 1;
         for (int i = 1; i <= n; i++) {
-            double f = factorial(i);
-            double term = minus1 / f / i;
+            factorial *= i;
+            double term = minus1 / factorial / i;
             minus1 *= -1;
             result += term;
         }
