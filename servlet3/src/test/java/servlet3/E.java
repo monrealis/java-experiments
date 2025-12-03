@@ -24,9 +24,8 @@ public class E {
         int n = 150;
         double factorial = factorial(n);
         double factorials[] = new double[n + 1];
-        for (int i = 0; i < factorials.length; i++) {
+        for (int i = 0; i < factorials.length; i++)
             factorials[i] = factorial(n - i);
-        }
         double fact = 1;
         double result = 0;
         for (int i = 0; i <= n; i++) {
