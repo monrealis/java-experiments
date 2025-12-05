@@ -22,16 +22,16 @@ public class E {
     @CsvSource({ "0.01" })
     public void binomial(double tolerance) {
         int n = 150;
-        double factorialN = factorial(n);
         double factorials[] = new double[n + 1];
         for (int i = 0; i < factorials.length; i++)
             factorials[i] = factorial(n - i);
+        // TODO remove
         double currentFactorial = 1;
         double result = 0;
         for (int i = 0; i <= n; i++) {
             if (i > 0)
                 currentFactorial *= i;
-            double added = factorialN / currentFactorial / factorials[i] / power(n, i);
+            double added = factorials[0] / currentFactorial / factorials[i] / power(n, i);
             result += added;
         }
 
