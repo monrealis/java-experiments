@@ -22,15 +22,20 @@ public class E {
     @CsvSource({ "0.01" })
     public void binomial(double tolerance) {
         int n = 150;
-        double factorials[] = new double[n + 1];
-        for (int i = 0; i < factorials.length; i++)
-            factorials[i] = factorial(n - i);
+        double[] factorials = reverseFactorials(n);
         double result = 0;
         for (int i = 0; i <= n; i++) {
             double added = factorials[0] / factorials[n - i] / factorials[i] / power(n, i);
             result += added;
         }
         assertEquals(Math.E, result, tolerance);
+    }
+
+    private double[] reverseFactorials(int n) {
+        double factorials[] = new double[n + 1];
+        for (int i = 0; i < factorials.length; i++)
+            factorials[i] = factorial(n - i);
+        return factorials;
     }
 
     @ParameterizedTest
