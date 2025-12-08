@@ -32,6 +32,10 @@ public class E {
     }
 
     private double[] reverseFactorials(int n) {
+        return factorials(n);
+    }
+
+    private double[] factorials(int n) {
         double factorials[] = new double[n + 1];
         for (int i = 0; i < factorials.length; i++)
             factorials[i] = factorial(n - i);
