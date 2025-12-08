@@ -1,8 +1,11 @@
 package servlet3;
 
+import static java.util.Collections.reverseOrder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static servlet3.Factorials.factorial;
 import static servlet3.Powers.power;
+
+import java.util.Arrays;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -32,13 +35,14 @@ public class E {
     }
 
     private double[] reverseFactorials(int n) {
-        return factorials(n);
+        return Arrays.stream(factorials(n)).boxed().sorted(reverseOrder()).mapToDouble(Double::valueOf).toArray();
     }
 
     private double[] factorials(int n) {
         double factorials[] = new double[n + 1];
         for (int i = 0; i < factorials.length; i++)
-            factorials[i] = factorial(n - i);
+            factorials[i] = factorial(i);
+        // TODO
         return factorials;
     }
 
