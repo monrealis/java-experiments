@@ -2,7 +2,6 @@ package servlet3;
 
 import static java.util.Collections.reverseOrder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static servlet3.Factorials.factorial;
 import static servlet3.Powers.power;
 
 import java.util.Arrays;
@@ -40,9 +39,11 @@ public class E {
 
     private double[] factorials(int n) {
         double factorials[] = new double[n + 1];
-        for (int i = 0; i < factorials.length; i++)
-            factorials[i] = factorial(i);
-        // TODO
+        double fact = 1;
+        for (int i = 0; i < factorials.length; i++) {
+            factorials[i] = fact;
+            fact *= i + 1;
+        }
         return factorials;
     }
 
