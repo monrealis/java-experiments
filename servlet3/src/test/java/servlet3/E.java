@@ -94,7 +94,10 @@ public class E {
 
     @ParameterizedTest
     @CsvSource("0.01")
-    public void someOther(double tolerance) {
-        
+    public void euler(double tolerance) {
+        double sum = 2;
+        for (int i = 0; i < 5; i++) {
+            
+        }
     }
 }
