@@ -95,9 +95,17 @@ public class E {
     @ParameterizedTest
     @CsvSource("0.01")
     public void euler(double tolerance) {
-        double sum = 2;
-        for (int i = 0; i < 5; i++) {
-            
+        int numerator = 2;
+        int denominator = 0;
+        System.out.println(2 + ": " + numerator);
+        for (int k = 1; k < 5; k++) {
+            numerator += 1;
+            System.out.print(1 + " (" + numerator + "), ");
+            numerator += numerator + 2 * k;
+            System.out.print(2 * k + " (" + numerator + "), ");
+            numerator += numerator + 1;
+            System.out.print(1 + " (" + numerator + ")");
+            System.out.println();
         }
     }
 }
