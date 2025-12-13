@@ -97,15 +97,25 @@ public class E {
     public void euler(double tolerance) {
         int numerator = 2;
         int denominator = 0;
-        System.out.println(2 + ": " + numerator);
-        for (int k = 1; k < 5; k++) {
-            numerator += 1;
-            System.out.print(1 + " (" + numerator + "), ");
-            numerator += numerator + 2 * k;
-            System.out.print(2 * k + " (" + numerator + "), ");
-            numerator += numerator + 1;
-            System.out.print(1 + " (" + numerator + ")");
-            System.out.println();
+       // System.out.println(2 + ": " + numerator);
+//        for (int k = 1; k < 5; k++) {
+//            numerator += 1;
+//            System.out.print(1 + " (" + numerator + "), ");
+//            numerator += numerator + 2 * k;
+//            System.out.print(2 * k + " (" + numerator + "), ");
+//            numerator += numerator + 1;
+//            System.out.print(1 + " (" + numerator + ")");
+//            System.out.println();
+//        }
+        int p2 = 0;
+        int q2 = 1;
+        int p1 = 1;
+        int q1 = 0;
+        for (int i = 0; i < 10; i++) {
+            int p = i * p1 + p2;
+            int q = i * q1 + q2;
+            double v = 1.0 * p / q;
+            System.out.println(v);
         }
     }
 }
