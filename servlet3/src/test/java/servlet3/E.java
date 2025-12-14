@@ -97,16 +97,7 @@ public class E {
     public void euler(double tolerance) {
         int numerator = 2;
         int denominator = 0;
-       // System.out.println(2 + ": " + numerator);
-//        for (int k = 1; k < 5; k++) {
-//            numerator += 1;
-//            System.out.print(1 + " (" + numerator + "), ");
-//            numerator += numerator + 2 * k;
-//            System.out.print(2 * k + " (" + numerator + "), ");
-//            numerator += numerator + 1;
-//            System.out.print(1 + " (" + numerator + ")");
-//            System.out.println();
-//        }
+
         int p2 = 0;
         int q2 = 1;
         int p1 = 1;
