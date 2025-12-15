@@ -102,11 +102,12 @@ public class E {
         int q2 = 1;
         int p1 = 1;
         int q1 = 0;
+        double a = 0;
         for (int i = 0; i < 10; i++) {
             int p = i * p1 + p2;
             int q = i * q1 + q2;
-            double v = 1.0 * p / q;
-            System.out.println(v);
+            a += 1.0 * p / q;
+            System.out.println(a);
         }
     }
 }
