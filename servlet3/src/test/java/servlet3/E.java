@@ -92,22 +92,31 @@ public class E {
         assertEquals(Math.E, result, tolerance);
     }
 
+    private int a(int n) {
+        if (n == 0)
+            return 2;
+        if (n % 3 == 2)
+            return 2 * (n / 3 + 1);
+        return 1;
+    }
+
     @ParameterizedTest
     @CsvSource("0.01")
     public void euler(double tolerance) {
-        int numerator = 2;
-        int denominator = 0;
-
         int p2 = 0;
-        int q2 = 1;
         int p1 = 1;
+        int q2 = 1;
         int q1 = 0;
-        double a = 0;
         for (int i = 0; i < 10; i++) {
-            int p = i * p1 + p2;
-            int q = i * q1 + q2;
-            a += 1.0 * p / q;
-            System.out.println(a);
+            int a = a(i);
+            int p = a * p1 + p2;
+            int q = a * q1 + q2;
+            double v = 1. * p / q;
+            System.out.println(v);
+            p2 = p1;
+            p1 = p;
+            q2 = q1;
+            q1 = q;
         }
     }
 }
