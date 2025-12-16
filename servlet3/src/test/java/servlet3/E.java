@@ -92,7 +92,7 @@ public class E {
         assertEquals(Math.E, result, tolerance);
     }
 
-    private int a(int n) {
+    private int eulerCoefficient(int n) {
         if (n == 0)
             return 2;
         if (n % 3 == 2)
@@ -107,16 +107,19 @@ public class E {
         int p1 = 1;
         int q2 = 1;
         int q1 = 0;
+        double result = 0;
+
         for (int i = 0; i < 10; i++) {
-            int a = a(i);
-            int p = a * p1 + p2;
-            int q = a * q1 + q2;
-            double v = 1. * p / q;
-            System.out.println(v);
+            int coef = eulerCoefficient(i);
+            int p = coef * p1 + p2;
+            int q = coef * q1 + q2;
+            result = 1. * p / q;
             p2 = p1;
             p1 = p;
             q2 = q1;
             q1 = q;
         }
+
+        assertEquals(Math.E, result, tolerance);
     }
 }
