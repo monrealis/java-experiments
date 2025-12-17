@@ -101,7 +101,7 @@ public class E {
     }
 
     @ParameterizedTest
-    @CsvSource("0.01")
+    @CsvSource("0.00001")
     public void euler(double tolerance) {
         int p2 = 0;
         int p1 = 1;
