@@ -122,4 +122,9 @@ public class E {
 
         assertEquals(Math.E, result, tolerance);
     }
+
+    @ParameterizedTest
+    @CsvSource("0.01")
+    public void someOtherWay(double tolerance) {
+    }
 }
