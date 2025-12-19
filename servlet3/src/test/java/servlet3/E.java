@@ -1,5 +1,6 @@
 package servlet3;
 
+import static java.lang.Math.pow;
 import static java.util.Collections.reverseOrder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static servlet3.Powers.power;
@@ -125,6 +126,12 @@ public class E {
 
     @ParameterizedTest
     @CsvSource("0.001")
-    public void someOtherWay(double tolerance) {
+    public void eulerProduct(double tolerance) {
+        double result = 0;
+        for (int i = 1; i < 10; i++) {
+            double term = pow(1 + 1. / i, 1./(i + 1));
+            result += term;
+        }
+        assertEquals(Math.E, result, tolerance);
     }
 }
