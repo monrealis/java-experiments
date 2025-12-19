@@ -124,7 +124,7 @@ public class E {
     }
 
     @ParameterizedTest
-    @CsvSource("0.01")
+    @CsvSource("0.001")
     public void someOtherWay(double tolerance) {
     }
 }
