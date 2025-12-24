@@ -129,7 +129,7 @@ public class E {
     public void eulerProduct(double tolerance) {
         double result = 0;
         for (int i = 1; i < 10; i++) {
-            double term = pow(1 + 1. / i, 1./(i + 1));
+            double term = pow(1 + 1.0 / i, 1./(i + 1));
             result += term;
         }
         assertEquals(Math.E, result, tolerance);
