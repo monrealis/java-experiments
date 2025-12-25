@@ -125,12 +125,13 @@ public class E {
     }
 
     @ParameterizedTest
-    @CsvSource("0.001")
+    @CsvSource("0.59")
     public void eulerProduct(double tolerance) {
-        double result = 0;
-        for (int i = 1; i < 10; i++) {
-            double term = pow(1 + 1.0 / i, 1./(i + 1));
-            result += term;
+        double result = 1;
+        int n = 1000000;
+        for (int k = 1; k < n; k++) {
+            double term = pow(1 + 1.0 / k, 1. / (k + 1));
+            result *= term;
         }
         assertEquals(Math.E, result, tolerance);
     }
