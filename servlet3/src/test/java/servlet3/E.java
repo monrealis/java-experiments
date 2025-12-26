@@ -125,7 +125,7 @@ public class E {
     }
 
     @ParameterizedTest
-    @CsvSource("0.59")
+    @CsvSource("0.55")
     public void eulerProduct(double tolerance) {
         double result = 1;
         int n = 1000000;
