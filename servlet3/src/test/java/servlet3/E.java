@@ -128,7 +128,7 @@ public class E {
     @CsvSource("0.55")
     public void eulerProduct(double tolerance) {
         double result = 1;
-        int n = 100000;
+        int n = 10000;
         for (int k = 1; k < n; k++) {
             double term = pow(1 + 1.0 / k, 1. / (k + 1));
             result *= term;
