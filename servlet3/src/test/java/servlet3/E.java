@@ -135,4 +135,14 @@ public class E {
         }
         assertEquals(Math.E, result, tolerance);
     }
+
+    @ParameterizedTest
+    @CsvSource("0.01")
+    public void someOtherMethod(double tolerance) {
+        double result = 0;
+        int n = 10;
+        for (int k = 1; k < n; k++) {
+        }
+        //assertEquals(Math.E, result, tolerance);
+    }
 }
