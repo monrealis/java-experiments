@@ -3,6 +3,7 @@ package servlet3;
 import static java.lang.Math.pow;
 import static java.util.Collections.reverseOrder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static servlet3.Factorials.factorial;
 import static servlet3.Powers.power;
 
 import java.util.Arrays;
@@ -138,11 +139,15 @@ public class E {
 
     @ParameterizedTest
     @CsvSource("0.01")
-    public void someOtherMethod(double tolerance) {
+    public void factorialBased(double tolerance) {
         double result = 0;
         int n = 10;
-        for (int k = 1; k < n; k++) {
+        for (int k = 0; k < n; k++) {
+            int numerator = k + 1;
+            double denominator = factorial(k + 1);
+            double ratio = numerator / denominator;
+            result += ratio;
         }
-        //assertEquals(Math.E, result, tolerance);
+        assertEquals(Math.E, result, tolerance);
     }
 }
