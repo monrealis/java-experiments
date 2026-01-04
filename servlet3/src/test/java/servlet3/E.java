@@ -138,14 +138,17 @@ public class E {
     }
 
     @ParameterizedTest
-    @CsvSource("0.01")
+    @CsvSource("0.001")
     public void factorialBased(double tolerance) {
         double result = 0;
         int n = 10;
+        double f = 1;
         for (int k = 0; k < n; k++) {
             int numerator = k + 1;
             double denominator = factorial(k + 1);
             double ratio = numerator / denominator;
+            f *= k + 1;
+            assertEquals(f, denominator);
             result += ratio;
         }
         assertEquals(Math.E, result, tolerance);
