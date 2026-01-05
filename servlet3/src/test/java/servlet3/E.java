@@ -64,20 +64,6 @@ public class E {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0.00001" })
-    public void taylor(double tolerance) {
-        int n = 10;
-        double factorial = 1;
-        double result = 0;
-        for (int i = 0; i <= n; i++) {
-            double term = 1.0 / factorial;
-            factorial *= i + 1;
-            result += term;
-        }
-        assertEquals(Math.E, result, tolerance);
-    }
-
-    @ParameterizedTest
     @CsvSource({ "0.1" })
     public void alternating(double tolerance) {
         int n = 10000;
@@ -136,15 +122,31 @@ public class E {
         assertEquals(Math.E, result, tolerance);
     }
 
+
+    @ParameterizedTest
+    @CsvSource({ "0.00001" })
+    public void taylor(double tolerance) {
+        int n = 10;
+        double factorial = 1;
+        double result = 0;
+        for (int i = 0; i <= n; i++) {
+            double term = 1.0 / factorial;
+            factorial *= i + 1;
+            result += term;
+        }
+        assertEquals(Math.E, result, tolerance);
+    }
+
+    
     @ParameterizedTest
     @CsvSource("0.001")
     public void factorialBased(double tolerance) {
-        double result = 0;
         int n = 10;
-        double f = 1;
+        double factorial = 1;
+        double result = 0;
         for (int k = 1; k < n; k++) {
-            f *= k;
-            double term = k / f;
+            factorial *= k;
+            double term = k / factorial;
             result += term;
         }
         assertEquals(Math.E, result, tolerance);
