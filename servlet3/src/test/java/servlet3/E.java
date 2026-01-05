@@ -122,22 +122,20 @@ public class E {
         assertEquals(Math.E, result, tolerance);
     }
 
-
     @ParameterizedTest
     @CsvSource({ "0.00001" })
     public void taylor(double tolerance) {
         int n = 10;
         double factorial = 1;
         double result = 0;
-        for (int i = 0; i <= n; i++) {
+        for (int i = 1; i <= n; i++) {
             double term = 1.0 / factorial;
-            factorial *= i + 1;
+            factorial *= i;
             result += term;
         }
         assertEquals(Math.E, result, tolerance);
     }
 
-    
     @ParameterizedTest
     @CsvSource("0.001")
     public void factorialBased(double tolerance) {
