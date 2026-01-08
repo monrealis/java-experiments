@@ -157,16 +157,16 @@ public class E {
     }
 
     @ParameterizedTest
-    @CsvSource("0.5,0.01")
+    @CsvSource("0.01,0.01")
     public void integration(double step, double tolerance) {
-        double result = 0;
+        double sum = 0;
         double x = 1;
         while (true) {
-            result += integrate(x, x + step);
+            sum += integrate(x, x + step);
             x += step;
-            if (result > 1)
+            if (sum > 1)
                 break;
         }
-        assertEquals(Math.E, result, tolerance);
+        assertEquals(Math.E, x, tolerance);
     }
 }
