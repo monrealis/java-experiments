@@ -150,9 +150,23 @@ public class E {
         assertEquals(Math.E, result, tolerance);
     }
 
-    @ParameterizedTest
-    @CsvSource("0.001")
-    public void integration(double tolerance) {
+    double integrate(double from, double to) {
+        double mid = (from + to) / 2;
+        double delta = to - from;
+        return delta / mid;
+    }
 
+    @ParameterizedTest
+    @CsvSource("0.5,0.01")
+    public void integration(double step, double tolerance) {
+        double result = 0;
+        double x = 1;
+        while (true) {
+            result += integrate(x, x + step);
+            x += step;
+            if (result > 1)
+                break;
+        }
+        assertEquals(Math.E, result, tolerance);
     }
 }
