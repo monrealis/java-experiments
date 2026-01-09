@@ -150,20 +150,19 @@ public class E {
         assertEquals(Math.E, result, tolerance);
     }
 
-    double integrate(double from, double to) {
-        double mid = (from + to) / 2;
-        double delta = to - from;
-        return delta / mid;
+    double integrateExponential(double from, double dx) {
+        double mid = from + dx / 2;
+        return dx / mid;
     }
 
     @ParameterizedTest
     @CsvSource("0.01,0.01")
-    public void integration(double step, double tolerance) {
+    public void integration(double dx, double tolerance) {
         double sum = 0;
         double x = 1;
         while (true) {
-            sum += integrate(x, x + step);
-            x += step;
+            sum += integrateExponential(x, dx);
+            x += dx;
             if (sum > 1)
                 break;
         }
