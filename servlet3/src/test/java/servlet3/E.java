@@ -168,4 +168,10 @@ public class E {
         }
         assertEquals(Math.E, x, tolerance);
     }
+
+    @ParameterizedTest
+    @CsvSource("0.1")
+    public void someOtherTest(double tolerance) {
+
+    }
 }
