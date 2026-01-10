@@ -156,7 +156,7 @@ public class E {
     }
 
     @ParameterizedTest
-    @CsvSource("0.01,0.01")
+    @CsvSource("0.0001,0.0001")
     public void integration(double dx, double tolerance) {
         double sum = 0;
         double x = 1;
