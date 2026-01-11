@@ -172,6 +172,5 @@ public class E {
     @ParameterizedTest
     @CsvSource("0.1")
     public void someOtherTest(double tolerance) {
-
     }
 }
