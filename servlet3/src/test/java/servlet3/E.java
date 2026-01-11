@@ -170,7 +170,16 @@ public class E {
     }
 
     @ParameterizedTest
-    @CsvSource("0.1")
-    public void someOtherTest(double tolerance) {
+    @CsvSource("1")
+    public void infiniteProduct(double tolerance) {
+        int n = 10000;
+        double product = 1;
+        for (int i = 1; i <= n; i++) {
+            double x = (1 + 1. / i);
+            double power = pow(-1, i + 1) / i;
+            double y = pow(x, power);
+            product *= y;
+        }
+        assertEquals(Math.E, product, tolerance);
     }
 }
