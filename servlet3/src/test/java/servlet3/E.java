@@ -160,10 +160,10 @@ public class E {
     public void integration(double dx, double tolerance) {
         double sum = 0;
         double x = 1;
-        do {
+        for (; sum < 1;) {
             sum += integrateExponential(x, dx);
             x += dx;
-        } while (sum < 1);
+        }
         assertEquals(Math.E, x, tolerance);
     }
 
