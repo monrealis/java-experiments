@@ -180,4 +180,16 @@ public class E {
         }
         assertEquals(Math.E, product, tolerance);
     }
+
+    @ParameterizedTest
+    @CsvSource("0.01")
+    public void numericalIteration(double tolerance) {
+        int n = 5;
+        double x = 1;
+        for (int i = 1; i < n; i++) {
+            x += 1 / Factorials.factorial(i);
+        }
+        assertEquals(Math.E, x, tolerance);
+    }
+
 }
