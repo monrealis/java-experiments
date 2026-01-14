@@ -192,4 +192,15 @@ public class E {
         assertEquals(Math.E, x, tolerance);
     }
 
+    @ParameterizedTest
+    @CsvSource("0.01")
+    public void differentiation(double tolerance) {
+        int steps = 1000;
+        double h = 1. / steps;
+        double x = 1;
+        for (int i = 0; i < steps; i++) {
+            x = x + h * x;
+        }
+        assertEquals(Math.E, x, tolerance);
+    }
 }
