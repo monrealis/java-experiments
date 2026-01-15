@@ -186,9 +186,8 @@ public class E {
     public void numericalIteration(double tolerance) {
         int n = 5;
         double x = 1;
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i < n; i++)
             x += 1 / Factorials.factorial(i);
-        }
         assertEquals(Math.E, x, tolerance);
     }
 
@@ -198,9 +197,8 @@ public class E {
         int steps = 1000;
         double h = 1. / steps;
         double x = 1;
-        for (int i = 0; i < steps; i++) {
+        for (int i = 0; i < steps; i++)
             x = x + h * x;
-        }
         assertEquals(Math.E, x, tolerance);
     }
 }
