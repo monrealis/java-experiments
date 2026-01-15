@@ -197,8 +197,9 @@ public class E {
         int steps = 1000;
         double h = 1. / steps;
         double x = 1;
-        for (int i = 0; i < steps; i++)
-            x = x + h * x;
+        for (int i = 0; i < steps; i++) {
+            x = x * (1 + h);
+        }
         assertEquals(Math.E, x, tolerance);
     }
 }
