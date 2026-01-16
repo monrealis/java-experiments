@@ -4,6 +4,7 @@ import static java.lang.Math.E;
 import static java.lang.Math.PI;
 import static java.lang.Math.exp;
 import static java.lang.Math.log;
+import static java.lang.Math.sin;
 import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static servlet3.Factorials.factorial;
@@ -240,9 +241,11 @@ public class Pi {
         return sum;
     }
 
+    @ParameterizedTest
     @CsvSource("0.01")
-    public void somethingElse(double tolerance) {
-        double actual = 16 * arctan1over5() - 4 * arctan1over239();
+    public void archimedesPolygon(double tolerance) {
+        int n = 50;
+        double actual = n * sin(PI / n);
 
         assertEquals(pi, actual, tolerance);
     }
