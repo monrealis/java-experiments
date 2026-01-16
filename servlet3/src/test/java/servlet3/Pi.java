@@ -249,4 +249,13 @@ public class Pi {
 
         assertEquals(pi, actual, tolerance);
     }
+
+    @ParameterizedTest
+    @CsvSource("0.01")
+    public void archimedesPolygon2(double tolerance) {
+        int n = 50;
+        double actual = n * sin(PI / n);
+
+        assertEquals(pi, actual, tolerance);
+    }
 }
