@@ -257,6 +257,6 @@ public class Pi {
         double actual = n * sin(PI / n);
 
         assertEquals(pi, actual, tolerance);
-        // TODO
+        // TODO fill the Archimedes method 2
     }
 }
