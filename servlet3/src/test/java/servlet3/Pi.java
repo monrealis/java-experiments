@@ -253,10 +253,20 @@ public class Pi {
     @ParameterizedTest
     @CsvSource("0.01")
     public void archimedesPolygon2(double tolerance) {
-        int n = 50;
-        double actual = n * sin(PI / n);
-
-        assertEquals(pi, actual, tolerance);
-        // TODO fill the Archimedes method 2
+        int n = 6;
+        double s = 1;
+        double halfPerimeter;
+        do {
+            double perimeter = n * s;
+            halfPerimeter = perimeter / 2;
+            s = getNextSide(s);
+            n *= 2;
+        } while (n <= 96);
+        assertEquals(pi, halfPerimeter, tolerance);
     }
+
+    private double getNextSide(double s) {
+        return Math.sqrt(2 - Math.sqrt(4 - s * s));
+    }
+
 }
