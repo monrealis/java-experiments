@@ -251,7 +251,7 @@ public class Pi {
     }
 
     @ParameterizedTest
-    @CsvSource("0.01")
+    @CsvSource("0.00001")
     public void archimedesPolygon2(double tolerance) {
         int n = 6;
         double s = 1;
@@ -261,7 +261,7 @@ public class Pi {
             halfPerimeter = perimeter / 2;
             s = getNextSide(s);
             n *= 2;
-        } while (n <= 96);
+        } while (n <= 96 * 96);
         assertEquals(pi, halfPerimeter, tolerance);
     }
 
