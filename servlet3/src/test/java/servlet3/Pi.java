@@ -267,4 +267,15 @@ public class Pi {
     private double getNextSide(double s) {
         return sqrt(2 - sqrt(4 - s * s));
     }
+
+    @ParameterizedTest
+    @CsvSource("0.00001")
+    public void vieteInfiniteProduct(double tolerance) {
+        double p = 1;
+        for (int i = 0; i < 1; i++) {
+            double pr = sqrt(2) / 2;
+            p *= pr;
+        }
+        assertEquals(2 / pi, p, tolerance);
+    }
 }
