@@ -257,8 +257,7 @@ public class Pi {
         double s = 1;
         double halfPerimeter;
         do {
-            double perimeter = n * s;
-            halfPerimeter = perimeter / 2;
+            halfPerimeter = n * s / 2;
             s = getNextSide(s);
             n *= 2;
         } while (n <= 96 * 96);
@@ -266,7 +265,6 @@ public class Pi {
     }
 
     private double getNextSide(double s) {
-        return Math.sqrt(2 - Math.sqrt(4 - s * s));
+        return sqrt(2 - sqrt(4 - s * s));
     }
-
 }
