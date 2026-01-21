@@ -271,11 +271,14 @@ public class Pi {
     @ParameterizedTest
     @CsvSource("0.00001")
     public void vieteInfiniteProduct(double tolerance) {
-        double p = 1;
-        for (int i = 0; i < 2; i++) {
-            double pr = sqrt(2) / 2;
-            p *= pr;
+        double product = 1;
+        double lastVal = 0;
+        for (int i = 0; i < 10; i++) {
+            double lastSquareRoot = sqrt(2 + lastVal);
+            double term = lastSquareRoot / 2;
+            product *= term;
+            lastVal = lastSquareRoot;
         }
-        assertEquals(2 / pi, p, tolerance);
+        assertEquals(2 / pi, product, tolerance);
     }
 }
