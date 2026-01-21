@@ -272,7 +272,7 @@ public class Pi {
     @CsvSource("0.00001")
     public void vieteInfiniteProduct(double tolerance) {
         double p = 1;
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 2; i++) {
             double pr = sqrt(2) / 2;
             p *= pr;
         }
