@@ -281,4 +281,19 @@ public class Pi {
         }
         assertEquals(2 / pi, product, tolerance);
     }
+
+    @ParameterizedTest
+    @CsvSource("0.00001")
+    public void vieteInfiniteProduct2(double tolerance) {
+        double product = 2;
+        double lastVal = 0;
+        for (int i = 0; i < 10; i++) {
+            double numerator = 2;
+            double denominator = sqrt(2 + lastVal);
+            lastVal = denominator;
+            double term = numerator / denominator;
+            product *= term;
+        }
+        assertEquals(pi, product, tolerance);
+    }
 }
