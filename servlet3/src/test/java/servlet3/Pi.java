@@ -4,6 +4,7 @@ import static java.lang.Math.E;
 import static java.lang.Math.PI;
 import static java.lang.Math.exp;
 import static java.lang.Math.log;
+import static java.lang.Math.random;
 import static java.lang.Math.sin;
 import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -295,5 +296,24 @@ public class Pi {
             product *= term;
         }
         assertEquals(pi, product, tolerance);
+    }
+
+    @ParameterizedTest
+    @CsvSource("0.00001")
+    public void monteCarlo(double tolerance) {
+        int n = 1000;
+        int inside = 0;
+        int outside = 0;
+        for (int i = 0; i < n; i++) {
+            double x = random() * 2 - 1;
+            double y = random() * 2 - 1;
+            double r = sqrt(x * x + y * y);
+            if (r < 1)
+                inside++;
+            else
+                outside++;
+        }
+        double expectedPi = 1.0 * inside / n;
+        assertEquals(pi, expectedPi, tolerance);
     }
 }
