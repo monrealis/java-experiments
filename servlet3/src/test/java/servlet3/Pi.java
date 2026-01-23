@@ -299,21 +299,18 @@ public class Pi {
     }
 
     @ParameterizedTest
-    @CsvSource("0.00001")
+    @CsvSource("0.1")
     public void monteCarlo(double tolerance) {
         int n = 1000;
-        int inside = 0;
-        int outside = 0;
+        int insideUnitCircle = 0;
         for (int i = 0; i < n; i++) {
             double x = random() * 2 - 1;
             double y = random() * 2 - 1;
             double r = sqrt(x * x + y * y);
             if (r < 1)
-                inside++;
-            else
-                outside++;
+                insideUnitCircle++;
         }
-        double expectedPi = 1.0 * inside / n;
+        double expectedPi = 1.0 * insideUnitCircle / n * 4;
         assertEquals(pi, expectedPi, tolerance);
     }
 }
