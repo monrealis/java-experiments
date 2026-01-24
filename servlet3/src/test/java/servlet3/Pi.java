@@ -2,6 +2,7 @@ package servlet3;
 
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
+import static java.lang.Math.abs;
 import static java.lang.Math.exp;
 import static java.lang.Math.log;
 import static java.lang.Math.random;
@@ -11,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static servlet3.Factorials.factorial;
 import static servlet3.Powers.power;
 import static servlet3.Powers.power2;
+
+import java.util.Random;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -313,4 +316,23 @@ public class Pi {
         double expectedPi = 1.0 * insideUnitCircle / n * 4;
         assertEquals(pi, expectedPi, tolerance);
     }
+
+    @ParameterizedTest
+    @CsvSource("0.1")
+    public void buffonNeedle(double tolerance) {
+        double l = 1; // needle length
+        double d = 2; // distance between lines
+        double drops = 5000000;
+        Random r = new Random(42);
+        int crossings = 0;
+        for (int i = 0; i < drops; i++) {
+            double theta = r.nextDouble() * d / 2;
+            double x = r.nextDouble() * d / 2;
+            if (x <= (l / 2) * sin(theta))
+                crossings++;
+        }
+        double piEstimate = (2 * l * drops) / (d * crossings);
+        assertEquals(pi, abs(piEstimate - pi), tolerance);
+    }
+
 }
