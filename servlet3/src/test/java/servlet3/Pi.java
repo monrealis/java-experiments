@@ -2,7 +2,6 @@ package servlet3;
 
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
-import static java.lang.Math.abs;
 import static java.lang.Math.exp;
 import static java.lang.Math.log;
 import static java.lang.Math.random;
@@ -323,16 +322,15 @@ public class Pi {
         double l = 1; // needle length
         double d = 2; // distance between lines
         double drops = 5000000;
-        Random r = new Random(42);
+        Random random = new Random(42);
         int crossings = 0;
         for (int i = 0; i < drops; i++) {
-            double theta = r.nextDouble() * d / 2;
-            double x = r.nextDouble() * d / 2;
+            double theta = random.nextDouble() * PI / 2;
+            double x = random.nextDouble() * d / 2;
             if (x <= (l / 2) * sin(theta))
                 crossings++;
         }
         double piEstimate = (2 * l * drops) / (d * crossings);
-        assertEquals(pi, abs(piEstimate - pi), tolerance);
+        assertEquals(pi, piEstimate, tolerance);
     }
-
 }
