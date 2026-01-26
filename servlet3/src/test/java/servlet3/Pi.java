@@ -333,4 +333,19 @@ public class Pi {
         double piEstimate = (2 * l * drops) / (d * crossings);
         assertEquals(pi, piEstimate, tolerance);
     }
+
+    @ParameterizedTest
+    @CsvSource("0.1")
+    public void randomWalk(double tolerance) {
+        int n = 200000;
+        int steps = 2000;
+        for (int i = 0; i < n; i++) {
+
+        }
+
+        double piEstimate = pi;
+        assertEquals(pi, piEstimate, tolerance);
+
+    }
+
 }
