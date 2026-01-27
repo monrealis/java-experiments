@@ -2,6 +2,7 @@ package servlet3;
 
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
+import static java.lang.Math.cos;
 import static java.lang.Math.exp;
 import static java.lang.Math.log;
 import static java.lang.Math.random;
@@ -337,13 +338,28 @@ public class Pi {
     @ParameterizedTest
     @CsvSource("0.1")
     public void randomWalk(double tolerance) {
-        int n = 200000;
+        int n = 2000;
         int steps = 2000;
+        int returns = 0;
         for (int i = 0; i < n; i++) {
+            double x = 0;
+            double y = 0;
+            boolean returned = false;
+            for (int j = 0; j < steps; j++) {
+                double angle = random() * 2 * PI;
+                x += cos(angle);
+                y += sin(angle);
+                if (!returned && (x * x + y * y) <= 0.01) {
+                    returned = true;
+                    returns++;
+                    break;
+                }
+
+            }
 
         }
-
-        double piEstimate = pi;
+        double probability = (double) returns / n;
+        double piEstimate = probability * log(1 / 0.01);
         assertEquals(pi, piEstimate, tolerance);
 
     }
