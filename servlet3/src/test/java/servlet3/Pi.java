@@ -177,7 +177,7 @@ public class Pi {
 
     @ParameterizedTest
     @CsvSource("0.01")
-    public void eulerBasel(double tolerance) {
+    public void basel(double tolerance) {
         double sum = 0;
         for (int n = 1; n < 97; ++n) {
             double numerator = 6;
@@ -191,7 +191,7 @@ public class Pi {
 
     @ParameterizedTest
     @CsvSource("0.01")
-    public void eulerBasel2(double tolerance) {
+    public void eulerBasel(double tolerance) {
         Random random = new Random(42);
         int samples = (int) 5e6;
         int max = (int) 1e6;
