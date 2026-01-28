@@ -189,6 +189,24 @@ public class Pi {
         assertEquals(pi, actual, tolerance);
     }
 
+    @ParameterizedTest
+    @CsvSource("0.01")
+    public void eulerBasel2(double tolerance) {
+        Random random = new Random(42);
+        int samples = (int) 5e6;
+        int max = (int) 1e6;
+        int coprime = 0;
+        for (int i = 0; i < samples; i++) {
+            int a = random.nextInt(max);
+            int b = random.nextInt(max);
+            if (VariousTests.gcd(a, b) == 1)
+                coprime++;
+        }
+        double probability = (double) coprime / samples;
+        double piEstimate = sqrt(6 / probability);
+        assertEquals(pi, piEstimate, tolerance);
+    }
+
     double arctan(double x) {
         double sum = 0;
         double nom = 1;
@@ -333,4 +351,5 @@ public class Pi {
         double piEstimate = (2 * l * drops) / (d * crossings);
         assertEquals(pi, piEstimate, tolerance);
     }
+
 }

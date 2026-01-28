@@ -210,7 +210,7 @@ public class VariousTests {
         return a < 0 ? -a : a;
     }
 
-    private int gcd(int a, int b) {
+    static int gcd(int a, int b) {
         a = a < 0 ? -a : a;
         while (b != 0) {
             int temp = b;
