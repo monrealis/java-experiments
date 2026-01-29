@@ -193,8 +193,8 @@ public class Pi {
     @CsvSource("0.01")
     public void eulerBasel(double tolerance) {
         Random random = new Random(42);
-        int samples = (int) 5e6;
-        int max = (int) 1e6;
+        int samples = 5000000;
+        int max = 1000000;
         int coprime = 0;
         for (int i = 0; i < samples; i++) {
             int a = random.nextInt(max);
@@ -351,5 +351,4 @@ public class Pi {
         double piEstimate = (2 * l * drops) / (d * crossings);
         assertEquals(pi, piEstimate, tolerance);
     }
-
 }
