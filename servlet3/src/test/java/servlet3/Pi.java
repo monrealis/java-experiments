@@ -351,4 +351,24 @@ public class Pi {
         double piEstimate = (2 * l * drops) / (d * crossings);
         assertEquals(pi, piEstimate, tolerance);
     }
+
+    @ParameterizedTest
+    @CsvSource("0.1")
+    public void gaussLegender(double tolerance) {
+        double a = 1;
+        double b = 1 / sqrt(2);
+        double t = .25;
+        double p = 1;
+        for (int i = 0; i < 4; i++) {
+            double aNext = (a + b) / 2;
+            double bNext = sqrt(a * b);
+            double tNext = t - p * (a - aNext) * (a - aNext);
+            a = aNext;
+            b = bNext;
+            t = tNext;
+            p *= 2;
+        }
+        double piEstimate = (a + b) * (a + b) / (4 * t);
+        assertEquals(pi, piEstimate, tolerance);
+    }
 }
