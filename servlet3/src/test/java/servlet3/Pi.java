@@ -371,4 +371,17 @@ public class Pi {
         double piEstimate = (a + b) * (a + b) / (4 * t);
         assertEquals(pi, piEstimate, tolerance);
     }
+
+    @ParameterizedTest
+    @CsvSource("0.1")
+    public void brouckerPi(double tolerance) {
+        double cf = 0;
+        for (int i = 10; i >= 1; i--) {
+            double odd = 2 * i - 1;
+            cf = odd * odd / (cf + 2);
+        }
+
+        double piEstimate = 4 / (1 + cf);
+        assertEquals(pi, piEstimate, tolerance);
+    }
 }
