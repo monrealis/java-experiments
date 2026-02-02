@@ -373,14 +373,13 @@ public class Pi {
     }
 
     @ParameterizedTest
-    @CsvSource("0.1")
+    @CsvSource("0.01")
     public void brouckerPi(double tolerance) {
         double cf = 0;
-        for (int i = 10; i >= 1; i--) {
+        for (int i = 200; i >= 1; i--) {
             double odd = 2 * i - 1;
             cf = odd * odd / (cf + 2);
         }
-
         double piEstimate = 4 / (1 + cf);
         assertEquals(pi, piEstimate, tolerance);
     }
