@@ -376,7 +376,7 @@ public class Pi {
     @CsvSource("0.01")
     public void brouckerPi(double tolerance) {
         double cf = 0;
-        for (int i = 200; i >= 1; i--) {
+        for (int i = 200; i >= 1; --i) {
             double odd = 2 * i - 1;
             cf = odd * odd / (cf + 2);
         }
