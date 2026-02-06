@@ -47,7 +47,7 @@ public class Pi {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0.05,30" })
+    @CsvSource({ "0.04,30" })
     public void wallisFactorial(double tolerance, int iterations) {
         int n = iterations;
         double fact = factorial(n);
