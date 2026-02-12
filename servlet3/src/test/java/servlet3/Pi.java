@@ -34,7 +34,7 @@ public class Pi {
     }
 
     @ParameterizedTest
-    @CsvSource({ "0.0009" })
+    @CsvSource({ "0.0008" })
     public void wallis(double tolerance) {
         double result = 0;
         for (int i = 1; i <= 1000; i++) {
