@@ -60,7 +60,7 @@ public class Pi {
     }
 
     @ParameterizedTest
-    @CsvSource("0.009")
+    @CsvSource("0.008")
     public void stirling(double tolerance) {
         int n = 75;
         double factorial = factorial(n);
