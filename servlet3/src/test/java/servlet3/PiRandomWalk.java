@@ -1,5 +1,8 @@
 package servlet3;
 
+import static java.lang.Math.PI;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
@@ -17,18 +20,14 @@ public class PiRandomWalk {
     void estimatePiFromRandomWalkRecurrence() {
         Random random = new Random(123);
         int returns = 0;
-
         for (int i = 0; i < WALKS; i++) {
             double x = 0.0;
             double y = 0.0;
             boolean returned = false;
-
             for (int step = 0; step < STEPS; step++) {
-                // Random step in 2D
-                double angle = random.nextDouble() * 2.0 * Math.PI;
-                x += Math.cos(angle);
-                y += Math.sin(angle);
-
+                double angle = random.nextDouble() * 2.0 * PI;
+                x += cos(angle);
+                y += sin(angle);
                 if (!returned && (x * x + y * y) <= EPSILON * EPSILON) {
                     returned = true;
                     returns++;
@@ -36,12 +35,9 @@ public class PiRandomWalk {
                 }
             }
         }
-
         double probability = (double) returns / WALKS;
         double piEstimate = 1.0 / (probability * Math.log(1.0 / EPSILON));
-
         System.out.println("Estimated π = " + piEstimate);
-
         // Very loose bound — random walk is wild
         assertTrue(Math.abs(piEstimate - Math.PI) < 0.3);
     }
