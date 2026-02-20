@@ -82,7 +82,7 @@ public class Pi {
     }
 
     @ParameterizedTest
-    @CsvSource("0.03")
+    @CsvSource("0.02")
     public void ramanujan(double tolerance) {
         double sum = 0;
         double factor = 2 * sqrt(2) / (99 * 99);
