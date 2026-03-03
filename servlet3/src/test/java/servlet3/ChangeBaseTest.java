@@ -32,6 +32,12 @@ public class ChangeBaseTest {
         assertEquals(baseN, bNString);
     }
 
+    private String digit(int bN, int toBase) {
+        if (bN >= 10 && toBase > 10)
+            return "(" + Integer.toString(bN) + ")";
+        return Integer.toString(bN);
+    }
+
     private static class Parser {
         private final String number;
         private final int fromBase;
@@ -89,11 +95,5 @@ public class ChangeBaseTest {
             if (opened)
                 throw new IllegalArgumentException();
         }
-    }
-
-    private String digit(int bN, int toBase) {
-        if (bN >= 10 && toBase > 10)
-            return "(" + Integer.toString(bN) + ")";
-        return Integer.toString(bN);
     }
 }
