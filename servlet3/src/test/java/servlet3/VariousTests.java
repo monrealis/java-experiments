@@ -98,8 +98,8 @@ public class VariousTests {
 
     @ParameterizedTest
     @CsvSource({ "true,2", "true,3", "false,4", "true,5", "false,9", "false,16", "false,25", "false,49", "false,64",
-            "false,81", "false,99", "true,97", "false,98", "false,99", "false,100", "true,101", "true,103",
-            "true,109" })
+            "false,81", "false,99", "true,97", "false,98", "false,99", "false,100", "true,101", "true,103", "true,109",
+            "true,113" })
     public void primeNumbers(boolean expectedResult, int n) {
         assertEquals(expectedResult, isPrimeNumber(n));
     }
