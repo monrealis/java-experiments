@@ -4,6 +4,7 @@ import static java.lang.Character.isLetter;
 import static java.lang.Integer.MIN_VALUE;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.toBinaryString;
+import static java.lang.Math.sqrt;
 import static java.lang.String.join;
 import static java.util.Arrays.stream;
 import static java.util.Collections.emptyList;
@@ -99,7 +100,7 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "true,2", "true,3", "false,4", "true,5", "false,9", "false,16", "false,25", "false,49", "false,64",
             "false,81", "false,99", "true,97", "false,98", "false,99", "false,100", "true,101", "true,103", "true,109",
-            "true,113", "false,119" })
+            "true,113", "false,119", "false,121" })
     public void primeNumbers(boolean expectedResult, int n) {
         assertEquals(expectedResult, isPrimeNumber(n));
     }
@@ -124,7 +125,7 @@ public class VariousTests {
     private strictfp boolean isPrimeNumber(int n) {
         if (n < 2)
             throw new IllegalArgumentException();
-        for (int i = 2; i <= Math.sqrt(n); ++i)
+        for (int i = 2; i <= sqrt(n); ++i)
             if (n % i == 0)
                 return false;
         return true;
