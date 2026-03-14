@@ -126,8 +126,11 @@ public class VariousTests {
         if (n < 2)
             throw new IllegalArgumentException();
         for (int i = 2; i <= sqrt(n); ++i)
-            if (n % i == 0)
+            if (n % i == 0) {
+                if (i > 5)
+                    System.out.println(i);
                 return false;
+            }
         return true;
     }
 
