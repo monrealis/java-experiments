@@ -101,7 +101,7 @@ public class VariousTests {
     @CsvSource({ "true,2", "true,3", "false,4", "true,5", "false,9", "false,16", "false,25", "false,49", "false,64",
             "false,81", "false,99", "true,97", "false,98", "false,99", "false,100", "true,101", "true,103", "true,109",
             "true,113", "false,119", "false,121", "true,127", "false,129", "true,131", "false,133", "true,137",
-            "true,139", "true,149", "true,151", "false,153", "true,157", "false,161", "false,195" })
+            "true,139", "true,149", "true,151", "false,153", "true,157", "false,161", "true,163", "false,195" })
     public void primeNumbers(boolean expectedResult, int n) {
         assertEquals(expectedResult, isPrimeNumber(n));
     }
