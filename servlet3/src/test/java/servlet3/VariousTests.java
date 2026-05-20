@@ -133,11 +133,17 @@ public class VariousTests {
             throw new IllegalArgumentException();
         for (int i = 2; i <= sqrt(n); ++i)
             if (n % i == 0) {
-                if (i > 5)
+                if (loggablePrimeNumberCandidate(i))
                     System.out.println(i);
                 return false;
             }
         return true;
+    }
+
+    private boolean loggablePrimeNumberCandidate(int i) {
+        if (i % 9 == 0)
+            return false;
+        return i > 5;
     }
 
     @ParameterizedTest
