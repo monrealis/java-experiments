@@ -128,7 +128,7 @@ public class VariousTests {
         assertThrows(IllegalArgumentException.class, () -> isPrimeNumber(n));
     }
 
-    private strictfp boolean isPrimeNumber(int n) {
+    private boolean isPrimeNumber(int n) {
         if (n < 2)
             throw new IllegalArgumentException();
         for (int i = 2; i <= sqrt(n); ++i)
