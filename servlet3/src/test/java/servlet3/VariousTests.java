@@ -107,9 +107,15 @@ public class VariousTests {
             "false,221", "true,223", "true,227", "true,229", "false,231", "true,233", "false,237", "true,239",
             "true,241", "false,243", "false,247", "false,249", "true,251", "false,253", "true,257", "false,259",
             "true,263", "false,267", "true,269", "true,271", "false,273", "true,277", "false,279", "true,281",
-            "true,283", "false,287", "false,289", "false,291", "true,293" })
-    public void primeNumbers(boolean expectedResult, int n) {
-        assertEquals(expectedResult, isPrimeNumber(n));
+            "true,283", "false,287", "false,289", "false,291", "true,293", "293,true" })
+    public void primeNumbers(Object expectedResult, Object n) {
+        try {
+            int parsedInt = Integer.parseInt(n.toString());
+            assertEquals(Boolean.valueOf(expectedResult.toString()), isPrimeNumber(parsedInt));
+        } catch (Exception e) {
+            int parsedInt = Integer.parseInt(expectedResult.toString());
+            assertEquals(Boolean.valueOf(n.toString()), isPrimeNumber(parsedInt));
+        }
     }
 
     @Test
