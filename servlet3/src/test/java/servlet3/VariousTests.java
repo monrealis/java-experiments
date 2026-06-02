@@ -99,7 +99,7 @@ public class VariousTests {
 
     @ParameterizedTest
     @CsvSource({ "2,true", "3,true", "false,4", "5,true", "9,false", "16,false", "25,false", "49,false", "64,false",
-            "false,81", "false,99", "true,97", "false,98", "false,99", "false,100", "true,101", "true,103", "true,109",
+            "81,false", "99,false", "97,true", "98,false", "99,false", "100,false", "101,true", "103,true", "109,true",
             "true,113", "false,119", "false,121", "true,127", "false,129", "true,131", "false,133", "true,137",
             "true,139", "true,149", "true,151", "false,153", "true,157", "false,161", "true,163", "false,195",
             "true,167", "false,169", "true,173", "true,179", "true,181", "false,183", "false,187", "true,191",
