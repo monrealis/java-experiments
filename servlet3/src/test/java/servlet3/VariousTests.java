@@ -100,14 +100,14 @@ public class VariousTests {
     @ParameterizedTest
     @CsvSource({ "2,true", "3,true", "false,4", "5,true", "9,false", "16,false", "25,false", "49,false", "64,false",
             "81,false", "99,false", "97,true", "98,false", "99,false", "100,false", "101,true", "103,true", "109,true",
-            "true,113", "false,119", "false,121", "true,127", "false,129", "true,131", "false,133", "true,137",
-            "true,139", "true,149", "true,151", "false,153", "true,157", "false,161", "true,163", "false,195",
-            "true,167", "false,169", "true,173", "true,179", "true,181", "false,183", "false,187", "true,191",
-            "true,193", "true,197", "true,199", "false,201", "false,203", "false,209", "true,211", "false,217",
-            "false,221", "true,223", "true,227", "true,229", "false,231", "true,233", "false,237", "true,239",
-            "true,241", "false,243", "false,247", "false,249", "true,251", "false,253", "true,257", "false,259",
-            "true,263", "false,267", "true,269", "true,271", "false,273", "true,277", "false,279", "true,281",
-            "true,283", "false,287", "false,289", "false,291", "true,293", "293,true" })
+            "113,true", "119,false", "121,false", "127,true", "129,false", "131,true", "133,false", "137,true",
+            "139,true", "149,true", "151,true", "153,false", "157,true", "161,false", "163,true", "195,false",
+            "167,true", "169,false", "173,true", "179,true", "181,true", "183,false", "187,false", "191,true",
+            "193,true", "197,true", "199,true", "201,false", "203,false", "209,false", "211,true", "217,false",
+            "221,false", "223,true", "227,true", "229,true", "231,false", "233,true", "237,false", "239,true",
+            "241,true", "243,false", "247,false", "249,false", "251,true", "253,false", "257,true", "259,false",
+            "263,true", "267,false", "269,true", "271,true", "273,false", "277,true", "279,false", "281,true",
+            "283,true", "287,false", "289,false", "291,false", "293,true", "293,true" })
     public void primeNumbers(Object expectedResult, Object n) {
         try {
             int parsedInt = Integer.parseInt(n.toString());
