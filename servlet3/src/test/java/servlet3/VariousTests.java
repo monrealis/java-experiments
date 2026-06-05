@@ -98,7 +98,7 @@ public class VariousTests {
     }
 
     @ParameterizedTest
-    @CsvSource({ "2,true", "3,true", "false,4", "5,true", "9,false", "16,false", "25,false", "49,false", "64,false",
+    @CsvSource({ "2,true", "3,true", "4,false", "5,true", "9,false", "16,false", "25,false", "49,false", "64,false",
             "81,false", "99,false", "97,true", "98,false", "99,false", "100,false", "101,true", "103,true", "109,true",
             "113,true", "119,false", "121,false", "127,true", "129,false", "131,true", "133,false", "137,true",
             "139,true", "149,true", "151,true", "153,false", "157,true", "161,false", "163,true", "195,false",
@@ -108,14 +108,8 @@ public class VariousTests {
             "241,true", "243,false", "247,false", "249,false", "251,true", "253,false", "257,true", "259,false",
             "263,true", "267,false", "269,true", "271,true", "273,false", "277,true", "279,false", "281,true",
             "283,true", "287,false", "289,false", "291,false", "293,true", "293,true" })
-    public void primeNumbers(Object n, Object expectedResult) {
-        try {
-            int parsedInt = Integer.parseInt(n.toString());
-            assertEquals(Boolean.valueOf(expectedResult.toString()), isPrimeNumber(parsedInt));
-        } catch (Exception e) {
-            int parsedInt = Integer.parseInt(expectedResult.toString());
-            assertEquals(Boolean.valueOf(n.toString()), isPrimeNumber(parsedInt));
-        }
+    public void primeNumbers(int n, boolean expectedResult) {
+        assertEquals(expectedResult, isPrimeNumber(n));
     }
 
     @Test
