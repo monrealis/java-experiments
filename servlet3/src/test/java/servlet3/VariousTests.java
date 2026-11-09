@@ -130,7 +130,7 @@ public class VariousTests {
             "831,false", "833,false", "837,false", "839,true", "841,false", "843,false", "847,false", "849,false",
             "851,false", "853,true", "855,false", "857,true", "859,true", "861,false", "863,true", "865,false",
             "867,false", "869,false", "871,false", "873,false", "877,true", "879,false", "881,true", "883,true",
-            "887,true" })
+            "887,true", "889,false" })
     public void primeNumbers(int n, boolean expectedResult) {
         assertEquals(expectedResult, isPrimeNumber(n));
     }
